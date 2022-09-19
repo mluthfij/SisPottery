@@ -24,11 +24,43 @@ footer {
     padding-top: 20px;
 }
 
+.zindex {
+    z-index: 2;
+    position: absolute;
+}
+
+.shadow-top-custom {
+    // box-shadow normal
+    box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+        -webkit-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+        -moz-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+}
+
+#navbar-hide {
+    // position: fixed;
+    // transition: top 0.3s;
+    opacity: 99%;
+}
+
+.alert-message {
+    animation: mymove 6s;
+    visibility: hidden;
+    top: 10px;
+    z-index: 999;
+}
+
+@keyframes mymove {
+    from {
+        visibility: visible;
+    }
+
+    to {
+        visibility: hidden;
+    }
+}
+
 // body {
 //     background: #007bff;
 //     background: linear-gradient(to right, #0062E6, #33AEFF);
 // }
 
-// .navbar {
-//     background-color: #FDF6EA !important;
-// }

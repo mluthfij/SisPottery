@@ -2,8 +2,8 @@ module Admin
   class ProductsController < ApplicationController
     before_action :set_product, only: %i[ show edit update destroy ]
     before_action :authenticate_user!
-    before_action :correct_user, only: %i[ update edit destroy ]
-    
+    before_action :restrict_user_by_role
+
     # GET /products or /products.json
     def index
       @products = Product.all
@@ -28,7 +28,7 @@ module Admin
 
       respond_to do |format|
         if @product.save
-          format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+          format.html { redirect_to admin_product_url(@product), notice: "Product was successfully created." }
           format.json { render :show, status: :created, location: @product }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ module Admin
     def update
       respond_to do |format|
         if @product.update(product_params)
-          format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
+          format.html { redirect_to admin_product_url(@product), notice: "Product was successfully updated." }
           format.json { render :show, status: :ok, location: @product }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -55,17 +55,12 @@ module Admin
       @product.destroy
 
       respond_to do |format|
-        format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
+        format.html { redirect_to admin_products_url, notice: "Product was successfully destroyed." }
         format.json { head :no_content }
       end
     end
 
     private
-      def correct_user
-        @product = current_user.products.find_by_id(params[:id])
-        redirect_to root_path, notice: "You're not authorized to edit this!" if @product.nil?
-      end
-      
       # Use callbacks to share common setup or constraints between actions.
       def set_product
         @product = Product.find(params[:id])
@@ -74,6 +69,12 @@ module Admin
       # Only allow a list of trusted parameters through.
       def product_params
         params.require(:product).permit(:name, :price, :quantity, :description)
+      end
+
+    protected
+    # redirect if user not logged in or does not have a valid role
+      def restrict_user_by_role
+        redirect_to root_path, notice: "You're not authorized!" if current_user.admin == false
       end
   end
 end
