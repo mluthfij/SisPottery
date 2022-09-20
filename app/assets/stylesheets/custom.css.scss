@@ -54,3 +54,25 @@ footer {
         visibility: hidden;
     }
 }
+
+// 
+
+.sticky-div-container {
+    // display: flex;
+    align-items: flex-start;
+    // justify-content: space-around;
+    // margin-bottom: 3rem;
+    // border: 2px dashed rgba(114, 186, 94, 0.35);
+    // height: 400px;
+    // background: rgba(114, 186, 94, 0.05);
+}
+
+.sticky-div {
+    // background-color: red;
+    position: sticky;
+    top: 6.5rem;
+}
+
+.justify-text {
+    text-align: justify;
+}
