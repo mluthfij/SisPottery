@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     get 'pages/home'
     get 'pages/about'
     get 'pages/dashboard'
+    get 'pages/customer'
+    get 'pages/adminlist'
+    get 'pages/order'
+    get 'pages/message'
   end
 
 

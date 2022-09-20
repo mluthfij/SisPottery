@@ -7,8 +7,8 @@
           <li class="nav-item <%= params[:action] == 'dashboard' ? 'bg-dark rounded' : '' %>">
             <%= link_to ' Dashboard', admin_pages_dashboard_path, class: params[:action] == 'dashboard' ? "nav-link text-white bi bi-house-door" : "nav-link bi bi-house-door" %>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link bi bi-file-earmark"> Orders</a>
+          <li class="nav-item <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'bg-dark rounded' : '' %>">
+            <%= link_to ' Orders', admin_pages_order_path, class: params[:action] == 'order' && params[:controller] == 'admin/pages' ? "nav-link text-white bi bi-file-earmark" : "nav-link bi bi-file-earmark" %>
           </li>
           <li class="nav-item <%= params[:action] == 'index' || params[:action] == 'show'  || params[:action] == 'edit' && params[:controller] == 'admin/products' ? 'bg-dark rounded' : '' %>">
             <%= link_to ' Products', admin_products_path, class: params[:action] == 'index' || params[:action] == 'show' || params[:action] == 'edit' && params[:controller] == 'admin/products' ? "nav-link text-white bi bi-circle" : "nav-link bi bi-circle" %>
@@ -16,11 +16,11 @@
           <li class="nav-item <%= params[:action] == 'new' && params[:controller] == 'admin/products' ? 'bg-dark rounded' : '' %>">
             <%= link_to ' Add new product', new_admin_product_path, class: params[:action] == 'new' && params[:controller] == 'admin/products' ? "nav-link text-white bi-plus-circle" : "nav-link bi-plus-circle" %>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link bi bi-people"> Customers</a>
+          <li class="nav-item <%= params[:action] == 'customer' ? 'bg-dark rounded' : '' %>">
+            <%= link_to ' Customers', admin_pages_customer_path, class: params[:action] == 'customer' ? "nav-link text-white bi bi-people" : "nav-link bi bi-people" %>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link bi bi-envelope"> Messages</a>
+          <li class="nav-item <%= params[:action] == 'message' && params[:controller] == 'admin/pages' ? 'bg-dark rounded' : '' %>">
+            <%= link_to ' Messages', admin_pages_message_path, class: params[:action] == 'message' && params[:controller] == 'admin/pages' ? "nav-link text-white bi bi-envelope" : "nav-link bi bi-envelope" %>
           </li>
         </ul>
 
@@ -57,8 +57,8 @@
           <li class="nav-item <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'bg-dark rounded' : '' %>">
             <%= link_to ' Edit profile', edit_user_registration_path, class: params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? "nav-link text-white bi bi-person" : "nav-link bi bi-person" %>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link bi bi-people"> Admin lists</a>
+          <li class="nav-item <%= params[:action] == 'adminlist' ? 'bg-dark rounded' : '' %>">
+            <%= link_to ' Admin lists', admin_pages_adminlist_path, class: params[:action] == 'adminlist' ? "nav-link text-white bi bi-people" : "nav-link bi bi-people" %>
           </li>
         </ul>
       </div>

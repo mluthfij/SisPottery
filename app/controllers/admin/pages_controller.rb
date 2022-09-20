@@ -6,6 +6,16 @@ module Admin
     def dashboard
       @products = Product.all
     end
+    def customer
+      @customers = User.all
+    end
+    def adminlist
+      @useradmin = User.all
+    end
+    def message
+    end
+    def order
+    end
     def home
     end
     def about
