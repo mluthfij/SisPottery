@@ -11,15 +11,21 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column" style="padding-top:100px;">
+  <body class="d-flex flex-column">
+    <%# <header> %>
       <%= render user_signed_in? && current_user.admin? ? 'layouts/adminnavbar' : 'layouts/navbar' %>
-      <div id="page-content">
-        <%= render 'layouts/alert' if flash.any? %>
-        <% if user_signed_in? && current_user.admin? %>
-          <h1 class="container">You are an admin</h1>
-        <% end %>
-        <%= yield %>
+    <%# </header> %>
+    <div id="page-content">
+      <%= render 'layouts/alert' if flash.any? %>
+      <div class="container-fluid">
+        <div class="row">
+          <%= render 'layouts/sidebar' %>
+          <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <%= yield %>
+          </div>
+        </div>
       </div>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

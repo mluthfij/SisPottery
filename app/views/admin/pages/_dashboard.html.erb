@@ -1,0 +1,29 @@
+
+      <h2>Section title</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Images</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% obj.order(id: :desc).each do |product| %>
+            <tr>
+              <td>-</td>
+              <td>empty<% product.images %></td>
+              <td><%= product.name %></td>
+              <td><%= product.price %></td>
+              <td><%= product.quantity %></td>
+              <td><%= product.description %></td>
+              <td>Test</td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>

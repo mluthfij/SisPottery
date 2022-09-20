@@ -5,6 +5,7 @@ body {
     height: 100%;
 }
 
+
 #page-content {
     flex: 1 0 auto;
 }
@@ -36,12 +37,7 @@ footer {
         -moz-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
 }
 
-#navbar-hide {
-    // position: fixed;
-    // transition: top 0.3s;
-    opacity: 99%;
-}
-
+// alert
 .alert-message {
     animation: mymove 6s;
     visibility: hidden;
@@ -58,9 +54,3 @@ footer {
         visibility: hidden;
     }
 }
-
-// body {
-//     background: #007bff;
-//     background: linear-gradient(to right, #0062E6, #33AEFF);
-// }
-

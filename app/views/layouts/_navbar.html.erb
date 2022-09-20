@@ -1,46 +1,56 @@
-<nav id="navbar-hide" class="navbar fixed-top shadow navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <%= link_to 'SisPottery', root_path, class:"navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav id="navbar_top" class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container">
+    <%= link_to "SisPottery", root_path, class:"navbar-brand" %>
+    <div class="btn-group">
+    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span>
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </span>
     </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span>
+      </span>
+    </button>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Home', root_path, class: params[:action] == 'home' ? "nav-link active" : "nav-link" %>
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <%= link_to 'About', pages_about_path, class: params[:action] == 'about' ? "nav-link active" : "nav-link" %>
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
         <li class="nav-item">
-          <%= link_to 'Shop', products_path, class: params[:action] == 'index' || 
-          params[:action] == 'new' || 
-          params[:action] == 'edit' || 
-          params[:action] == 'show' ? "nav-link active" : "nav-link" %>
+          <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <div class="d-flex">
-        <% if user_signed_in? %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:"btn btn-outline-light me-2" %>
-          <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-outline-light" %>
-        <% else %>
-          <%= link_to 'Sign in', new_user_session_path, class:"btn btn-outline-light me-2" %>
-          <%= link_to 'Sign up', new_user_registration_path, class:"btn btn-outline-light" %>
-        <% end %>
-      </div>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
     </div>
   </div>
 </nav>
 
 <script>
-// var prevScrollpos = window.pageYOffset;
-// window.onscroll = function() {
-// var currentScrollPos = window.pageYOffset;
-//   if (prevScrollpos > currentScrollPos) {
-//     document.getElementById("navbar-hide").style.top = "0";
-//   } else {
-//     document.getElementById("navbar-hide").style.top = "-150px";
-//   }
-//   prevScrollpos = currentScrollPos;
-// }
+  document.addEventListener("DOMContentLoaded", function(){
+    window.addEventListener('scroll', function() {
+      document.getElementById('navbar_top').classList.add('fixed-top');
+      // add padding top to show content behind navbar
+      navbar_height = document.querySelector('.navbar').offsetHeight;
+      document.body.style.paddingTop = navbar_height + 'px';
+    });
+  });
 </script>
