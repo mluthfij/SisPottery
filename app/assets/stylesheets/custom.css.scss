@@ -30,6 +30,14 @@ footer {
     position: absolute;
 }
 
+.zindex-2 {
+    z-index: 2;
+    position: absolute;
+    top: 18px;
+    margin-right: 5px;
+}
+
+
 .shadow-top-custom {
     // box-shadow normal
     box-shadow: 0 -0.5rem 1rem rgba(black, .15);
@@ -75,4 +83,10 @@ footer {
 
 .justify-text {
     text-align: justify;
+}
+
+.center-pict{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
