@@ -12,12 +12,15 @@ module Admin
     def adminlist
       @useradmin = User.all
     end
+    def newadmin
+      @alluser = User.all
+    end
     def message
     end
     def order
     end
-    def home
-    end
+    # def home
+    # end
     def about
     end
     

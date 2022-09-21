@@ -1,0 +1,16 @@
+<% obj.order(id: :desc).each do |customer| %>
+    <tr>
+        <% if customer.admin? %>
+            <td>
+                Admin
+            </td>
+        <% else %>
+            <td>
+                User
+            </td>
+        <% end %>
+        <td><%= customer.email %></td>
+        <td><%= time_ago_in_words(customer.created_at) %></td>
+        <td>Test</td>
+    </tr>
+<% end %>

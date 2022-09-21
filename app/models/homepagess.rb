@@ -1,0 +1,2 @@
+class Homepagess < ApplicationRecord
+end

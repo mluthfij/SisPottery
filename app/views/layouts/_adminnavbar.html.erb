@@ -1,8 +1,41 @@
 <nav id="navbar_top" class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <%= link_to "SisPottery", root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bi bi-caret-down-fill"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if params[:action] == 'home' && params[:controller] == 'pages' %>
+        <li class="nav-item">
+          <%= link_to 'Dashboard', admin_pages_dashboard_path, class:"nav-link active" %>
+        </li>
+        <% end %>
+      <span class=" d-xxl-none d-xl-none d-xxl-block d-lg-none d-xl-block">
+        <% if user_signed_in? && current_user.admin? %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">
+              <img src="https://img.freepik.com/free-photo/woman-showing-pinterest-icon_53876-40589.jpg?w=2000" style="height:auto;width:35px;" class="rounded-circle" alt="...">
+              <%= current_user.email %>
+            </a>
+          </li>
+          <li class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, class:"nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, class:"nav-link active", method: :delete %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class:"nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class:"nav-link active" %></li>
+        <% end %>
+        </span>
+        <%# <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li> %>
+      </ul>
+      <%#  %>
       <div class="d-flex">
-        <div class="btn-group">
+        <div class="btn-group d-sm-none d-md-block d-none d-sm-block">
           <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
             <%= current_user.email %>
           </button>
@@ -16,21 +49,26 @@
             <% end %>
           </ul>
         </div>
-        <div class="ms-2 d-md-none">
+        <%#  %>
+        <%# <div class="ms-2 d-md-none float-end">
           <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span>
               <i class="bi bi-list"></i>
             </span>
           </button>
-        </div>
+          <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>
+              <i class="bi bi-list"></i>
+            </span>
+          </button>
+        </div> %>
       </div>
-      <%# <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> %>
+      <%#  %>
     </div>
   </div>
 </nav>
+
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function(){

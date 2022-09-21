@@ -19,12 +19,16 @@
       <%= render 'layouts/alert' if flash.any? %>
       <div class="container-fluid">
         <div class="row">
+        <% unless params[:action] == 'home' && params[:controller] == 'pages' %>
           <%= render 'layouts/sidebar' %>
           <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="my-3">
             <%= yield %>
             </div>
           </div>
+        <% else %>
+            <%= yield %>
+        <% end %>
         </div>
       </div>
     </div>
