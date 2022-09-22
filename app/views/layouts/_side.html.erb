@@ -1,0 +1,178 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <%# add core %>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= admin_pages_dashboard_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    Dashboard
+                </a>
+                <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_order_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-file-earmark"></i>
+                    </div>
+                    Orders
+                </a>
+                <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= new_admin_product_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-cart-plus"></i>
+                    </div>
+                    Add New Product
+                </a>
+                <a class="nav-link <%= params[:action] == 'index' || params[:action] == 'show' && params[:controller] == 'admin/products'  || params[:action] == 'edit' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= admin_products_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-cart2"></i>
+                    </div>
+                    Products
+                </a>
+                <a class="nav-link <%= params[:action] == 'customer' ? 'active' : '' %>" href="<%= admin_pages_customer_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    Customers
+                </a>
+                <a class="nav-link <%= params[:action] == 'message' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_message_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    Messages
+                </a>
+                <%# end core %>
+                <div class="sb-sidenav-menu-heading">Edit</div>
+                <%# start %>
+                <a
+                    class="nav-link collapsed <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'active' : '' %>"
+                    href="#"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseLayouts"
+                    aria-expanded="false"
+                    aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <%# <i class="fas fa-columns"></i> %>
+                        <i class="bi bi-layout-text-window-reverse"></i>
+                    </div>
+                    Layouts
+                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'text-white' : '' %>">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div
+                    class="collapse"
+                    id="collapseLayouts"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    <%#  %>
+                        <% if Homepagess.count > 0 %>
+                        <%#  %>
+                            <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' ? 'active' : '' %>" href="<%= admin_homepagess_path(Homepagess.first) %>">Home</a>
+                        <% else %>
+                            <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'active' : '' %>" href="<%= new_admin_homepagess_path %>">Create Home</a>
+                        <% end %>
+                        <%#  %>
+                        <a class="nav-link <%= params[:action] == 'about' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_about_path %>">About</a>
+                    </nav>
+                </div>
+                <%# end %>
+                <%# start %>
+                <a
+                    class="nav-link collapsed"
+                    href="#"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapsePages"
+                    aria-expanded="false"
+                    aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon">
+                        <%# <i class="fas fa-book-open"></i> %>
+                        <i class="bi bi-wrench-adjustable-circle"></i>
+                    </div>
+                    Actions
+                    <div class="sb-sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div
+                    class="collapse"
+                    id="collapsePages"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a
+                            class="nav-link collapsed"
+                            href="#"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#pagesCollapseError"
+                            aria-expanded="false"
+                            aria-controls="pagesCollapseError">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            Admin Action
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div
+                            class="collapse"
+                            id="pagesCollapseError"
+                            aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<%= admin_pages_newadmin_path %>">Add New Admin</a>
+                                <a class="nav-link" href="<%= admin_pages_adminlist_path %>">Admin Lists</a>
+                            </nav>
+                        </div>
+                        <a
+                            class="nav-link collapsed"
+                            href="#"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#pagesCollapseAuth"
+                            aria-expanded="false"
+                            aria-controls="pagesCollapseAuth">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                            Authentication
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div
+                            class="collapse"
+                            id="pagesCollapseAuth"
+                            aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <%# <a class="nav-link" href="login.html">Login</a> %>
+                                <a class="nav-link" href="<%= edit_user_registration_path %>">Edit Admin Registration</a>
+                                <a class="nav-link" href="#">Forgot Password</a>
+                            </nav>
+                        </div>
+                    </nav>
+                </div>
+                <%# end %>
+
+                <div class="sb-sidenav-menu-heading">Addons</div>
+                <a class="nav-link" href="#">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    Admin Registration
+                </a>
+                <%# <a class="nav-link" href="tables.html">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    Tables
+                </a> %>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Start Bootstrap
+        </div>
+    </nav>
+</div>

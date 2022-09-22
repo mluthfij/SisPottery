@@ -1,49 +1,97 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-html,
-body {
-    height: 100%;
-}
+// html,
+// body {
+//     height: 100%;
+// }
 
 
-#page-content {
-    flex: 1 0 auto;
-}
+// #page-content {
+//     flex: 1 0 auto;
+// }
 
-.navbar-brand {
-    font-size: 2rem;
-}
+// .navbar-brand {
+//     font-size: 2rem;
+// }
 
-footer {
-    // position: fixed;
-    height: 65px;
-    bottom: 0;
-    width: 100%;
-}
+// footer {
+//     // position: fixed;
+//     height: 65px;
+//     bottom: 0;
+//     width: 100%;
+// }
 
-.padding-text {
-    padding-top: 20px;
-}
+// .padding-text {
+//     padding-top: 20px;
+// }
 
-.zindex {
-    z-index: 2;
-    position: absolute;
-}
+// .zindex {
+//     z-index: 2;
+//     position: absolute;
+// }
 
-.zindex-2 {
-    z-index: 2;
-    position: absolute;
-    top: 18px;
-    margin-right: 5px;
-}
+// .zindex-2 {
+//     z-index: 2;
+//     position: absolute;
+//     top: 18px;
+//     margin-right: 5px;
+// }
 
 
-.shadow-top-custom {
-    // box-shadow normal
-    box-shadow: 0 -0.5rem 1rem rgba(black, .15);
-        -webkit-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
-        -moz-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
-}
+// .shadow-top-custom {
+//     // box-shadow normal
+//     box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+//         -webkit-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+//         -moz-box-shadow: 0 -0.5rem 1rem rgba(black, .15);
+// }
+
+
+// // 
+
+// .sticky-div-container {
+//     // display: flex;
+//     align-items: flex-start;
+//     // justify-content: space-around;
+//     // margin-bottom: 3rem;
+//     // border: 2px dashed rgba(114, 186, 94, 0.35);
+//     // height: 400px;
+//     // background: rgba(114, 186, 94, 0.05);
+// }
+
+// .sticky-div {
+//     // background-color: red;
+//     position: sticky;
+//     top: 6.5rem;
+// }
+
+// .justify-text {
+//     text-align: justify;
+// }
+
+// .center-pict{
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+// }
+
+// .carousel-fit {
+//     object-fit: contain;
+//     height: 550px;
+// }
+
+// .border-custom {
+//     border-bottom: 2px solid lightgrey;
+// }
+
+// // .position-custom {
+// //     position: fixed;
+// //         top: 1;
+// //         left: 0;
+// // }
+
+// // .carousel-padding {
+// //     padding-left: 100px;
+// // }
 
 // alert
 .alert-message {
@@ -52,6 +100,8 @@ footer {
     top: 10px;
     z-index: 999;
 }
+
+
 
 @keyframes mymove {
     from {
@@ -64,29 +114,3 @@ footer {
 }
 
 // 
-
-.sticky-div-container {
-    // display: flex;
-    align-items: flex-start;
-    // justify-content: space-around;
-    // margin-bottom: 3rem;
-    // border: 2px dashed rgba(114, 186, 94, 0.35);
-    // height: 400px;
-    // background: rgba(114, 186, 94, 0.05);
-}
-
-.sticky-div {
-    // background-color: red;
-    position: sticky;
-    top: 6.5rem;
-}
-
-.justify-text {
-    text-align: justify;
-}
-
-.center-pict{
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}

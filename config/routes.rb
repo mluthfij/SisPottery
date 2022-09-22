@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :products, only: %i[ show index ]
-  get 'pages/dashboard'
+  # get 'pages/dashboard'
   get 'pages/about'
   root 'pages#home'
 end

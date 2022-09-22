@@ -1,14 +1,10 @@
+<%= render 'pages/carousel', obj: @homepagess.covers %>
+<div class="p-5 mb-4 bg-light bg-opacity-50">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold"><%= @homepagess.brand_name.camelcase %></h1>
+        <p class="col-md-8 fs-4" style="text-align:justify;"><%= @homepagess.description %></p>
+        <button class="btn btn-primary btn-lg" type="button">Shop now!</button>
+    </div>
+</div>
 <p>
-  <strong>Brand name:</strong>
-  <%= @homepagess.brand_name %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @homepagess.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @homepagess.description %>
-</p>
+  <%# <%= @homepagess.title %>

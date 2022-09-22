@@ -1,11 +1,28 @@
-<% obj.order(id: :desc).each do |product| %>
-    <tr>
-        <td>-</td>
-        <td>empty<% product.images %></td>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.quantity %></td>
-        <td><%= truncate(product.description, length: 20) %></td>
-        <td>Test</td>
-    </tr>
-<% end %>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Images</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.order(id: :desc).each do |product| %>
+                <tr>
+                    <td>-</td>
+                    <td>empty<% product.images %></td>
+                    <td><%= product.name %></td>
+                    <td><%= product.price %></td>
+                    <td><%= product.quantity %></td>
+                    <td><%= truncate(product.description, length: 20) %></td>
+                    <td>Test</td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

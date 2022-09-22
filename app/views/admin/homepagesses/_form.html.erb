@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :covers %>
+    <%= form.file_field :covers, multiple: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :brand_name %>
     <%= form.text_field :brand_name %>
   </div>

@@ -1,14 +1,14 @@
    <%#  %>
    <%# <% unless params[:action] == 'home' && params[:controller] == 'pages' %>
    <%#  %>
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="position-custom col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="pt-3">
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
           <span>ADMIN MENU</span>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item <%= params[:action] == 'dashboard' ? 'bg-dark rounded' : '' %>">
-            <%= link_to ' Dashboard', admin_pages_dashboard_path, class: params[:action] == 'dashboard' ? "nav-link text-white bi bi-house-door" : "nav-link bi bi-house-door" %>
+          <li class="nav-item <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'bg-dark rounded' : '' %>">
+            <%= link_to ' Dashboard', admin_pages_dashboard_path, class: params[:action] == 'dashboard' || params[:action] == 'home' ? "nav-link text-white bi bi-house-door" : "nav-link bi bi-house-door" %>
           </li>
           <li class="nav-item <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'bg-dark rounded' : '' %>">
             <%= link_to ' Orders', admin_pages_order_path, class: params[:action] == 'order' && params[:controller] == 'admin/pages' ? "nav-link text-white bi bi-file-earmark" : "nav-link bi bi-file-earmark" %>
@@ -31,8 +31,8 @@
           <span>PAGES</span>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' ? 'bg-dark rounded' : '' %>">
-            <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' ? 'text-white' : '' %>" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <li class="nav-item <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'bg-dark rounded' : '' %>">
+            <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'text-white' : '' %>" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               <span class="me-2">
                 Edit main page
               </span> 
@@ -42,8 +42,8 @@
               <div class="card card-body bg-light">
                 <ul class="nav flex-column mb-2">
                 <% if Homepagess.count > 0 %>
-                  <li class="nav-item <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' ? 'bg-dark rounded' : '' %>">
-                    <%= link_to ' Home', admin_homepagess_path(Homepagess.first), class: params[:action] == 'show' && params[:controller] == 'admin/homepagesses' ? "nav-link text-white bi bi-dot" : "nav-link bi bi-dot" %>
+                  <li class="nav-item <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' ? 'bg-dark rounded' : '' %>">
+                    <%= link_to ' Home', admin_homepagess_path(Homepagess.first), class: params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' ? "nav-link text-white bi bi-dot" : "nav-link bi bi-dot" %>
                   </li>
                 <% else %>
                   <li class="nav-item <%= params[:action] == 'new' && params[:controller] == 'admin/homepagesses' ? 'bg-dark rounded' : '' %>">

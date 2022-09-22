@@ -74,7 +74,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def homepagess_params
-        params.require(:homepagess).permit(:brand_name, :title, :description)
+        params.require(:homepagess).permit(:brand_name, :title, :description, covers: [])
       end
     
     protected

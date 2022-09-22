@@ -1,19 +1,2 @@
 <h1 class="h2">Dashboard</h1>
-<div class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Images</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Description</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-          <%= render 'admin/pages/dashboard', obj: @products %>
-        </tbody>
-    </table>
-</div>
+<%= render 'admin/pages/dashboard' %>
