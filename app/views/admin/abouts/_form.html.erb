@@ -1,0 +1,37 @@
+<%= form_with model: [:admin, @about] do |form| %>
+  <% if about.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+
+      <ul>
+        <% about.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sub_title %>
+    <%= form.text_field :sub_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

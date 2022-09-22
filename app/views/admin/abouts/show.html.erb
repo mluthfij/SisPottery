@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @about.description %>
+</p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @about.company_name %>
+</p>
+
+<p>
+  <strong>Sub title:</strong>
+  <%= @about.sub_title %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @about.title %>
+</p>
+
+<%= link_to 'Edit', edit_admin_about_path(@about) %> |
+<%= link_to 'Exit', admin_pages_dashboard_path %>

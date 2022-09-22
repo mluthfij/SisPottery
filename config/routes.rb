@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :homepagesses, except: :index
+    resources :abouts, except: :index
     resources :products
     # get 'pages/home'
     get 'pages/about'
