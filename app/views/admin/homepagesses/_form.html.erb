@@ -2,7 +2,6 @@
   <% if homepagess.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(homepagess.errors.count, "error") %> prohibited this homepagess from being saved:</h2>
-
       <ul>
         <% homepagess.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,27 +10,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :covers %>
-    <%= form.file_field :covers, multiple: true %>
-  </div>
+<%= render 'pages/carousel', obj: @homepagess.covers %>
+<%= form.file_field :covers, multiple: true, class:"form-control" %>
+<div class="p-5 mb-4 bg-light bg-opacity-50">
+    <div class="container-fluid py-5">
+        <div class="form-floating mb-2">
+          <%= form.text_field :title, class:"form-control" %>
+          <%= form.label :title, class:"form-label", placeholder:"title" %>
+        </div>
 
-  <div class="field">
-    <%= form.label :brand_name %>
-    <%= form.text_field :brand_name %>
-  </div>
+        <div class="form-floating mb-2">
+          <%= form.text_field :brand_name, class:"form-control", placeholder:"name" %>
+          <%= form.label :brand_name, class:"form-label" %>
+        </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+          <div class="form-floating height-form-text mb-2">
+            <%= form.text_area :description, class:"form-control w-100", style:"min-height:100px;" %>
+            <%= form.label :description, class:"form-label", placeholder:"desc" %>
+          </div>
+        <%= form.submit class:"btn btn-primary btn-lg" %>
+    </div>
+</div>
 <% end %>

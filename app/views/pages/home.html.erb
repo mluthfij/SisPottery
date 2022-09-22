@@ -1,9 +1,7 @@
 <% if user_signed_in? && current_user.admin? %>
-<div class="container-fluid">
-<%# <%= render 'layouts/sidebar' %>
+<%# home view for admin %>
     <%= render 'admin/pages/dashboard' %>
 <% else %>
 <%# home view for all user %>
     <%= render 'admin/homepagesses/home' %>
-<%# end of home view for all user %>
 <% end %>

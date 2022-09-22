@@ -2,7 +2,10 @@
     <% obj.order(id: :desc).each do |product| %>
         <div class="col">
             <div class="card h-100">
-                <div class="dropdown dropstart zindex end-0 m-2">
+            <%#  %>
+            <div class="position-absolute top-0 end-0 m-1">
+
+                <div class="dropdown dropstart">
                     <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
@@ -11,6 +14,9 @@
                         <li><%= link_to "Delete", admin_product_path(product), class:"dropdown-item", method: :delete, data: { confirm: 'Are you sure?' } %></li>
                     </ul>
                 </div>            
+
+            </div>
+            <%#  %>
                 <%= link_to admin_product_path(product) do %>
                     <img src="https://img.freepik.com/free-photo/woman-showing-pinterest-icon_53876-40589.jpg?w=2000" class="card-img-top" alt="...">
                 <% end %>

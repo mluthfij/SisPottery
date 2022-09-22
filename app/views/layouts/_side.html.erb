@@ -12,19 +12,19 @@
                 </a>
                 <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_order_path %>">
                     <div class="sb-nav-link-icon">
-                        <i class="bi bi-file-earmark"></i>
+                        <i class="bi bi-journal-text"></i>
                     </div>
                     Orders
                 </a>
                 <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= new_admin_product_path %>">
                     <div class="sb-nav-link-icon">
-                        <i class="bi bi-cart-plus"></i>
+                        <i class="bi bi-box-seam"></i>
                     </div>
                     Add New Product
                 </a>
                 <a class="nav-link <%= params[:action] == 'index' || params[:action] == 'show' && params[:controller] == 'admin/products'  || params[:action] == 'edit' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= admin_products_path %>">
                     <div class="sb-nav-link-icon">
-                        <i class="bi bi-cart2"></i>
+                        <i class="bi bi-boxes"></i>
                     </div>
                     Products
                 </a>
