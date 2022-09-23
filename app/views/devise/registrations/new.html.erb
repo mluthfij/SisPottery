@@ -1,29 +1,76 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4">Create Account</h3>
+                            </div>
+                            <div class="card-body">
+                                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                                <%= render "devise/shared/error_messages", resource: resource %>
+                                <form>
+                                    <%# <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                                        <label for="inputFirstName">First name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                                        <label for="inputLastName">Last name</label>
+                                                    </div>
+                                                </div>
+                                            </div> %>
+                                        <div class="form-floating mb-3">
+                                            <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                                            class:"form-control", id:"inputEmail", type:"email",
+                                            placeholder:"name@example.com" %>
+                                            <%= f.label :email, "Email address", for:"inputEmail" %><br/>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <% if @minimum_password_length %>
+                                                <em>(<%= @minimum_password_length %>
+                                                    characters minimum)</em>
+                                            <% end %>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <%= f.password_field :password, autocomplete: "new-password",
+                                                    class:"form-control", id:"inputPassword", type:"password", placeholder:"Create a password" %>
+                                                    <%= f.label :password, "Password", for:"inputPassword" %>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                                                    class:"form-control", id:"inputPasswordConfirm", type:"password",
+                                                    placeholder:"Confirm password" %>
+                                                    <%= f.label :password_confirmation, "Confirm password",
+                                                    for:"inputPasswordConfirm" %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid">
+                                                <%= f.submit "Sign up", class:"btn btn-primary btn-block" %>
+                                            </div>
+                                        </div>
+                                    </form>
+                                <% end %>
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small">
+                                    <%= render "devise/shared/links" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
