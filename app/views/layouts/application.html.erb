@@ -25,7 +25,12 @@
         <%# end of navbar %>
         <div id="layoutSidenav">
             <%# start of sidebar %>
-            <%= render 'layouts/side' %>
+            <% if user_signed_in? && current_user.admin? %>
+            <%# <% if user_signed_in? %>
+                <%= render 'layouts/sideadmin' %>
+            <% else %>
+                <%= render 'layouts/sideuser' %>
+            <% end %>
             <%# end of sidebar %>
 
             <%# layoutSidenav_content for 

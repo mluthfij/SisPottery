@@ -4,5 +4,6 @@ class PagesController < ApplicationController
     @products = Product.all
   end
   def about
+    @about = About.first
   end
 end

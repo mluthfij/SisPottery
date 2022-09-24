@@ -22,3 +22,21 @@
   <%= link_to 'Edit', edit_admin_product_path(@product) %> |
   <%= link_to 'Back', products_path %>
 </div>
+
+
+<h1>Create New Comment</h1>
+  <%# <%= render partial: 'comments/form' %> %>
+  <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
+<hr>
+
+<hr>
+
+<h3>
+  Comments:
+</h3>
+<%= @product.comments.count %> Comments
+<%# <div class="ps-4"> %>
+<hr>
+  <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
+<hr>
+<%# </div> %>

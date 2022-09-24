@@ -1,0 +1,64 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <%# add core %>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= pages_home_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-house"></i>
+                    </div>
+                    Home
+                </a>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= pages_about_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    About Us
+                </a>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= '#' %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+                    Contact Us
+                </a>
+                <a class="nav-link <%= params[:action] == 'index' || params[:action] == 'show' && params[:controller] == 'products'  || params[:action] == 'edit' && params[:controller] == 'products' ? 'active' : '' %>" href="<%= products_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-cart2"></i>
+                    </div>
+                    Shop
+                </a>
+                <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= '#' %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    My Order
+                </a>
+                <%# end core %>
+                <div class="sb-sidenav-menu-heading">Edit</div>
+                <% if user_signed_in? %>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= profile_path(current_user) %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    My Profile
+                </a>
+                <% end %>
+                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= edit_user_registration_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <% if user_signed_in? %>
+                <div class="small">Signed in as:</div>
+                <%= current_user.email %>
+            <% else %>
+                Sis Pottery
+            <% end %>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,17 @@
+<%= form_for([@product, @product.comments.build]) do |form| %>
+
+    <% if !parent.nil? %>
+        <%= form.hidden_field :parent_id, value:parent.id %>
+    <% end %>
+    
+    <%= form.label :reply_to %>
+    <%= form.text_field :reply_to %>
+    <br>
+    
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+    <br>
+    
+    <%= form.submit %>
+    
+<% end %>
