@@ -1,13 +1,40 @@
-<%= comment.content %>
-<%= time_ago_in_words(comment.created_at) %>
-
-
-<p>
-   <%= link_to 'delete', [comment.product, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
-<%= render partial: 'comments/form', locals: { product: comment.product, parent: comment } %>
-<hr>
-
-<div class="subcomment" style="padding-left: 20px;">
-    <%= render comment.comments.order(id: :desc) %>
+<div class="subcomment" style="padding-left: <%= comment.parent_id != nil ? '40px' : '0px' %>;">
+    <div class="bg-white p-2">
+        <div class="d-flex flex-row user-info">
+            <img class="rounded-circle me-2" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                <div class="d-flex flex-column justify-content-start ml-2">
+                    <span class="d-block font-weight-bold name">Marry Andrews</span>
+                    <span class="date text-black-50">Shared publicly - Jan 2020</span>
+                </div>
+            </div>
+            <div class="mt-2">
+                <p class="comment-text"><%= comment.content %></p>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="d-flex flex-row fs-12">
+                <div class="like p-2 cursor">
+                    <i class="bi bi-hand-thumbs-up"></i>
+                    <span class="">Like</span>
+                </div>
+                <div class="like p-2 cursor">
+                    <i class="bi bi-backspace"></i>
+                    <%= link_to 'Delete', [comment.product, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"text-decoration-none" %>
+                </div>
+                <div class="like p-2 cursor">
+                    <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapse<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="bi bi-reply"></i>
+                        <span class="">Reply</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="collapse" id="collapse<%= comment.id %>">
+            <div class="bg-light p-2">
+                <%= render partial: 'comments/form', locals: { product: comment.product, parent: comment } %>
+            </div>
+        </div>
 </div>
+
+<%= render comment.comments.order(id: :desc) %>

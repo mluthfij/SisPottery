@@ -23,20 +23,18 @@
   <%= link_to 'Back', products_path %>
 </div>
 
-
-<h1>Create New Comment</h1>
-  <%# <%= render partial: 'comments/form' %> %>
-  <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
-<hr>
-
-<hr>
-
-<h3>
-  Comments:
-</h3>
-<%= @product.comments.count %> Comments
-<%# <div class="ps-4"> %>
-<hr>
-  <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
-<hr>
-<%# </div> %>
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-center row mb-4">
+        <div class="col">
+            <div class="d-flex flex-column comment-section">
+              <h4>
+                Comments (<%= @product.comments.count %>)
+              </h4>
+              <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
+                <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
+              </div>
+                <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
+              </div>
+        </div>
+    </div>
+</div>
