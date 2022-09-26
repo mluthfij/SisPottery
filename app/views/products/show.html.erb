@@ -57,9 +57,11 @@
               <h4>
                 Comments (<%= @product.comments.count %>)
               </h4>
-              <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
-                <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
-              </div>
+              <% if user_signed_in? %>
+                <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
+                  <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
+                </div>
+              <% end %>
                 <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
               </div>
         </div>
