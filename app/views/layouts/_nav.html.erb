@@ -39,7 +39,7 @@
             <% if user_signed_in? && current_user.avatar.present? %>
                 <%= image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "rounded-circle") %>
             <% else %>
-                <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="30">
+                <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30">
             <% end %>
             <%#  %>
                 <%# <i class="fas fa-user fa-fw"></i> %>
