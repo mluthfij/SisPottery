@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Edit Home Page</div>
+                <div class="card-body"><%= Homepagess.count == 0 ? 'Create Home Page' : 'Edit Home Page' %></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<%= admin_homepagess_path(Homepagess.first) %>">View Details</a>
+                    <a class="small text-white stretched-link" href="<%= Homepagess.count == 0 ? new_admin_homepagess_path : admin_homepagess_path(Homepagess.first) %>">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

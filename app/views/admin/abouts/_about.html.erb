@@ -1,3 +1,34 @@
+<% if About.count == 0 %>
+    <%# hidden when sm %>
+    <div class="bg-light text-center p-5 mb-4 bg-light rounded-3 d-none d-sm-block">
+      <div class="container-fluid">
+        <h1 class="d-block fw-bold">
+          Sis
+        </h1>
+        subsis
+        <p class="col fs-4">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo aliquid commodi reprehenderit voluptates quia adipisci minus tempora sequi. Saepe veniam beatae laudantium rem eius numquam assumenda accusamus fugiat explicabo itaque.
+        </p>
+        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+      </div>
+    </div>
+
+    <%# visible when sm %>
+    <div class="bg-light text-center py-4 pb-4 mb-4 bg-light rounded-3 d-block d-sm-none">
+      <div class="container-fluid">
+        <h1 class="d-block fw-bold">
+          Sis
+        </h1>
+        subsis
+        <p class="col fs-4">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum eveniet, voluptate quo velit praesentium aut sequi ipsa pariatur saepe esse sint maxime dolorem explicabo! Molestias sint officia magni officiis veritatis?
+        </p>
+        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+      </div>
+    </div>
+
+  <%# <%= @about.company_name %> 
+<% else %>
     <%# hidden when sm %>
     <div class="bg-light text-center p-5 mb-4 bg-light rounded-3 d-none d-sm-block">
       <div class="container-fluid">
@@ -19,3 +50,4 @@
     </div>
 
   <%# <%= @about.company_name %> 
+<% end %>

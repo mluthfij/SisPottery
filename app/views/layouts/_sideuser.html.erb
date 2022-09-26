@@ -35,21 +35,22 @@
                     My Order
                 </a>
                 <%# end core %>
-                <div class="sb-sidenav-menu-heading">Edit</div>
                 <% if user_signed_in? %>
+                <div class="sb-sidenav-menu-heading">Edit</div>
                 <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= profile_path(current_user) %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-person"></i>
                     </div>
                     My Profile
                 </a>
-                <% end %>
+                
                 <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= edit_user_registration_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
                     Edit Profile
                 </a>
+                <% end %>
             </div>
         </div>
         <div class="sb-sidenav-footer">

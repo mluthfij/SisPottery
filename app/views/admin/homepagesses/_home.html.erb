@@ -1,9 +1,27 @@
-<%= render 'pages/carousel', obj: @homepagess.covers %>
+<% if Homepagess.count == 0 %>
 <div class="p-5 mb-4 bg-light bg-opacity-50">
     <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold"><%= @homepagess.brand_name.camelcase %></h1>
-        <p class="col-md-8 fs-4" style="text-align:justify;"><%= @homepagess.description %></p>
+        <h1 class="display-5 fw-bold">
+            Sis Pottery
+        </h1>
+        <p class="col-md-8 fs-4" style="text-align:justify;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eos minus magni praesentium vero, laudantium optio architecto facilis rerum, dolore voluptatum deleniti totam sed incidunt tempore ullam libero distinctio fuga.
+        </p>
         <button class="btn btn-primary btn-lg" type="button">Shop now!</button>
     </div>
 </div>
+<% else %>
+<%= render 'pages/carousel', obj: @homepagess.covers if @homepagess.covers.attached? %>
+<div class="p-5 mb-4 bg-light bg-opacity-50">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">
+        <%= @homepagess.brand_name.camelcase %>
+        </h1>
+        <p class="col-md-8 fs-4" style="text-align:justify;">
+        <%= @homepagess.description %>
+        </p>
+        <%= link_to "Shop now?", '#', class:"btn btn-primary btn-lg" %>
+    </div>
+</div>
+<% end %>
   <%# <%= @homepagess.title %>

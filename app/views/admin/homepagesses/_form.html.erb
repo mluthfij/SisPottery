@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-<%= render 'pages/carousel', obj: @homepagess.covers %>
+<%= render 'pages/carousel', obj: @homepagess.covers if @homepagess.covers.attached? %>
 <%= form.file_field :covers, multiple: true, class:"form-control" %>
 <div class="p-5 mb-4 bg-light bg-opacity-50">
     <div class="container-fluid py-5">

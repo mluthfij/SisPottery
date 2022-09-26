@@ -34,7 +34,15 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <i class="fas fa-user fa-fw"></i>
+                
+            <%#  %>
+            <% if user_signed_in? && current_user.avatar.present? %>
+                <%= image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "rounded-circle") %>
+            <% else %>
+                <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="30">
+            <% end %>
+            <%#  %>
+                <%# <i class="fas fa-user fa-fw"></i> %>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <% if user_signed_in? && current_user.admin == true %>
