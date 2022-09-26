@@ -29,6 +29,11 @@ window.addEventListener('turbolinks:load', event => {
     });
 
 
+// $('.carousel').carousel({
+//     interval: false,
+// });
+
+
 
 
 // window.addEventListener('DOMContentLoaded', event => {

@@ -1,26 +1,54 @@
-<div class="container">
-  <p>
-    <strong>Name:</strong>
-    <%= @product.name %>
-  </p>
+<div class="container-fluid px-4">
+  <div class="mt-4">
+    <div class="card mb-3 bg-light">
+      <div class="card-body">
+      <%#  %>
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb float-start">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Library</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col">
+          <%= link_to 'Exit', products_path, class:"btn btn-lg btn-outline-dark float-end" %>
+        </div>
+      </div>
+      <%#  %>
+      </div>
+    </div>
 
-  <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col sticky-container">
+        <div class="sticky-2">
+          <%= render 'products/carousel_product', obj: @product.images %>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <strong class="fs-4"><%= @product.name %></strong>
+        </div>
+        <div class="my-2 mb-2">
+          <strong class="fs-3">Rp<%= @product.price %></strong>
+        </div>
 
-  <p>
-    <strong>Quantity:</strong>
-    <%= @product.quantity %>
-  </p>
+        <div>
+          <%= @product.quantity %>
+        </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @product.description %>
-  </p>
-
-  <%= link_to 'Back', products_path %>
+        <div>
+          <p class="justify-text">
+            <%= @product.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <div class="container-fluid mt-4">
     <div class="d-flex justify-content-center row mb-4">
@@ -29,11 +57,14 @@
               <h4>
                 Comments (<%= @product.comments.count %>)
               </h4>
-              <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
-                <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
-              </div>
+              <% if user_signed_in? %>
+                <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
+                  <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
+                </div>
+              <% end %>
                 <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
               </div>
         </div>
     </div>
 </div>
+

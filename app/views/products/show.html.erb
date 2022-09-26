@@ -22,9 +22,25 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col sticky-container">
-        <div class="sticky-2">
-          <%= render 'admin/products/carousel_product' %>
+      <div class="col sticky-container bg-light bg-opacity-25">
+        <div class="sticky-2 w-100 border shadow-sm rounded">
+          <%#  %>
+          <% @product.images.each_with_index do |c, index| %>
+            <% if index > 0 %>
+              <div class="carousel-dark">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            <% end %>
+          <% end %>
+          <%#  %>
+          <%= render 'products/carousel_product', obj: @product.images %>
         </div>
       </div>
       <div class="col">
@@ -41,14 +57,13 @@
 
         <div>
           <p class="justify-text">
-            <%= @product.description %>
+            <%= simple_format(@product.description) %>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <div class="container-fluid mt-4">
     <div class="d-flex justify-content-center row mb-4">
@@ -57,14 +72,13 @@
               <h4>
                 Comments (<%= @product.comments.count %>)
               </h4>
-              <% if user_signed_in? %>
-                <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
-                  <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
-                </div>
-              <% end %>
+              <div class="bg-secondary p-2 rounded bg-opacity-25 mb-4">
+                <%= render partial: 'comments/form', locals: { product: @product, parent: nil } %>
+              </div>
                 <%= render @product.comments.where(parent_id: nil).order(id: :desc) %>
               </div>
         </div>
     </div>
 </div>
 
+<%= render 'products/modal_product', obj: @product.images %>

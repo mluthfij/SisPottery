@@ -11,8 +11,9 @@
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div class="col sticky-container">
-        <div class="sticky-2">
-          <%= render 'admin/products/carousel_product' %>
+        <%# <div class="sticky-2"> %>
+        <div class="sticky-2 w-100 border shadow-sm rounded">
+          <%= render 'products/carousel_product', obj: @product.images %>
         </div>
       </div>
       <div class="col">
