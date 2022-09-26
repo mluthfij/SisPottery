@@ -45,6 +45,42 @@
                             </div>
                         </div> %>
                     </div>
+                    <%#  %>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <%= f.text_field :firstname, class:"form-control", id:"inputfirstname", type:"firstname", placeholder:"name@example.com" %>
+                                <%= f.label :firstname, "First name", for:"inputfirstname" %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <%= f.text_field :lastname, class:"form-control", id:"inputlastname", type:"lastname", placeholder:"name@example.com" %>
+                                <%= f.label :lastname, "Last name", for:"inputlastname" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <%= f.text_field :phone, class:"form-control", id:"inputphone", type:"phone", placeholder:"name@example.com" %>
+                                <%= f.label :phone, "Phone", for:"inputphone" %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <%= f.text_field :wa_phone, class:"form-control", id:"inputwa_phone", type:"wa_phone", placeholder:"name@example.com" %>
+                                <%= f.label :wa_phone, "WhatsApp", for:"inputwa_phone" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <%= f.text_area :my_address, class:"form-control", id:"inputmy_address", type:"my_address", placeholder:"name@example.com" %>
+                        <%= f.label :my_address, "Address", for:"inputmy_address" %>
+                    </div>
+                    <hr>
+                    <%#  %>
                     <div class="form-floating mb-3">
                         <%= f.text_field :username, class:"form-control", id:"inputUsername", type:"Username", placeholder:"name@example.com" %>
                         <%= f.label :username, "Username", for:"inputUsername" %>

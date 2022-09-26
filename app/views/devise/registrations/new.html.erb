@@ -26,11 +26,29 @@
                                                     </div>
                                                 </div>
                                             </div> %>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3">
+                                                    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname",
+                                                    class:"form-control", id:"inputfirstname", type:"firstname",
+                                                    placeholder:"name_example" %>
+                                                    <%= f.label :firstname, "First name", for:"inputfirstname" %>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3">
+                                                    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname",
+                                                    class:"form-control", id:"inputlastname", type:"lastname",
+                                                    placeholder:"name_example" %>
+                                                    <%= f.label :lastname, "Last name", for:"inputlastname" %>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-floating mb-3">
                                             <%= f.text_field :username, autofocus: true, autocomplete: "username",
                                             class:"form-control", id:"inputUsername", type:"username",
                                             placeholder:"name_example" %>
-                                            <%= f.label :username, "username address", for:"inputUsername" %>
+                                            <%= f.label :username, "Username", for:"inputUsername" %>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <%= f.email_field :email, autofocus: true, autocomplete: "email",

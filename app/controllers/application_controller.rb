@@ -21,8 +21,10 @@ class ApplicationController < ActionController::Base
     # end
     
    def configure_permitted_parameters
-      added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+      added_attrs = [:firstname, :lastname, :my_address, :phone, :wa_phone, :username, :email, :password, :password_confirmation, :remember_me]
+      # added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
       devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:avatar, :username, :email, :password, :password_confirmation, :remember_me, :current_password)}
+      # devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:avatar, :username, :email, :password, :password_confirmation, :remember_me, :current_password)}
+      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:firstname, :lastname, :my_address, :phone, :wa_phone, :avatar, :username, :email, :password, :password_confirmation, :remember_me, :current_password)}
    end  
 end
