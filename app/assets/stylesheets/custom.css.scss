@@ -51,10 +51,10 @@
 //     display: block;
 // }
 
-// .carousel-fit {
-//     object-fit: contain;
-//     height: 550px;
-// }
+.carousel-fit {
+    // object-fit: contain;
+    // height: 550px;
+}
 
 // .border-custom {
 //     border-bottom: 2px solid lightgrey;
@@ -116,4 +116,23 @@
     text-align: justify;
 }
 
+// .avatar-fit {
+//     // object-fit: contain;
+//     height: 300px;
+//     width: 300px;
+// }
 
+// carousel
+// .tales {
+//     width: 100%;
+//     object-fit: contain;
+// }
+
+.carousel-inner-custom {
+    // width: 100%;
+    // max-height: 200px !important;
+    // height: 650px !important;
+    width: 100%;
+    height: 500px !important;
+        
+}
