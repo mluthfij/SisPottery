@@ -27,10 +27,16 @@
                                                 </div>
                                             </div> %>
                                         <div class="form-floating mb-3">
+                                            <%= f.text_field :username, autofocus: true, autocomplete: "username",
+                                            class:"form-control", id:"inputUsername", type:"username",
+                                            placeholder:"name_example" %>
+                                            <%= f.label :username, "username address", for:"inputUsername" %>
+                                        </div>
+                                        <div class="form-floating mb-3">
                                             <%= f.email_field :email, autofocus: true, autocomplete: "email",
                                             class:"form-control", id:"inputEmail", type:"email",
                                             placeholder:"name@example.com" %>
-                                            <%= f.label :email, "Email address", for:"inputEmail" %><br/>
+                                            <%= f.label :email, "Email address", for:"inputEmail" %>
                                         </div>
                                         <div class="row mb-3">
                                             <% if @minimum_password_length %>

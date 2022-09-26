@@ -45,15 +45,10 @@
                             </div>
                         </div> %>
                     </div>
-                    <%#  %>
-                    <%# <div class="form-floating mb-3">
-                        <input
-                            class="form-control"
-                            id="inputUsername"
-                            type="Username"
-                            placeholder="name@example.com"/>
-                        <label for="inputUsername">Username</label>
-                    </div> %>
+                    <div class="form-floating mb-3">
+                        <%= f.text_field :username, class:"form-control", id:"inputUsername", type:"Username", placeholder:"name@example.com" %>
+                        <%= f.label :username, "Username", for:"inputUsername" %>
+                    </div>
                     <div class="form-floating mb-3">
                         <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputEmail", type:"email", placeholder:"name@example.com" %>
                         <%= f.label :email, "Email address", for:"inputEmail" %>

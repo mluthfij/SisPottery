@@ -13,10 +13,9 @@
                                 |f| %>
                                 <form>
                                     <div class="form-floating mb-3">
-                                        <%= f.email_field :email, autofocus: true, autocomplete: "email",
-                                        class:"form-control", id:"inputEmail", type:"email",
-                                        placeholder:"name@example.com" %>
-                                        <%= f.label :email, "Email address", for:"inputEmail" %>
+                                        <%= f.text_field :login, autofocus: true, autocomplete: "login",
+                                        class:"form-control", id:"inputLogin", placeholder:"name_example" %>
+                                        <%= f.label :login, "Email or username", for:"inputusername" %>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <%= f.password_field :password, autocomplete: "current-password",
