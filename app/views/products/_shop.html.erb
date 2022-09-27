@@ -27,6 +27,13 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= link_to product.name, product, class:"text-decoration-none" %></h5>
                     <h6 class="card-subtitle mb-2 text-muted">Rp. <%= product.price %></h6>
+                    <%#  %>
+                    <%= form_with(url: cart_add_path) do |f| %>
+                        <%= f.hidden_field :id, value: product.id %>
+                        <%= f.number_field :quantity, value: 0, min: 1 %>
+                        <%= f.submit "Add to cart" %>
+                    <% end %>
+                    <%#  %>
                 </div>
             </div>
         </div>

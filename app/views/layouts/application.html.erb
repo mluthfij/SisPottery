@@ -39,6 +39,9 @@
             <div id="layoutSidenav_content">
                 <%# start of main content %>
                 <main>
+                  <%= render 'layouts/alert' if flash.any? %>
+                  <br>
+                  <%= render partial: 'cart/cart' if @render_cart %>
                   <%= yield %>
                 </main>
                 <%# end of main content %>

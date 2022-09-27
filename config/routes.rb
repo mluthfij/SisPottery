@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'comments/form'
+  # get 'cart/show'
+  get 'cart', to: 'cart#show'
+  post 'cart/add'
+  post 'cart/remove'
+  # get 'comments/form'
   get 'comments/comment'
   resources :profiles, only: :show
   namespace :admin do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_26_031656) do
+ActiveRecord::Schema.define(version: 2022_09_27_044442) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -49,6 +49,11 @@ ActiveRecord::Schema.define(version: 2022_09_26_031656) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "reply_to"
     t.text "content"
@@ -69,9 +74,19 @@ ActiveRecord::Schema.define(version: 2022_09_26_031656) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "orderables", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "cart_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["product_id"], name: "index_orderables_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "price"
+    t.decimal "price", precision: 5, scale: 2
     t.integer "quantity"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -103,4 +118,6 @@ ActiveRecord::Schema.define(version: 2022_09_26_031656) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "products"
+  add_foreign_key "orderables", "carts"
+  add_foreign_key "orderables", "products"
 end
