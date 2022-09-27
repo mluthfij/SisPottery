@@ -8,6 +8,7 @@ class User < ApplicationRecord
          has_many :products, dependent: :destroy
          has_many :comments, dependent: :destroy
          has_one_attached :avatar
+         has_many :orderables
   
   ##...Avatar Attachment...##
   ## Validations
