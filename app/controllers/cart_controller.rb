@@ -18,7 +18,7 @@ class CartController < ApplicationController
     elsif quantity <= 0
       current_orderable.destroy
     else
-      @cart.orderables.create(product: @product, quantity: quantity, user: current_user)
+      @cart.orderables.create!(product: @product, description: description, quantity: quantity, user: current_user)
     end
     
     # # refresh

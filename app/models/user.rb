@@ -9,6 +9,9 @@ class User < ApplicationRecord
          has_many :comments, dependent: :destroy
          has_one_attached :avatar
          has_many :orderables
+        #  has_many :carts, through: :orderables
+         has_many :carts, dependent: :destroy
+
   
   ##...Avatar Attachment...##
   ## Validations

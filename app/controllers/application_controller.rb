@@ -1,19 +1,43 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_render_cart
-  before_action :initialize_cart
+  # before_action :initialize_cart, if: :user_signed_in?
+  before_action :current_cart, if: :user_signed_in?
 
-  # 
+  def current_cart
+    @cart = Cart.find_by(id: @cart)
+    if !@cart && current_user
+      @cart = Cart.find_by(user_id: current_user.id)
+    end
+    if @cart && current_user && @cart.user_id != current_user
+      @cart.update(user_id: current_user.id)
+    end
+    if @cart.nil?
+      @cart = current_user.carts.create
+    else
+      @cart
+    end
+    # @cart = current_user.carts.create
+  end
+
   def set_render_cart
       @render_cart = true
   end
 
   def initialize_cart
-      @cart ||= Cart.find_by(id: session[:cart_id])
+      # @cart ||= Cart.find_by(id: session[:cart_id])
+      # @cart ||= current_user.carts.find_by(id: session[:cart_id], user: session[:user_id])
+      # @cart ||= Cart.find_by(id: session[:cart_id], user: session[:user_id])
+      # @cart ||= current_user.carts.find_by(id: session[:cart_id], id: session[:user_id])
+      @cart ||= current_user.carts.find_by(id: session[:cart_id], id: session[:user_id])
 
       if @cart.nil?
-          @cart = Cart.create
+          # @cart = Cart.create
+          @cart = current_user.carts.create
           session[:cart_id] = @cart.id
+          # session[:user_id] = current_user.id
+          # session[:user_id] = @cart.user.id
+          session[:user_id] = current_user.id
       end
   end
   # 

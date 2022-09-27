@@ -5,10 +5,3 @@
     <p><%= product.name %> * <%= orderable.quantity %> = $<%= product.price * orderable.quantity %></p>
 <% end %>
 <p>Your total is $<%= @cart.total %></p>
-
-<%#  %>
-<% @orders.each do |order| %>
-    <%= order.inspect %>
-<% end  %>
-
-<%#  %>
