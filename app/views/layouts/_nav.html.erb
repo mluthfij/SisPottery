@@ -49,12 +49,12 @@
                 aria-expanded="false">
                 
             <%#  %>
-            <% if user_signed_in? && current_user.avatar.present? %>
-                <%= image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "rounded-circle") %>
+            <% if user_signed_in? %>
+                <%= image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "rounded-circle") if current_user.avatar.attached? %>
+                <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30">
                 <%= current_user.username %>
             <% else %>
                 <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30">
-                <%= current_user.username %>
             <% end %>
             <%#  %>
                 <%# <i class="fas fa-user fa-fw"></i> %>
