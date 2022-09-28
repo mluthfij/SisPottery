@@ -24,13 +24,13 @@ local:
 # config/storage.yml
 google:
   service: GCS
-  project: Sis Pottery
+  project: sis-pottery
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
   bucket: sis-pottery-app
 
 google_dev:
   service: GCS
-  project: Sis Pottery
+  project: sis-pottery
   credentials: <%= Rails.root.join("config/secrets/sis.json") %>
   bucket: sis-pottery-app
 
