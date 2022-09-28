@@ -2,7 +2,7 @@ class CartController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    # @render_cart = false
+    @render_cart = false
     @orders = current_user.orderables.all
   end
   
@@ -10,14 +10,15 @@ class CartController < ApplicationController
     @product = Product.find_by(id: params[:id])
     quantity = params[:quantity].to_i
     description = params[:description].to_s
-    
+
     current_orderable = @cart.orderables.find_by(product_id: @product.id)
     if current_orderable && quantity > 0
       current_orderable.update(quantity: quantity, description: description)
     elsif quantity <= 0
       current_orderable.destroy
     else
-      @cart.orderables.create!(product: @product, description: description, quantity: quantity, user: current_user)
+      # @cart.orderables.create!(product: @product, description: description, quantity: quantity, user: current_user)
+      @cart.orderables.create(product: @product, description: description, quantity: quantity, user: current_user)
     end
     
     # # refresh

@@ -41,6 +41,12 @@
                 <main>
                   <%= render 'layouts/alert' if flash.any? %>
                   <br>
+                  
+<%#  %>
+<hr>
+<%= @cart.inspect %>
+<hr>
+<%#  %>
                   <%= yield %>
                 </main>
                 <%# end of main content %>

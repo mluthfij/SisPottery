@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_render_cart
   before_action :current_cart, if: :user_signed_in?
+  # before_action :initialize_cart, if: :user_signed_in?
 
   def current_cart
     @cart = Cart.find_by(id: @cart)
@@ -12,12 +13,35 @@ class ApplicationController < ActionController::Base
       @cart.update(user_id: current_user.id)
     end
     if @cart.nil?
-      @cart = current_user.carts.create
+      # @cart = current_user.carts.create
+      @cart = Cart.create(user_id: current_user.id)
     else
       @cart
     end
     # @cart = current_user.carts.create
   end
+
+
+  # # 
+  # def current_cart
+  #   @cart = Cart.find_by(id: @cart)
+  #   if !@cart && current_user
+  #     @cart = Cart.find_by(user_id: current_user.id)
+  #   end
+  #   if @cart && current_user && @cart.user_id != current_user
+  #     @cart.update(user_id: current_user.id)
+  #   end
+  #   if @cart.nil?
+  #     @cart = current_user.carts.create
+  #   else
+  #     @cart
+  #   end
+  #   # @cart = current_user.carts.create
+  # end
+  # # 
+
+
+
 
   def set_render_cart
       @render_cart = true

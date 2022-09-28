@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     # find current order in show page
-    @showorder = @cart.orderables.find_by(product_id: @product.id)
+    if user_signed_in?
+      @showorder = @cart.orderables.find_by(product_id: @product.id)
+    end
   end
 end
