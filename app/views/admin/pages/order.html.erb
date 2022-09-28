@@ -1,5 +1,98 @@
 <div class="container-fluid px-4">
-    <h2 class="mt-4">
+    <h1 class="mt-4 mb-4">
         Order page
-    </h2>
+    </h1>
+<%# table %>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered table-sm">
+        <thead class="table-light">
+            <tr>
+                <th scope="col" class="text-center">No.</th>
+                <th scope="col">Customer</th>
+                <th scope="col" class="text-center">Image</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Order Time</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.order(id: :desc).each_with_index do |order, index| %>
+                <% product = order.product %>
+                    <% user = order.user %>
+                        <tr>
+                            <td class="text-center"><%= index + 1 %></td>
+                            <td><%= user.username %></td>
+                            <td class="text-center">
+                                <a data-bs-toggle="modal" href="#Modal<%= index %>">
+                                    <% if product.images.attached? %>
+                                        <% product.images.each_with_index do |image, idx| %>
+                                            <% if idx == 0 %>
+                                                <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                                            <% end %>
+                                        <% end %>
+                                    <% else %>
+                                        <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-thumbnail", width:50) %>
+                                    <% end %>
+                                </a>
+                            </td>
+                                <td><%= truncate(product.name, length: 20) %></td>
+                                <td><%= product.price %></td>
+                                <td><%= order.quantity %></td>
+                                <td>$<%= product.price * order.quantity %></td>
+                                <td><%= time_ago_in_words(order.created_at) %> ago</td>
+                                <td class="text-center">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
+                                        Detail
+                                    </button>
+                                </td>
+                            </tr>
+                        <% end %>
+                        <tr class="table-warning">
+                            <td colspan="5">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    <%= @orders.to_a.sum { |orderable| orderable.quantity } %>
+                                </strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    $<%= @orders.to_a.sum { |orderable| orderable.total } %>
+                                </strong>
+                            </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+<%# end table %>
 </div>
+
+
+<% @orders.order(id: :desc).each_with_index do |order, index| %>
+<!-- Modal -->
+<div class="modal fade" id="Modal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= index %>
+        <%= truncate(order.description, length: 20) %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
