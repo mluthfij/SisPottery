@@ -6,4 +6,10 @@ class Orderable < ApplicationRecord
     def total
         product.price * quantity
     end
+
+    # 
+    # def set_quantity
+    #     product.quantity - quantity
+    # end
+    # 
 end

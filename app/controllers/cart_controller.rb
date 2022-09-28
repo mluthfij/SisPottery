@@ -2,7 +2,7 @@ class CartController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @render_cart = false
+    # @render_cart = false
     @orders = current_user.orderables.all
   end
   
