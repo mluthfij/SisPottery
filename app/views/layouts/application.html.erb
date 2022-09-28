@@ -41,7 +41,6 @@
                 <main>
                   <%= render 'layouts/alert' if flash.any? %>
                   <br>
-                  <%= render partial: 'cart/cart' if @render_cart && user_signed_in? && !current_user.admin? %>
                   <%= yield %>
                 </main>
                 <%# end of main content %>

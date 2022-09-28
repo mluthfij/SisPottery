@@ -13,11 +13,17 @@
       <div class="col sticky-container">
         <%# <div class="sticky-2"> %>
         <div class="sticky-2 w-100 border shadow-sm rounded">
+        <% if @product.images.attached? %>
           <%= render 'products/carousel_product', obj: @product.images %>
+        <% else %>
+          <%= image_tag('https://lpm.ulm.ac.id/image/desain/empty.jpg', class:'d-block w-100 img-carousel') %>
+        <% end %>
         </div>
       </div>
       <div class="col">
-        <%= render 'form', product: @product %>
+        <div class="mb-4">
+          <%= render 'form', product: @product %>
+        </div>
       </div>
     </div>
   </div>

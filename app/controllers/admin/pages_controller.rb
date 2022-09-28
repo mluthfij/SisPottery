@@ -10,23 +10,15 @@ module Admin
       @customers = User.all
     end
     def adminlist
-      @useradmin = User.all
+      @customers = User.all
     end
     def newadmin
-      @alluser = User.all
+      @customers = User.all
     end
     def message
     end
     def order
-      # @carts = Cart.find_by(id: @cart)
-      # @orders = @carts.orderables.all
       @orders = Orderable.all
-      # @product = Product.find_by_id(:product_id)
-      # @total_cart = Cart.find_by(id: @cart)
-    end
-    # def home
-    # end
-    def about
     end
     
     protected

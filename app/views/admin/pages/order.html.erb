@@ -39,10 +39,17 @@
                                 </a>
                             </td>
                                 <td><%= truncate(product.name, length: 20) %></td>
-                                <td><%= product.price %></td>
+                                <td>
+                                    <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </td>
                                 <td><%= order.quantity %></td>
-                                <td>$<%= product.price * order.quantity %></td>
-                                <td><%= time_ago_in_words(order.created_at) %> ago</td>
+                                <td>
+                                    <%= number_to_currency(product.price * order.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </td>
+                                <td>
+                                <%= order.created_at.strftime("%d/%m/%y") %>
+                                <%# <%= time_ago_in_words(order.created_at) %>
+                                </td>
                                 <td class="text-center">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
@@ -62,7 +69,7 @@
                             </td>
                             <td class="table-danger">
                                 <strong>
-                                    $<%= @orders.to_a.sum { |orderable| orderable.total } %>
+                                    <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %>
                                 </strong>
                             </td>
                             <td> </td>

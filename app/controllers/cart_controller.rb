@@ -9,9 +9,8 @@ class CartController < ApplicationController
   def add
     @product = Product.find_by(id: params[:id])
     quantity = params[:quantity].to_i
-    # 
     description = params[:description].to_s
-    # 
+    
     current_orderable = @cart.orderables.find_by(product_id: @product.id)
     if current_orderable && quantity > 0
       current_orderable.update(quantity: quantity, description: description)

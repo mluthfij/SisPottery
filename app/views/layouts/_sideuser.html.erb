@@ -28,7 +28,7 @@
                     </div>
                     Shop
                 </a>
-                <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= '#' %>">
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'cart' ? 'active' : '' %>" href="<%= cart_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-journal-text"></i>
                     </div>

@@ -6,20 +6,31 @@
                 <strong>Product:</strong>
                 <%= product.name %>
                 <strong>Price:</strong>
-                <%= product.price %>
+                <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+
                 <%= form_with(url: cart_add_path) do |f| %>
                     <%= f.hidden_field :id, value: product.id %>
-                    <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
-                    <%= f.text_area :description, value: orderable.description %>
-                    <%= f.submit "Update cart" %>
+                    <%= f.label :quantity, class:"form-label" %>
+                    <div class="mb-3">
+                        <%= f.number_field :quantity, value: orderable.quantity, min: 0, class:"form-control" %>
+                    </div>
+                    <div class="mb-3">
+                        <%= f.label :description, 'Notes', class:"form-label" %>
+                        <%= f.text_area :description, value: orderable.description, class:"form-control" %>
+                    </div>
+                    <div class="mb-3">
+                        <%= f.submit "Update cart", class:"btn btn-outline-secondary" %>
+                    </div>
                 <% end %>
                 <%= form_with(url: cart_remove_path) do |f| %>
                     <%= f.hidden_field :id, value: orderable.id %>
-                    <%= f.submit "X" %>
+                    <div class="mb-3">
+                        <%= f.submit "X", class:"btn btn-outline-secondary" %>
+                    </div>
                 <% end %>
 
                 <strong>Total:</strong>
-                <%= orderable.total %>
+                <%= number_to_currency(orderable.total, unit: "Rp. ", separator: ",", delimiter: ".") %>
 
                 <%= link_to 'Show', product %>
                 <%# <%= link_to 'Edit', edit_product_path(product) %>

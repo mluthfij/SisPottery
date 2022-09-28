@@ -37,7 +37,9 @@
           <strong class="fs-4"><%= @product.name %></strong>
         </div>
         <div class="my-2 mb-2">
-          <strong class="fs-3">Rp<%= @product.price %></strong>
+          <strong class="fs-3">
+            <%= number_to_currency(@product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          </strong>
         </div>
 
         <div>

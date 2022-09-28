@@ -14,7 +14,7 @@
           </nav>
         </div>
         <div class="col">
-          <%= link_to 'Exit', products_path, class:"btn btn-lg btn-outline-dark float-end" %>
+          <%= link_to 'Exit', products_path, class:"btn btn-lg btn-dark float-end" %>
         </div>
       </div>
       <%#  %>
@@ -50,10 +50,12 @@
       </div>
       <div class="col">
         <div>
-          <strong class="fs-4"><%= @product.name %></strong>
+          <strong class="fs-1"><%= @product.name %></strong>
         </div>
         <div class="my-2 mb-2">
-          <strong class="fs-3">Rp<%= @product.price %></strong>
+          <strong class="fs-4">
+            <%= number_to_currency(@product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          </strong>
         </div>
 
         <div>
@@ -61,10 +63,61 @@
         </div>
 
         <div>
-          <p class="justify-text">
-            <%= simple_format(@product.description) %>
+          <p>
+            <%= simple_format(@product.description, style:"text-align:justify;") %>
           </p>
         </div>
+
+        <%# start test %>
+        <% if !@showorder.nil? %>
+          <% @cart.orderables.each do |orderable| %>
+              <div class="card">
+              <div class="card-body">
+            <%= form_with(url: cart_add_path) do |f| %>
+              <%= f.hidden_field :id, value: @product.id %>
+              <%= f.label :quantity, class:"form-label" %>
+              <div class="mb-3">
+                <%= f.number_field :quantity, value: @showorder.quantity, min: 1, class:"form-control" %>
+              </div>
+              <div class="mb-3">
+                <%= f.label :description, 'Notes', class:"form-label" %>
+                <%= f.text_area :description, value: @showorder.description, class:"form-control", placeholder:"Add notes here.." %>
+              </div>
+              <br><br>
+              <%#  %>
+                <%= f.submit "Update cart", class:"btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4" %>
+            <% end %>
+            <%# <div class=", class:"""> %>
+            <%= form_with(url: cart_remove_path) do |f| %>
+              <%= f.hidden_field :id, value: orderable.id %>
+                <div class="mb-3">
+                  <%= f.submit "Cancel order", class:"btn btn-danger position-absolute bottom-0 end-0 mb-4 me-4" %>
+                </div>
+            <% end %>
+              </div>
+              </div>
+              <%#  %>
+          <% end %>
+        <% else %>
+          <div class="card">
+            <div class="card-body">
+          <%= form_with(url: cart_add_path) do |f| %>
+            <%= f.hidden_field :id, value: @product.id %>
+            <%= f.label :quantity, class:"form-label" %>
+            <div class="mb-3">
+              <%= f.number_field :quantity, value: 0, min: 1, class:"form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :description, 'Notes', class:"form-label" %>
+              <%= f.text_area :description, class:"form-control", placeholder:"Add notes here.." %>
+            </div>
+            <br><br>
+              <%= f.submit "Add to cart", class:"btn btn-primary position-absolute bottom-0 start-0 mb-4 ms-4" %>
+          <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%# end test %>
       </div>
     </div>
   </div>

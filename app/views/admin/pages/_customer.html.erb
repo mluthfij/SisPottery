@@ -1,16 +1,11 @@
 <% obj.order(id: :desc).where(admin: :false).each do |customer| %>
     <tr>
-        <% if customer.admin? %>
-            <td>
-                Admin
-            </td>
-        <% else %>
-            <td>
-                Customer
-            </td>
-        <% end %>
+        <td><%= customer.username %></td>
+        <td><%= customer.firstname + " " + customer.lastname %></td>
         <td><%= customer.email %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.wa_phone %></td>
         <td><%= time_ago_in_words(customer.created_at) %> ago</td>
-        <td>Test</td>
+        <td><%= link_to 'Detail', profile_path(customer), class:"btn btn-sm btn-primary" %></td>
     </tr>
 <% end %>

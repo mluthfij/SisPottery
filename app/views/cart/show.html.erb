@@ -1,7 +1,79 @@
-<h1>Your Cart</h1>
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+          <div>
+          <h4>
+            <strong>Total: </strong><%= number_to_currency(@cart.total, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          </h4>
+          </div>
+        </div>
+        <% @cart.orderables.each do |orderable| %>
+        <% product = orderable.product %>
+        <div class="card rounded-3 mb-4">
+            <div class="position-absolute top-0 end-0 m-1">
+                <%= form_with(url: cart_remove_path) do |f| %>
+                    <%= f.hidden_field :id, value: orderable.id %>
+                        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
+                <% end %>
+            </div>
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                  class="img-fluid rounded-3" alt="Cotton T-shirt">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2"><%= product.name %></p>
+                <div>
+                    </span><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                </div>
+                <div>
+                    <span class="text-muted">Quantity: </span><%= orderable.quantity %>
+                </div>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="text-decoration-none btn btn-link <%= orderable.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalDesc<%= orderable.id %>">
+                    <i class="bi bi-card-list"></i> Note
+                </button>
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
+                <h5 class="mb-0">
+                    <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
 
 <% @cart.orderables.each do |orderable| %>
-    <% product = orderable.product %>
-    <p><%= product.name %> * <%= orderable.quantity %> = $<%= product.price * orderable.quantity %></p>
+<!-- Modal -->
+<div class="modal fade" id="modalDesc<%= orderable.id %>" tabindex="-1" aria-labelledby="modalDescLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+            <%= orderable.description %>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
-<p>Your total is $<%= @cart.total %></p>
