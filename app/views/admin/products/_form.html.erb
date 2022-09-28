@@ -11,8 +11,8 @@
       <% end %>
 
       <div class="mb-3 field">
-        <%= form.label :images, class:"form-label" %>
         <%= form.file_field :images, class:"form-control form-control-lg", multiple: true %>
+        <%= form.label :images, class:"form-label" %>
       </div>
 
       <div class="form-floating mb-3">
@@ -21,8 +21,8 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.number_field :price, class:"form-control", placeholder:"123" %>
         <%= form.label :price, class:"form-label" %>
+        <%= form.number_field :price, class:"form-control", placeholder:"123" %>
       </div>
 
       <div class="form-floating mb-3">

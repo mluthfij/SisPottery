@@ -7,6 +7,9 @@ class Product < ApplicationRecord
 
     validate :validate_images
 
+    validates :name, presence: true
+    validates :price, presence: true
+
     # 
     # def set_quantity
     #     orderables.to_a.sum { |orderable| orderable.quantity }
