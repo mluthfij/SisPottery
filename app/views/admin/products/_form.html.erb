@@ -20,9 +20,14 @@
         <%= form.label :name, class:"form-label" %>
       </div>
 
-      <div class="form-floating mb-3">
-        <%= form.number_field :price, class:"form-control", placeholder:"123" %>
+      <%# <div class="form-floating mb-3"> %>
+        <%# <%= form.number_field :price, class:"form-control", placeholder:"123" %> %>
+        <%# <%= form.label :price, class:"form-label" %> %>
+      <%# </div> %>
+
+      <div class="mb-3">
         <%= form.label :price, class:"form-label" %>
+        <%= form.number_field :price, class:"form-control" %>
       </div>
 
       <div class="form-floating mb-3">
