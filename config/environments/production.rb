@@ -1,6 +1,27 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Settings send email
+  # config.action_mailer.default_url_options = {host: "superails-emails.herokuapp.com", protocol: "https"}
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = {host: "sis-pottery.herokuapp.com", protocol: "https"}
+  # 
+  config.action_mailer.delivery_method = :smtp
+  # SMTP Settings for mailcatcher gem.
+  # config.action_mailer.smtp_settings = {
+  #   address: '127.0.0.1',
+  #   port: 1025
+  # }
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            Rails.application.credentials.dig(:google_smtp, :email),
+    password:             Rails.application.credentials.dig(:google_smtp, :password),
+    authentication:       'plain',
+    enable_starttls_auto: true 
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
