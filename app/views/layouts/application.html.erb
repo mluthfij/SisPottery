@@ -40,18 +40,6 @@
                 <%# start of main content %>
                 <main>
                   <%= render 'layouts/alert' if flash.any? %>
-                  <br>
-                  
-<%#  %>
-<hr>
-<%= @cart.inspect %>
-<br>
-<hr>
-<hr>test
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<hr>
-<%#  %>
                   <%= yield %>
                 </main>
                 <%# end of main content %>
