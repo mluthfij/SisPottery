@@ -77,8 +77,8 @@
                     <%= image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "rounded-circle") %>
                 <% else %>
                     <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30">
-                    <%= current_user.username %>
                 <% end %>
+                    <%= truncate(current_user.username, length: 28) %>
             <% else %>
                 Sign in?
                 <%# <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30"> %>
