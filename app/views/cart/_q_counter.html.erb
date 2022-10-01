@@ -1,0 +1,3 @@
+<span data-turbo="true">
+    <span>Total Quantity: <%= @cart.orderables.to_a.sum { |orderable| orderable.quantity } %></span>
+</span>

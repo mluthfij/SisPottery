@@ -4,13 +4,13 @@
         <%# <% product = orderable.product %>
               <%# <%= link_to product_path(product) do %>
         <% product = orderable.product %>
+                  <span data-turbo="false">
+                  <%= link_to product_path(product), class:"text-decoration-none text-dark" do %>
         <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                   <%#  %>
-                  <%# <a  data-bs-dismiss="modal"> %>
-                  <%# <%= link_to product_path(product), "data-bs-dismiss": "modal", "aria-hidden": "true" do %>
                     <% if product.images.attached? %>
                       <% product.images.each_with_index do |image, index| %>
                         <% if index == 0 %>
@@ -20,8 +20,6 @@
                     <% else %>
                       <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
                     <% end %>
-                  <%# <% end %>
-                  <%# </a> %>
                   <%#  %>
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
@@ -37,6 +35,8 @@
             </div>
           </div>
         </div>
+                  <% end %>
+                  </span>
                   <%# <% end %>
         <%# <% end %>
       <%# </div>

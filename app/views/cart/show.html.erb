@@ -16,14 +16,16 @@
         </div>
         <div class="text-center mb-3">
           <span class="badge text-bg-warning">
-              <span>Total Quantity: <%= @cart.orderables.to_a.sum { |orderable| orderable.quantity } %></span>
+            <%= turbo_frame_tag "q_counter" do %>
+              <span data-turbo="true">
+                <%= render 'cart/q_counter' %>
+              </span>
+            <% end %>
           </span>
         </div>
 <%= turbo_frame_tag "show_cart" do %>
     <span data-turbo="true">
-      <% if @cart.orderables.count > 0 %>
         <%= render 'cart/showcart' %>
-      <% end %>
     </span>
 <% end %>
       </div>

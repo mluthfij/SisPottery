@@ -90,6 +90,9 @@ class CartController < ApplicationController
                                           locals: { cart: @cart }),
                               turbo_stream.update('payment_counter',
                                           partial: 'cart/payment_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('q_counter',
+                                          partial: 'cart/q_counter',
                                           locals: { cart: @cart })
                               ]
       end
