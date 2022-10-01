@@ -40,7 +40,10 @@ class CartController < ApplicationController
                                           partial: 'layouts/cart_counter',
                                           locals: { cart: @cart }),
                               turbo_stream.update('cart_update',
-                                          partial: 'products/cartupdate')
+                                          partial: 'products/cartupdate'),
+                              turbo_stream.replace('show_cart',
+                                          partial: 'cart/showcart',
+                                          locals: { cart: @cart })
                               ]
 
         elsif @current_order.nil?
@@ -81,7 +84,13 @@ class CartController < ApplicationController
                               turbo_stream.update('cart_counter',
                                           partial: 'layouts/cart_counter'),
                               turbo_stream.replace('cart_update',
-                                          partial: 'products/cartadd')
+                                          partial: 'products/cartadd'),
+                              turbo_stream.update('show_cart',
+                                          partial: 'cart/showcart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('payment_counter',
+                                          partial: 'cart/payment_counter',
+                                          locals: { cart: @cart })
                               ]
       end
     end

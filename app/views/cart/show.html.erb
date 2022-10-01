@@ -6,7 +6,11 @@
           <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
           <div>
           <h4>
-            <strong>Total Payment: </strong><%= number_to_currency(@cart.total, unit: "Rp. ", separator: ",", delimiter: ".") %>
+<%= turbo_frame_tag "payment_counter" do %>
+    <span data-turbo="true">
+      <%= render 'cart/payment_counter' %>
+    </span>
+<% end %>
           </h4>
           </div>
         </div>
@@ -15,63 +19,16 @@
               <span>Total Quantity: <%= @cart.orderables.to_a.sum { |orderable| orderable.quantity } %></span>
           </span>
         </div>
-
-        <% @cart.orderables.each do |orderable| %>
-        <% product = orderable.product %>
-        <div class="card rounded-3 mb-4">
-            <div class="position-absolute top-0 end-0 m-1">
-                <%= form_with(url: cart_remove_path) do |f| %>
-                    <%= f.hidden_field :id, value: orderable.id %>
-                        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
-                <% end %>
-            </div>
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                  <%#  %>
-                  <%= link_to product_path(product) do %>
-                    <% if product.images.attached? %>
-                      <% product.images.each_with_index do |image, index| %>
-                        <% if index == 0 %>
-                          <%= image_tag(image, class:"img-fluid rounded-3") %>
-                        <% end %>
-                      <% end %>
-                    <% else %>
-                      <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
-                    <% end %>
-                  <% end %>
-                  <%#  %>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2"><%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %></p>
-                <div>
-                    </span><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                </div>
-                <div>
-                    <span class="text-muted">Quantity: </span><%= orderable.quantity %>
-                </div>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
-
-                <!-- Button trigger modal -->
-                <button type="button" class="text-decoration-none btn btn-link <%= orderable.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalDesc<%= orderable.id %>">
-                    <i class="bi bi-card-list"></i> Note
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
-                <h5 class="mb-0">
-                    <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
+<%= turbo_frame_tag "show_cart" do %>
+    <span data-turbo="true">
+      <% if @cart.orderables.count > 0 %>
+        <%= render 'cart/showcart' %>
+      <% end %>
+    </span>
+<% end %>
       </div>
     </div>
   </div>
-
-
 
 <% @cart.orderables.each do |orderable| %>
 <!-- Modal -->

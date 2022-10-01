@@ -43,24 +43,23 @@
     </div>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <%#  %>
     <li class="nav-item">
-    <% if user_signed_in? && current_user.admin == false %>
-    <% unless params[:action] == 'show' && params[:controller] == 'cart' %>
-    <button type="button" class="btn btn-sm text-decoration-none text-light btn-link" data-bs-toggle="modal" data-bs-target="#cartModal">
-        <i class="bi bi-cart fs-5"></i>
-        <span class="badge rounded-pill bg-danger">
-            <%# <%= @notiforder.to_a.sum { |orderable| orderable.quantity } %>
-            <%# <span class="visually-hidden">unread messages</span> %>
-            <%= turbo_frame_tag "cart_counter" do %>
-                <span data-turbo="true">
-                    <%= render 'layouts/cart_counter' %>
-                </span>
+        <% if user_signed_in? && current_user.admin == false %>
+            <% unless params[:action] == 'show' && params[:controller] == 'cart' %>
+                <button type="button" class="btn btn-sm text-decoration-none text-light btn-link" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <i class="bi bi-cart fs-5"></i>
+                    <span class="badge rounded-pill bg-danger">
+                        <%# <%= @notiforder.to_a.sum { |orderable| orderable.quantity } %>
+                        <%# <span class="visually-hidden">unread messages</span> %>
+                        <%= turbo_frame_tag "cart_counter" do %>
+                            <span data-turbo="true">
+                                <%= render 'layouts/cart_counter' %>
+                            </span>
+                        <% end %>
+                    </span>
+                </button>
             <% end %>
-        </span>
-    </button>
-    <% end %>
-    <% end %>
+        <% end %>
     </li>
     <%#  %>
         <li class="nav-item dropdown">
@@ -106,4 +105,4 @@
     </ul>
 </nav>
 
-<%= render 'layouts/cartModal' if user_signed_in? && current_user.admin == false %>
+<%= render 'cart/cartModal' if user_signed_in? && current_user.admin == false %>

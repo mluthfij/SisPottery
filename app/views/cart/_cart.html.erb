@@ -3,7 +3,20 @@
     <%# <div class="alert alert-success m-4" role="alert" data-turbo="true"> %>
     <%# <h1><i class="bi bi-cart"></i></h1> %>
         <% if @cart.orderables.count > 0 %>
-            <%= render "cart/orderables" %>
+
+            <div class="row d-flex justify-content-center align-items-center h-100">
+            <% if @cart.orderables.count > 3 %>
+                <h5 class="mb-4 me-4 text-end"><%= @cart.orderables.count - 3 %> other product</h5>
+            <% end %>
+      <div class="col-10">
+        <% @cart.orderables.order(id: :desc).each_with_index do |orderable, index| %>
+        <% product = orderable.product %>
+            <% if index < 3 %>
+                <%= render "cart/orderables", { orderable: orderable, index: index } %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
             <%# <p> %>
             <%# Total: <%= @cart.total %>
             <%# </p> %>
