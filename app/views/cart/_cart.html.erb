@@ -1,15 +1,15 @@
-<%# <%= turbo_frame_tag "cart" do %>
-
-<div class="alert alert-success m-4" role="alert">
-<h1><i class="bi bi-cart"></i></h1>
-    <% if @cart.orderables.count > 0 %>
-        <%= render "cart/orderables" %>
-        <%# <p> %>
-        <%# Total: <%= @cart.total %>
-        <%# </p> %>
-    <% else %>
-        Your cart is empty
-    <% end %>
-</div>
-
-<%# <% end %>
+<%= turbo_frame_tag "cart" do %>
+    <span data-turbo="true">
+    <%# <div class="alert alert-success m-4" role="alert" data-turbo="true"> %>
+    <%# <h1><i class="bi bi-cart"></i></h1> %>
+        <% if @cart.orderables.count > 0 %>
+            <%= render "cart/orderables" %>
+            <%# <p> %>
+            <%# Total: <%= @cart.total %>
+            <%# </p> %>
+        <% else %>
+            Your cart is empty
+        <% end %>
+    <%# </div> %>
+    </span>
+<% end %>

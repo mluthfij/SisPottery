@@ -20,7 +20,7 @@
                     <% if @profile.avatar.present? %>
                         <%= image_tag(@profile.avatar.variant(resize_to_fill: [150, 150]), class: "rounded-circle") %>
                     <% else %>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." class="rounded-circle" width="150">
+                        <img src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." class="rounded-circle" width="150">
                     <% end %>
                     <div class="mt-3">
                       <h4><%= @profile.username %></h4>
@@ -68,7 +68,7 @@
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <%= @profile.firstname + " " + @profile.lastname %>
+                      <%= @profile.firstname %> <% @profile.lastname %>
                     </div>
                   </div>
                   <hr>

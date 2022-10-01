@@ -14,16 +14,20 @@
     <%# <a href="" class="nav-link">
         <i class="bi bi-cart fs-5"></i>
     </a> %>
-    <% if user_signed_in? && current_user.admin == false %>
-    <button type="button" class="btn btn-sm text-decoration-none text-light btn-link" data-bs-toggle="modal" data-bs-target="#cartModal">
-        <i class="bi bi-cart fs-5"></i>
-        <span class="badge rounded-pill bg-danger">
+    <%# <% if user_signed_in? && current_user.admin == false %>
+    <%# <button type="button" class="btn btn-sm text-decoration-none text-light btn-link" data-bs-toggle="modal" data-bs-target="#cartModal"> %>
+        <%# <i class="bi bi-cart fs-5"></i> %>
+        <%# <span class="badge rounded-pill bg-danger"> %>
             <%# <%= @notiforder.to_a.sum { |orderable| orderable.quantity } %>
-            <%= @cart.orderables.count %>
             <%# <span class="visually-hidden">unread messages</span> %>
-        </span>
-    </button>
-    <% end %>
+            <%# <%= turbo_frame_tag "cart_counter" do %>
+                <%# <span data-turbo="true"> %>
+                    <%# <%= render 'layouts/cart_counter' %>
+                <%# </span> %>
+            <%# <% end %>
+        <%# </span> %>
+    <%# </button> %>
+    <%# <% end %>
     
         <%# <div class="input-group">
             <input
@@ -39,6 +43,26 @@
     </div>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+    <%#  %>
+    <li class="nav-item">
+    <% if user_signed_in? && current_user.admin == false %>
+    <% unless params[:action] == 'show' && params[:controller] == 'cart' %>
+    <button type="button" class="btn btn-sm text-decoration-none text-light btn-link" data-bs-toggle="modal" data-bs-target="#cartModal">
+        <i class="bi bi-cart fs-5"></i>
+        <span class="badge rounded-pill bg-danger">
+            <%# <%= @notiforder.to_a.sum { |orderable| orderable.quantity } %>
+            <%# <span class="visually-hidden">unread messages</span> %>
+            <%= turbo_frame_tag "cart_counter" do %>
+                <span data-turbo="true">
+                    <%= render 'layouts/cart_counter' %>
+                </span>
+            <% end %>
+        </span>
+    </button>
+    <% end %>
+    <% end %>
+    </li>
+    <%#  %>
         <li class="nav-item dropdown">
             <a
                 class="nav-link dropdown-toggle"
@@ -57,7 +81,8 @@
                     <%= current_user.username %>
                 <% end %>
             <% else %>
-                <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30">
+                Sign in?
+                <%# <img class="rounded-circle" src="http://www.familylore.org/images/2/25/UnknownPerson.png" width="30"> %>
             <% end %>
             <%#  %>
                 <%# <i class="fas fa-user fa-fw"></i> %>

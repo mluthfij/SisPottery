@@ -1,45 +1,39 @@
-<% @cart.orderables.each do |orderable| %>
-    <% product = orderable.product %>
-    <%#  %>
-        <div id="<%= "cart-#{product.id}" %>">
-            <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
-                <strong>Product:</strong>
-                <%= product.name %>
-                <strong>Price:</strong>
-                <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-
-                <%= form_with(url: cart_add_path) do |f| %>
-                    <%= f.hidden_field :id, value: product.id %>
-                    <%= f.label :quantity, class:"form-label" %>
-                    <div class="mb-3">
-                        <%= f.number_field :quantity, value: orderable.quantity, min: 0, class:"form-control" %>
-                    </div>
-                    <div class="mb-3">
-                        <%= f.label :description, 'Notes', class:"form-label" %>
-                        <%= f.text_area :description, value: orderable.description, class:"form-control" %>
-                    </div>
-                    <div class="mb-3">
-                        <%= f.submit "Update cart", class:"btn btn-outline-secondary" %>
-                    </div>
-                <% end %>
-                <%= form_with(url: cart_remove_path) do |f| %>
-                    <%= f.hidden_field :id, value: orderable.id %>
-                    <div class="mb-3">
-                        <%= f.submit "X", class:"btn btn-outline-secondary" %>
-                    </div>
-                <% end %>
-
-                <strong>Total:</strong>
-                <%= number_to_currency(orderable.total, unit: "Rp. ", separator: ",", delimiter: ".") %>
-
-                <%= link_to 'Show', product %>
-                <%# <%= link_to 'Edit', edit_product_path(product) %>
-                <%# <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <%#  %>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+        <% @cart.orderables.order(id: :desc).each do |orderable| %>
+        <% product = orderable.product %>
+        <% %>
+        <div class="card rounded-3 mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                  <%#  %>
+                  <%= link_to product_path(product) do %>
+                    <% if product.images.attached? %>
+                      <% product.images.each_with_index do |image, index| %>
+                        <% if index == 0 %>
+                          <%= image_tag(image, class:"img-fluid rounded-3") %>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+                    <% end %>
+                  <% end %>
+                  <%#  %>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2"><%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %></p>
+              </div>
+              <%# <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1"> %>
+              <div class="col-md-4 col-lg-3 col-xl-4 offset-lg-1">
+              <%# <div class="col-md-6 col-lg-4 col-xl-6 offset-lg-1"> %>
+                <h5 class="mb-0">
+                    <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                </h5>
+              </div>
             </div>
-            <%#  %>
-
-            <%#  %>
+          </div>
         </div>
-    <%#  %>
-<% end %>
+        <% end %>
+      </div>
+    </div>
