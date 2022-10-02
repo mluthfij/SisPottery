@@ -40,7 +40,12 @@
             <div id="layoutSidenav_content">
                 <%# start of main content %>
                 <main>
-                  <%= render 'layouts/alert' if flash.any? %>
+                <%= render 'layouts/alert' if flash.any? %>
+
+                <div id="turbo_flash" data-turbo="true">
+                    <%= render partial: "layouts/turboalert" %>
+                </div>
+
                   <%= yield %>
                 </main>
                 <%# end of main content %>

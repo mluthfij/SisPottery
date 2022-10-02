@@ -3,8 +3,8 @@
             <div class="card-body">
               <h2>Order</h2>
           <%= form_with(url: cart_add_path) do |f| %>
-            <%# <%= f.hidden_field :id, value: Product.find_by(id: params[:id]).id %>
-            <%= f.hidden_field :id, value: Product.find_by(id: params[:id]).id %>
+            <%# <%= f.hidden_field :id, value: Product.find_by(id: params[:id]).id %> 
+            <%= f.hidden_field :id, value: Product.find(params[:id]).id %>
             <%= f.label :quantity, class:"form-label" %>
             <div class="mb-3">
               <%= f.number_field :quantity, value: 0, min: 1, class:"form-control" %>

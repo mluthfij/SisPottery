@@ -21,7 +21,13 @@ class CartController < ApplicationController
       # @cart.orderables.create!(product: @product, description: description, quantity: quantity, user: current_user)
       @cart.orderables.create(product: @product, description: description, quantity: quantity, user: current_user)
     end
-    
+
+    if !@current_order.nil?
+      flash.now[:notice] = "Product has successfully updated"
+    elsif @current_order.nil?
+      flash.now[:notice] = "Product has successfully added to cart"
+    end
+
     # # refresh
     # respond_to do |format|
     #     format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
@@ -43,7 +49,8 @@ class CartController < ApplicationController
                                           partial: 'products/cartupdate'),
                               turbo_stream.replace('show_cart',
                                           partial: 'cart/showcart',
-                                          locals: { cart: @cart })
+                                          locals: { cart: @cart }),
+                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
 
         elsif @current_order.nil?
@@ -55,7 +62,8 @@ class CartController < ApplicationController
                                           partial: 'layouts/cart_counter',
                                           locals: { cart: @cart }),
                               turbo_stream.update('cart_add',
-                                          partial: 'products/cartupdate')
+                                          partial: 'products/cartupdate'),
+                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
         end
       end
@@ -67,13 +75,15 @@ class CartController < ApplicationController
   end
 
   def remove
-    Orderable.find_by(id: params[:id]).destroy
+    # Orderable.find_by(id: params[:id]).destroy
+    @orderable = Orderable.find_by(id: params[:id])
+    @orderable.destroy
     # # refresh
     # respond_to do |format|
     #     format.html { redirect_to request.referrer, notice: "Product was successfully deleted from cart." }
     #     format.json { render :show, status: :created, location: request.referrer }
     # end
-    
+    flash.now[:notice] = "Product has successfully deleted from cart"
 
     # without refresh
     respond_to do |format|
@@ -93,7 +103,8 @@ class CartController < ApplicationController
                                           locals: { cart: @cart }),
                               turbo_stream.update('q_counter',
                                           partial: 'cart/q_counter',
-                                          locals: { cart: @cart })
+                                          locals: { cart: @cart }),
+                              turbo_stream.update("turbo_flash", partial: "layouts/turboalert")
                               ]
       end
     end
