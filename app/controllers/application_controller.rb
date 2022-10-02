@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # before_action :initialize_cart, if: :user_signed_in?
 
   def current_cart
+    @testp = Product.find(params[:id])
     @cart = Cart.find_by(id: @cart)
     if !@cart && current_user
       @cart = Cart.find_by(user_id: current_user.id)
