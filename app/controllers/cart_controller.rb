@@ -30,6 +30,31 @@ class CartController < ApplicationController
     # # without refresh
     respond_to do |format|
       format.turbo_stream do
+        # show_cart
+        if !@current_order.nil?
+          # update
+        render turbo_stream: [turbo_stream.replace('cart',
+                                          partial: 'cart/cart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('cart_counter',
+                                          partial: 'layouts/cart_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('show_notes',
+                                          partial: 'cart/notes',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('show_cart',
+                                          partial: 'cart/showcart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('payment_counter',
+                                          partial: 'cart/payment_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('q_counter',
+                                          partial: 'cart/q_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
+                              ]
+
+        elsif @current_order.nil?
           # add
         render turbo_stream: [turbo_stream.replace('cart',
                                           partial: 'cart/cart',
@@ -45,6 +70,7 @@ class CartController < ApplicationController
                                           locals: { cart: @cart }),
                               turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
+        end
       end
     end
   end

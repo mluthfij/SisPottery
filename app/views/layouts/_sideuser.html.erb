@@ -10,13 +10,13 @@
                     </div>
                     Home
                 </a>
-                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= pages_about_path %>">
+                <a class="nav-link <%= params[:action] == 'about' ? 'active' : '' %>" href="<%= pages_about_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-people"></i>
                     </div>
                     About Us
                 </a>
-                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= '#' %>">
+                <a class="nav-link <%= params[:action] == 'contact' ? 'active' : '' %>" href="<%= '#' %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-telephone"></i>
                     </div>
@@ -37,14 +37,14 @@
                 <%# end core %>
                 <% if user_signed_in? %>
                 <div class="sb-sidenav-menu-heading">Edit</div>
-                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= profile_path(current_user) %>">
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user) %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-person"></i>
                     </div>
                     My Profile
                 </a>
                 
-                <a class="nav-link <%= params[:action] == 'dashboard' || params[:action] == 'home' ? 'active' : '' %>" href="<%= edit_user_registration_path %>">
+                <a class="nav-link <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'active' : '' %>" href="<%= edit_user_registration_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>

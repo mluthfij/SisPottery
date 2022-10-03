@@ -1,9 +1,5 @@
 <div class="container-fluid px-4">
 <%#  %>
-<h1>
-  <%= @product.id %>
-</h1>
-<%#  %>
   <div class="mt-4">
     <div class="card mb-3 bg-light">
       <div class="card-body">
@@ -12,9 +8,12 @@
         <div class="col">
           <nav aria-label="breadcrumb float-start">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Library</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data</li>
+              <li class="breadcrumb-item">
+                <%= link_to 'Products', products_path %>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <%= @product.name %>
+              </li>
             </ol>
           </nav>
         </div>

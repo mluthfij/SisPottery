@@ -29,6 +29,9 @@
                         <%# Bay Area, San Francisco, CA %>
                         <%= @profile.my_address %>
                       </p>
+                      <p>
+                        <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-dark w-100" %>
+                      </p>
                       <%# <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button> %>
                     </div>
@@ -120,12 +123,6 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <%# <a class="btn btn-info" target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a> %>
-                      <%= link_to "Edit profile", edit_user_registration_path, class:"btn btn-dark" %>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
