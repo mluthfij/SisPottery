@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'cart', to: 'cart#show'
   post 'cart/add'
   post 'cart/remove'
+  post 'cart/delete'
   # get 'comments/form'
   get 'comments/comment'
   resources :profiles, only: :show

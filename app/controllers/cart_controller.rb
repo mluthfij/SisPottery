@@ -29,48 +29,50 @@ class CartController < ApplicationController
     end
 
     # # refresh
-    # respond_to do |format|
-    #     format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
-    #     format.json { render :show, status: :created, location: request.referrer }
-    # end
-
-    # # without refresh
     respond_to do |format|
-      format.turbo_stream do
-        if !@current_order.nil?
-          # update
-        render turbo_stream: [turbo_stream.replace('cart',
-                                          partial: 'cart/cart',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('cart_counter',
-                                          partial: 'layouts/cart_counter',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('cart_update',
-                                          partial: 'products/cartupdate'),
-                              turbo_stream.replace('show_cart',
-                                          partial: 'cart/showcart',
-                                          locals: { cart: @cart }),
-                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
-                              ]
+        format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
+        format.json { render :show, status: :created, location: request.referrer }
+    end
 
-        elsif @current_order.nil?
-          # add
-        render turbo_stream: [turbo_stream.replace('cart',
-                                          partial: 'cart/cart',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('cart_counter',
-                                          partial: 'layouts/cart_counter',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('cart_add',
-                                          partial: 'products/cartupdate'),
-                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
-                              ]
-        end
-      end
+    # # # without refresh
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #     if !@current_order.nil?
+    #       # update
+    #     render turbo_stream: [turbo_stream.replace('cart',
+    #                                       partial: 'cart/cart',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('cart_counter',
+    #                                       partial: 'layouts/cart_counter',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('cart_update',
+    #                                       partial: 'products/cartupdate'),
+    #                           turbo_stream.replace('show_cart',
+    #                                       partial: 'cart/showcart',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
+    #                           ]
+
+    #     elsif @current_order.nil?
+    #       # add
+    #     render turbo_stream: [turbo_stream.replace('cart',
+    #                                       partial: 'cart/cart',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('cart_counter',
+    #                                       partial: 'layouts/cart_counter',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('cart_add',
+    #                                       partial: 'products/cartupdate'),
+    #                           turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
+    #                           ]
+    #     end
+    #   end
+    # end
+    #   # end of cart no refresh
+
         # render turbo_stream: turbo_stream.replace('cart',
         #                                   partial: 'cart/cart',
         #                                   locals: { cart: @cart })
-    end
     # 
   end
 
@@ -78,36 +80,48 @@ class CartController < ApplicationController
     # Orderable.find_by(id: params[:id]).destroy
     @orderable = Orderable.find_by(id: params[:id])
     @orderable.destroy
-    # # refresh
-    # respond_to do |format|
-    #     format.html { redirect_to request.referrer, notice: "Product was successfully deleted from cart." }
-    #     format.json { render :show, status: :created, location: request.referrer }
-    # end
     flash.now[:notice] = "Product has successfully deleted from cart"
-
     # without refresh
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [turbo_stream.replace('cart',
-                                          partial: 'cart/cart',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('cart_counter',
-                                          partial: 'layouts/cart_counter'),
-                              turbo_stream.replace('cart_update',
-                                          partial: 'products/cartadd'),
-                              turbo_stream.update('show_cart',
-                                          partial: 'cart/showcart',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('payment_counter',
-                                          partial: 'cart/payment_counter',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update('q_counter',
-                                          partial: 'cart/q_counter',
-                                          locals: { cart: @cart }),
-                              turbo_stream.update("turbo_flash", partial: "layouts/turboalert")
-                              ]
-      end
-    end
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #     render turbo_stream: [turbo_stream.replace('cart',
+    #                                       partial: 'cart/cart',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('cart_counter',
+    #                                       partial: 'layouts/cart_counter'),
+    #                           turbo_stream.replace('cart_update',
+    #                                       partial: 'products/cartadd'),
+    #                           turbo_stream.update('show_cart',
+    #                                       partial: 'cart/showcart',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('payment_counter',
+    #                                       partial: 'cart/payment_counter',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update('q_counter',
+    #                                       partial: 'cart/q_counter',
+    #                                       locals: { cart: @cart }),
+    #                           turbo_stream.update("turbo_flash", partial: "layouts/turboalert")
+    #                           ]
+    #   end
+    # end
     # 
+    
+    # with refresh
+    respond_to do |format|
+        format.html { redirect_to request.referrer, notice: "Product was successfully deleted from cart." }
+        format.json { render :show, status: :created, location: request.referrer }
+    end
   end
+
+  def delete
+    @post = Product.find_by_id(params[:id])
+    @orderable = Orderable.find_by(id: params[:id])
+    @orderable.destroy
+    # with refresh
+    respond_to do |format|
+        format.html { redirect_to product_path(@post), notice: "Product was successfully deleted from cart." }
+        format.json { render :show, status: :created, location: product_path(@post) }
+    end
+  end
+  
 end
