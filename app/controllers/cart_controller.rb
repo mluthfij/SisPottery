@@ -5,7 +5,50 @@ class CartController < ApplicationController
     @render_cart = false
     @orders = current_user.orderables.all
   end
-  
+
+  def addcart
+    @product = Product.find_by(id: params[:id])
+    @current_order = @cart.orderables.find_by(product_id: @product.id)
+    quantity = params[:quantity].to_i
+    description = params[:description].to_s
+
+    current_orderable = @cart.orderables.find_by(product_id: @product.id)
+    if current_orderable && quantity > 0
+      current_orderable.update(quantity: quantity, description: description)
+    elsif quantity <= 0
+      current_orderable.destroy
+    else
+      @cart.orderables.create(product: @product, description: description, quantity: quantity, user: current_user)
+    end
+
+    if !@current_order.nil?
+      flash.now[:notice] = "Product has successfully updated"
+    elsif @current_order.nil?
+      flash.now[:notice] = "Product has successfully added to cart"
+    end
+
+    # # without refresh
+    respond_to do |format|
+      format.turbo_stream do
+          # add
+        render turbo_stream: [turbo_stream.replace('cart',
+                                          partial: 'cart/cart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('cart_counter',
+                                          partial: 'layouts/cart_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('payment_counter',
+                                          partial: 'cart/payment_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('q_counter',
+                                          partial: 'cart/q_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
+                              ]
+      end
+    end
+  end
+
   def add
     @product = Product.find_by(id: params[:id])
     @current_order = @cart.orderables.find_by(product_id: @product.id)
@@ -73,6 +116,35 @@ class CartController < ApplicationController
         # render turbo_stream: turbo_stream.replace('cart',
         #                                   partial: 'cart/cart',
         #                                   locals: { cart: @cart })
+    # 
+  end
+
+  def removecart
+    # Orderable.find_by(id: params[:id]).destroy
+    @orderable = Orderable.find_by(id: params[:id])
+    @orderable.destroy
+    flash.now[:notice] = "Product has successfully deleted from cart"
+    # without refresh
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('cart',
+                                          partial: 'cart/cart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('cart_counter',
+                                          partial: 'layouts/cart_counter'),
+                              turbo_stream.update('show_cart',
+                                          partial: 'cart/showcart',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('payment_counter',
+                                          partial: 'cart/payment_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('q_counter',
+                                          partial: 'cart/q_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update("turbo_flash", partial: "layouts/turboalert")
+                              ]
+      end
+    end
     # 
   end
 

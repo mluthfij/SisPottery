@@ -3,12 +3,8 @@
         <div class="col">
             <div class="card h-100">
             <%#  %>
-            <%# <div class="position-absolute top-0 end-0 m-1">
-
-                <div class="dropdown dropstart">
-                </div>            
-
-            </div> %>
+            <div class="position-absolute top-0 end-0 m-1">
+            </div>
             <%#  %>
                 <%= link_to product_path(product) do %>
                     <% if product.images.attached? %>
@@ -16,9 +12,7 @@
                             <% if index == 0 %>
                                 <%= image_tag(image, class:"card-img-top img-show") %>
                             <% end %>
-                        <%# <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="card-img-top" alt="..."> %>
                         <% end %>
-                        <%# <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="card-img-top" alt="..."> %>
                     <% else %>
                         <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="card-img-top img-show" alt="...">
                     <% end %>
