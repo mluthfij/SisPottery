@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 
-// import "@hotwired/turbo-rails"
+import "@hotwired/turbo-rails"
 
 require("packs/scripts")
 
@@ -21,3 +21,12 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// scroll_bottom = function () {
+//     if ($('#message_container').length > 0) {
+//         $('#message_container').scrollTop($('#message_container')[0].scrollHeight);
+//     }
+// }
+
+// $(document).on('turbolinks:load', function () {
+//     scroll_bottom();
+// })

@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   def about
     @abouts = About.all
   end
-  # def messageroom
-  #   @message = Message.new
-  # end
+  def messageroom
+    @message = Message.new
+  end
 end

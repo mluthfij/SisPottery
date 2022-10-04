@@ -16,13 +16,13 @@
                     </div>
                     About Us
                 </a>
-                <a class="nav-link <%= params[:action] == 'contact' ? 'active' : '' %>" href="<%= '#' %>">
+                <a class="nav-link <%= params[:action] == "messageroom" && params[:controller] == "pages" ? 'active' : '' %>" href="<%= pages_messageroom_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-telephone"></i>
                     </div>
                     Contact Us
                 </a>
-                <a class="nav-link <%= params[:action] == "messageroom" && params[:controller] == "pages" ? 'active' : '' %>" href="<%= root_path %>">
+                <a class="nav-link <%= params[:action] == "index" && params[:controller] == "products" ? 'active' : '' %>" href="<%= products_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-cart2"></i>
                     </div>
