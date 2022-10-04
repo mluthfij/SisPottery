@@ -1,53 +1,38 @@
-<% if About.count == 0 %>
-    <%# hidden when sm %>
-    <div class="bg-light text-center p-5 mb-4 bg-light rounded-3 d-none d-sm-block">
-      <div class="container-fluid">
-        <h1 class="d-block fw-bold">
-          Sis
-        </h1>
-        subsis
-        <p class="col fs-4">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo aliquid commodi reprehenderit voluptates quia adipisci minus tempora sequi. Saepe veniam beatae laudantium rem eius numquam assumenda accusamus fugiat explicabo itaque.
-        </p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-    </div>
 
-    <%# visible when sm %>
-    <div class="bg-light text-center py-4 pb-4 mb-4 bg-light rounded-3 d-block d-sm-none">
-      <div class="container-fluid">
-        <h1 class="d-block fw-bold">
-          Sis
-        </h1>
-        subsis
-        <p class="col fs-4">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum eveniet, voluptate quo velit praesentium aut sequi ipsa pariatur saepe esse sint maxime dolorem explicabo! Molestias sint officia magni officiis veritatis?
-        </p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-    </div>
-
-  <%# <%= @about.company_name %> 
-<% else %>
-    <%# hidden when sm %>
-    <div class="bg-light text-center p-5 mb-4 bg-light rounded-3 d-none d-sm-block">
-      <div class="container-fluid">
-        <h1 class="d-block fw-bold"><%= @about.title %></h1>
-        <%= @about.sub_title %>
-        <p class="col fs-4"><%= @about.description %></p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-    </div>
-
-    <%# visible when sm %>
-    <div class="bg-light text-center py-4 pb-4 mb-4 bg-light rounded-3 d-block d-sm-none">
-      <div class="container-fluid">
-        <h1 class="d-block fw-bold"><%= @about.title %></h1>
-        <%= @about.sub_title %>
-        <p class="col fs-4"><%= @about.description %></p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-    </div>
-
-  <%# <%= @about.company_name %> 
-<% end %>
+        <!-- About-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">About</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <ul class="timeline">
+                <% obj.each do |about| %>
+                <%# <%= about.inspect %>
+                    <li class="<%= about.id.odd? ? 'timeline-inverted' : '' %>">
+                        <div class="timeline-image circular">
+                                <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." />
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2009-2011</h4>
+                                <h4 class="subheading">Our Humble Beginnings</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                        </div>
+                    </li>
+                <% end %>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>
+                                Be Part
+                                <br />
+                                Of Our
+                                <br />
+                                Story!
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>

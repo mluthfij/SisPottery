@@ -44,7 +44,7 @@
                 <div class="sb-sidenav-menu-heading">Edit</div>
                 <%# start %>
                 <a
-                    class="nav-link collapsed <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'about' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'show' && params[:controller] == 'admin/abouts' ? 'active' : '' %>"
+                    class="nav-link collapsed <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'index' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/homepagesses' || params[:action] == 'new' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'index' && params[:controller] == 'admin/abouts' ? 'active' : '' %>"
                     href="#"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseLayouts"
@@ -55,7 +55,7 @@
                         <i class="bi bi-layout-text-window-reverse"></i>
                     </div>
                     Layouts
-                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'show' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'new' && params[:controller] || params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'text-white' : '' %>">
+                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'index' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'new' && params[:controller] || params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'text-white' : '' %>">
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </a>
@@ -74,7 +74,7 @@
                         <% end %>
                         <%#  %>
                         <% if About.count > 0 %>
-                            <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= admin_about_path(About.first) %>">About</a>
+                            <a class="nav-link <%= params[:action] == 'index' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= admin_abouts_path %>">About</a>
                         <% else %>
                             <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= new_admin_about_path %>">About</a>
                         <% end %>

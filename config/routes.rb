@@ -1,22 +1,18 @@
 Rails.application.routes.draw do
-  # get 'cart/show'
   get 'cart', to: 'cart#show'
   post 'cart/addcart'
   post 'cart/add'
   post 'cart/removecart'
   post 'cart/remove'
   post 'cart/delete'
-  # get 'comments/form'
   get 'comments/comment'
   resources :profiles, only: :show
   namespace :admin do
     resources :homepagesses, except: :index
-    resources :abouts, except: :index
+    resources :abouts, except: :show
     resources :products do
       resources :comments
     end
-    # get 'pages/home'
-    get 'pages/about'
     get 'pages/dashboard'
     get 'pages/customer'
     get 'pages/adminlist'
@@ -28,7 +24,6 @@ Rails.application.routes.draw do
   resources :products, only: %i[ show index ] do
       resources :comments
   end
-  # get 'pages/dashboard'
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'

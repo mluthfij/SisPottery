@@ -3,17 +3,17 @@ module Admin
     before_action :set_about, only: %i[ show edit update destroy ]
     before_action :authenticate_user!
     before_action :restrict_user_by_role
-    before_action :only_one_row_record, only: %i[ new create ]
+    # before_action :only_one_row_record, only: %i[ new create ]
 
     # GET /abouts or /abouts.json
-    # def index
-    #   @abouts = About.all
-    # end
+    def index
+      @abouts = About.all
+    end
 
     # GET /abouts/1 or /abouts/1.json
-    def show
-      @records = About.all
-    end
+    # def show
+    #   # @records = About.all
+    # end
 
     # GET /abouts/new
     def new
@@ -29,18 +29,18 @@ module Admin
       @about = About.new(about_params)
 
       respond_to do |format|
-        if About.count > 0
-          format.html { redirect_to admin_about_url(About.first), notice: "You can create only one row of this table" }
+        # if About.count > 0
+          format.html { redirect_to admin_abouts_url, notice: "You can create only one row of this table" }
           format.json { render :show, status: :created, location: @about }
-        else
+        # else
           if @about.save
-            format.html { redirect_to admin_about_url(@about), notice: "About was successfully created." }
+            format.html { redirect_to admin_abouts_url, notice: "About was successfully created." }
             format.json { render :show, status: :created, location: @about }
           else
             format.html { render :new, status: :unprocessable_entity }
             format.json { render json: @about.errors, status: :unprocessable_entity }
           end
-        end
+        # end
       end
     end
 
@@ -68,9 +68,9 @@ module Admin
     end
 
     private
-      def only_one_row_record
-          redirect_to admin_homepagess_url(About.first), notice: "You can create only one row of this table" if About.count > 0
-      end
+      # def only_one_row_record
+      #     redirect_to admin_homepagess_url(About.first), notice: "You can create only one row of this table" if About.count > 0
+      # end
       # Use callbacks to share common setup or constraints between actions.
       def set_about
         @about = About.find(params[:id])
