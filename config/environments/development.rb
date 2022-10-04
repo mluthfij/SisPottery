@@ -96,4 +96,8 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
   # 
+  # Set Action Cable server url for consumer connection
+#   config.action_cable.url = "ws://localhost:3000/cable"
+# config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+# config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 end

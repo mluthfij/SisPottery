@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :messages, only: [:new, :create]
   get 'cart', to: 'cart#show'
   post 'cart/addcart'
   post 'cart/add'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resources :products, only: %i[ show index ] do
       resources :comments
   end
+  get 'pages/messageroom'
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'

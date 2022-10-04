@@ -138,4 +138,10 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # Set Action Cable server url for consumer connection
+# config.action_cable.url = 'wss://localhost:3000'
+# config.action_cable.allowed_request_origins = [
+#   'https://localhost:3000',
+# ]
 end

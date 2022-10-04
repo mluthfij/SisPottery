@@ -22,7 +22,7 @@
                     </div>
                     Contact Us
                 </a>
-                <a class="nav-link <%= params[:action] == 'index' || params[:action] == 'show' && params[:controller] == 'products'  || params[:action] == 'edit' && params[:controller] == 'products' ? 'active' : '' %>" href="<%= products_path %>">
+                <a class="nav-link <%= params[:action] == "messageroom" && params[:controller] == "pages" ? 'active' : '' %>" href="<%= root_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-cart2"></i>
                     </div>
