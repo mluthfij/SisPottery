@@ -141,5 +141,5 @@ Rails.application.configure do
 
   # Set Action Cable server url for consumer connection
   config.action_cable.url = "wss://sis-pottery.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://sis-pottery.herokuapp.com', 'http://sis-pottery.herokuapp.com']
+  config.action_cable.allowed_request_origins = ['https://sis-pottery.herokuapp.com', /http:\/\/sis-pottery.herokuapp.com.*/ ]
 end
