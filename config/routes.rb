@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'
-  mount ActionCable.server => ‘/cable’
+  # mount ActionCable.server => '/cable'
+  mount ActionCable.server, at: '/cable'
 end
