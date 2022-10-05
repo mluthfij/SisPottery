@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :messages, only: [:new, :create]
+  resources :messages, only: %i[ new create ]
   get 'cart', to: 'cart#show'
   post 'cart/addcart'
   post 'cart/add'

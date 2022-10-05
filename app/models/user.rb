@@ -9,11 +9,10 @@ class User < ApplicationRecord
          
          has_many :products, dependent: :destroy
          has_many :comments, dependent: :destroy
-         has_one_attached :avatar
          has_many :orderables, dependent: :destroy
          has_many :carts, through: :orderables, dependent: :destroy
-        #  has_many :messages, dependent: :destroy
-        #  has_many :msg_containers, dependent: :destroy
+         has_many :messages, dependent: :destroy
+         has_one_attached :avatar
 
   
   ##...Avatar Attachment...##

@@ -4,9 +4,11 @@
     </h2>
     <hr>
     <% @allmsg.each do |msg| %>
-        <p>
-            <%= msg.inspect %>
-        </p>
+        <div class="card <%= current_user.admin? ? 'bg-success' : 'light' %>">
+            <p>
+                <%= msg.inspect %>
+            </p>
+        </div>
     <% end %>
 
 </div>
