@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     get 'pages/order'
     get 'pages/message'
     get 'pages/newadmin'
+
+    # get 'pages/chatbox/:msg_containers_id', to: 'pages#chatbox', as: :chatbox
+  
   end
   devise_for :users
   resources :products, only: %i[ show index ] do

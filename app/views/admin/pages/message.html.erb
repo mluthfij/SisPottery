@@ -2,4 +2,11 @@
     <h2 class="mt-4">
         Message page
     </h2>
+    <hr>
+    <% @allmsg.each do |msg| %>
+        <p>
+            <%= msg.inspect %>
+        </p>
+    <% end %>
+
 </div>

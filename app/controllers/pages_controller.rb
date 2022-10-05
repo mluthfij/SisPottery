@@ -8,5 +8,9 @@ class PagesController < ApplicationController
   end
   def messageroom
     @message = Message.new
+    if user_signed_in?
+      # @messages = current_user.messages.all    
+      @messages = Message.all    
+    end
   end
 end
