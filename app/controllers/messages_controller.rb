@@ -10,7 +10,9 @@ class MessagesController < ApplicationController
         @message = current_user.messages.create(msg_params)
         if @message.save
             ActionCable.server.broadcast('room_channel', 
-                                        {content: @message.content})
+                                        {mod_message: message_render(@message)})
+            # ActionCable.server.broadcast('room_channel', 
+            #                             {content: @message.content})
         end
     end
 
@@ -19,4 +21,9 @@ class MessagesController < ApplicationController
     def msg_params
         params.require(:message).permit(:content, :user_id)
     end
+
+    def message_render(message)
+        render(partial: 'message', locals: {message: message})
+    end
+
 end

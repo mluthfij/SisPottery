@@ -13,7 +13,12 @@ consumer.subscriptions.create("RoomChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     // $('#message_holder').append('<div class="message">' + data.content + '</div>')
-    $('#message_holder').append('<div class="message">' + data.content + '</div>')
+    $('#message_holder').append(data.mod_message)
+
+
+    //
+    // $('#message_holder').append('<div class="message card p-2 mb-2 bg-light text-dark text-end">' + data.content + '</div>')
+    // 
     console.log(data.content)
   }
 });
