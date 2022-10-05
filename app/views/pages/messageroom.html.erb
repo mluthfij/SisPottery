@@ -5,7 +5,8 @@
         <h1>Message room</h1>
 
         <div class="card p-3">
-            <div id="message_container" style="overflow-y: scroll; height:400px;">
+            <%# <div id="message_container" style="overflow-y: scroll; height:400px;"> %>
+            <div id="message_container">
                 <div id="message_holder">
                 <%# <% @messages.each do |message| %> 
                         <%# <div> %>
@@ -17,11 +18,7 @@
                     <%# <%= current_user.id == message.user_id %>
 
                 <%# <div id="message_holder"></div> %>
-                
-                
             </div>
-
-            
 
             <%= form_for @message, remote: true do |f| %>
             <div class="input-group mb-3">
