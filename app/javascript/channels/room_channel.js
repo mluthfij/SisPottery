@@ -40,3 +40,6 @@ submit_messages = function () {
   })
 }
 
+this.App = {};
+
+App.cable = ActionCable.createConsumer(); 
