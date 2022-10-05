@@ -140,13 +140,5 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # Set Action Cable server url for consumer connection
-  # config.action_cable.url = "wss://sis-pottery.herokuapp.com/cable"
-  config.action_cable.url = "wss://sis-pottery.herokuapp.com/cable"
-  
-  # config.web_socket_server_url = "wss://sis-pottery.herokuapp.com/cable" 
-  # config.action_cable.allowed_request_origins = ['https://sis-pottery.herokuapp.com', /http:\/\/sis-pottery.herokuapp.com.*/ ]
-  config.action_cable.allowed_request_origins = ['https://sis-pottery.herokuapp.com', %r{http://sis-pottery.herokuapp.com.*}]
-  # config.action_cable.allowed_request_origins = ['https://action-cable-example.herokuapp.com', 'http://action-cable-example.herokuapp.com']
-config.action_cable.disable_request_forgery_protection = true
-
+ 
 end
