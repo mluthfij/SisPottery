@@ -27,7 +27,7 @@
                                                 <%# <a class="small" href="login.html">Return to login</a> %>
                                                 <%# <a class="small"></a> %>
                                                 <%# <a class="btn btn-primary" href="login.html">Reset Password</a> %>
-                                                <%= link_to 'Back', chatroom_path(current_user.chatrooms.first), class:"small" %>
+                                                <%= link_to 'Back', chatroom_path(current_user.chatrooms.first), class:"small" if params[:action] == 'edit' %>
                                                 <%= form.submit class:"btn btn-primary" %>
                                             </div>
                                         </form>
