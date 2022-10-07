@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
+  resources :profiles, only: :show
   get 'cart', to: 'cart#show'
   post 'cart/addcart'
   post 'cart/add'
@@ -8,8 +10,8 @@ Rails.application.routes.draw do
   post 'cart/remove'
   post 'cart/delete'
   get 'comments/comment'
-  resources :profiles, only: :show
   namespace :admin do
+    resources :messages, only: %i[ new create ]
     resources :homepagesses, except: :index
     resources :abouts, except: :show
     resources :products do
@@ -22,14 +24,13 @@ Rails.application.routes.draw do
     get 'pages/message'
     get 'pages/newadmin'
 
-    # get 'pages/chatbox/:msg_containers_id', to: 'pages#chatbox', as: :chatbox
+    get 'pages/chatroom/:chatroom_id', to: 'pages#chatroom', as: :chatroom
+    get 'pages/chatbox', to: 'pages#chatbox', as: :chatbox
   
   end
-  devise_for :users
   resources :products, only: %i[ show index ] do
       resources :comments
   end
-  get 'pages/messageroom'
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'

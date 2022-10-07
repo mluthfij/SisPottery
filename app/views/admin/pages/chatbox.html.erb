@@ -1,3 +1,5 @@
-<h1>Hello</h1>
+<h1>All Messages</h1>
 
-<%= @messages.inspect %>
+<% @chatboxes.each do |chatbox| %>
+    <%= link_to chatbox.topic, admin_chatroom_path(chatbox) %>
+<% end %>

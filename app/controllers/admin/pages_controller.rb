@@ -15,16 +15,19 @@ module Admin
     def newadmin
       @customers = User.all
     end
-    def message
-      @allmsg = Message.all
-    end
     def order
       @orders = Orderable.all
     end
-
-    def chatuser
-      @msg_container = MsgContainer.find_by_id(params[:msg_id])
-      @messages = @msg_container.messages.all
+    def chatbox
+      @chatboxes = Chatroom.all
+    end
+    def chatroom
+      @chatroom = Chatroom.find_by_id(params[:chatroom_id])
+      @message = Message.new
+      if user_signed_in?
+        # @messages = Message.custom_display
+        @messages = @chatroom.messages.custom_display
+      end
     end
     
     

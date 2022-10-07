@@ -1,0 +1,28 @@
+<div class="container mt-4 mb-4">
+    <div class="card">
+        <div class="card-body">
+
+            <h1>Message room: <%= @chatroom.topic %></h1>
+
+            <div class="card bg-light p-3">
+                <div id="message_container">
+                    <div id="message_holder">
+                        <%# <%= render @messages %>
+                        <%= render @messages %>
+                    </div>
+                </div>
+
+                <%# <%= form_for @message, remote: true do |f| %>
+                <%= form_for @message, url: admin_messages_path, remote: true do |f| %>
+                <div class="input-group mb-3 p-2 bg-dark rounded">
+                    <%= f.hidden_field :chatroom_id, value: @chatroom.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= f.text_field :content, class:"form-control", placeholder:"Type here..." %>
+                    <%= f.submit class:"btn btn-success" %>
+                </div>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>
