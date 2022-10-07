@@ -6,6 +6,9 @@
 
 # Ignore bundler config.
 /config/cable.yml
+/config/cable
+/config/*cable
+/config/*cable.yml
 
 
 /.bundle
