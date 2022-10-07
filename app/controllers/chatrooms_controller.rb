@@ -1,5 +1,8 @@
 class ChatroomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_chatroom, only: %i[ show edit update destroy ]
+  before_action :correct_user, only: %i[ edit update destroy ] 
+  before_action :only_one_row_record, only: %i[ new create ]
 
   # GET /chatrooms or /chatrooms.json
   def index
@@ -33,12 +36,17 @@ class ChatroomsController < ApplicationController
     @chatroom = current_user.chatrooms.new(chatroom_params)
 
     respond_to do |format|
-      if @chatroom.save
-        format.html { redirect_to chatroom_url(@chatroom), notice: "Chatroom was successfully created." }
-        format.json { render :show, status: :created, location: @chatroom }
+      if current_user.chatrooms.count > 0
+          format.html { redirect_to admin_homepagess_url(current_user.chatrooms.first), notice: "You can create only one row of this table" }
+          format.json { render :show, status: :created, location: @chatroom }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+        if @chatroom.save
+          format.html { redirect_to chatroom_url(@chatroom), notice: "Chatroom was successfully created." }
+          format.json { render :show, status: :created, location: @chatroom }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -61,12 +69,21 @@ class ChatroomsController < ApplicationController
     @chatroom.destroy
 
     respond_to do |format|
-      format.html { redirect_to chatrooms_url, notice: "Chatroom was successfully destroyed." }
+      format.html { redirect_to new_chatroom_url, notice: "Chatroom was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    def correct_user
+      @chatroom = current_user.chatrooms.find_by(id: params[:id])
+      redirect_to request.referrer, notice: "Not authorized to see this chat." if @chatroom.nil?
+    end
+
+    def only_one_row_record
+        redirect_to chatroom_url(current_user.chatrooms.first), notice: "You can create only one row of this table" if current_user.chatrooms.count > 0
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_chatroom
       @chatroom = Chatroom.find(params[:id])

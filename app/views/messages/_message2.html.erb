@@ -1,0 +1,19 @@
+    <div class="d-flex align-items-center text-right justify-content-end mb-3">
+        <div class="pr-2 bg-dark p-2 rounded text-white"> 
+            <p class="msg"><%= message.content %></p>
+        </div>
+        <div class="ms-3 text-center">
+            <div>
+                <span class="badge text-bg-danger mb-1">
+                    admin
+                </span>
+            </div>
+            <div>
+                <% if message.user.avatar.present? %>
+                    <%= image_tag(message.user.avatar.variant(resize_to_fill: [40, 40]), class: "img") %>
+                <% else %>
+                    <%= image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "img", width: 40) %>
+                <% end %>
+            </div>
+        </div>
+    </div>

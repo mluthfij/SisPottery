@@ -23,7 +23,19 @@ class MessagesController < ApplicationController
     end
 
     def message_render(message)
-        render(partial: 'message', locals: {message: message})
+        if current_user.admin?
+            render(partial: 'message', locals: {message: message})
+        else
+            render(partial: 'message2', locals: {message: message})
+        end
     end
+
+    # 
+
+    # def message_render(message)
+    #     render(partial: 'message', locals: {message: message})
+    # end
+
+    # 
 
 end

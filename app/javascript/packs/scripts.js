@@ -14,9 +14,14 @@ scroll_bottom = function () {
     }
 }
 
+
 $(document).on('turbolinks:load', function () {
     scroll_bottom();
 })
+
+
+
+
 
 // with turbolink
 window.addEventListener('turbolinks:load', event => {
