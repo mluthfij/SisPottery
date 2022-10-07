@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chatrooms
   resources :messages, only: %i[ new create ]
   get 'cart', to: 'cart#show'
   post 'cart/addcart'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_025538) do
+ActiveRecord::Schema.define(version: 2022_10_07_034521) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 2022_10_05_025538) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "topic"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "reply_to"
     t.text "content"
@@ -81,6 +89,8 @@ ActiveRecord::Schema.define(version: 2022_10_05_025538) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "chatroom_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
