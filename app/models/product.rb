@@ -2,8 +2,8 @@ class Product < ApplicationRecord
     belongs_to :user
     has_many_attached :images
     has_many :comments, dependent: :destroy
-    has_many :orderables
-    has_many :carts, through: :orderables
+    has_many :orderables, dependent: :destroy
+    has_many :carts, through: :orderables, dependent: :destroy
 
     validate :validate_images
 

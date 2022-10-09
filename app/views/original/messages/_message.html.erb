@@ -1,4 +1,4 @@
-<% if message.user.admin == false %>
+<% if !message.user.admin? %>
     <div class="d-flex align-items-center text-right justify-content-end mb-3">
         <div class="pr-2 bg-dark p-2 rounded text-white"> 
             <p class="msg"><%= message.content %></p>
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-<% else %>
+<% elsif message.user.admin? %>
     <div class="d-flex align-items-center mb-3">
         <div class="text-center pr-1 me-3">
             <div>

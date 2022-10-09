@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_07_034521) do
+ActiveRecord::Schema.define(version: 2022_10_09_140717) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2022_10_07_034521) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -97,11 +97,11 @@ ActiveRecord::Schema.define(version: 2022_10_07_034521) do
   create_table "orderables", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "cart_id", null: false
-    t.integer "user_id", null: false
     t.integer "quantity"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
     t.index ["product_id"], name: "index_orderables_on_product_id"
     t.index ["user_id"], name: "index_orderables_on_user_id"
@@ -145,9 +145,7 @@ ActiveRecord::Schema.define(version: 2022_10_07_034521) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "carts", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
-  add_foreign_key "orderables", "users"
 end
