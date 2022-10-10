@@ -7,7 +7,7 @@
                     <%= link_to image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "rounded-circle me-2", width: 40), profile_path(comment.user.id) %>
                 <% end %>
                 <div class="d-flex flex-column justify-content-start ml-2">
-                    <span class="d-block font-weight-bold name"><%= link_to comment.user.firstname, profile_path(comment.user.id), class:"text-decoration-none" %></span>
+                    <span class="d-block font-weight-bold name"><%= link_to comment.user.username, profile_path(comment.user.id), class:"text-decoration-none" %></span>
                     <span class="date text-black-50">
                         <%= time_ago_in_words(comment.created_at) %> ago
                         <%# Shared publicly - Jan 2020 %>
@@ -19,16 +19,20 @@
             </div>
         </div>
         <div class="bg-white">
-            <div class="d-flex flex-row fs-12">
+            <div class="d-flex flex-row fs-8">
+            <%# <div class="d-flex flex-row fs-12"> %>
                 <% if user_signed_in? %>
+                <%#  %>
+                <%#  %>
                     <div class="like p-2 cursor">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        <span class="">Like</span>
+                        <%# <i class="bi bi-hand-thumbs-up"></i> %>
+                        <%= render "comments/like_link", comment: comment %>
+                        <td><%= render "comments/likes_score", comment: comment %></td>
                     </div>
                 <% end %>
                 <% if user_signed_in? && current_user.id == comment.user.id %>
                     <div class="like p-2 cursor">
-                        <i class="bi bi-backspace"></i>
+                        <%# <i class="bi bi-backspace"></i> %>
                         <%= link_to 'Delete', [comment.product, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"text-decoration-none" %>
                     </div>
                 <% end %>

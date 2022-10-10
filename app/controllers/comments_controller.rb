@@ -12,6 +12,20 @@ class CommentsController < ApplicationController
     end
       redirect_to product_path(@product)
   end
+
+  def like
+    @product = Product.find(params[:product_id])
+    @comment = @product.comments.find(params[:id])
+    # @comment = Comment.find(params[:id])
+    if current_user.voted_up_on? @comment
+      @comment.unvote_by current_user
+    else
+      @comment.upvote_by current_user
+    end
+    render "like.js.erb"
+  end
+  
+
   def destroy
     @comment = @product.comments.find(params[:id])
     @comment.destroy

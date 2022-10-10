@@ -1,0 +1,2 @@
+document.getElementById("like-<%= @comment.id %>").innerHTML = "<%= j render "comments/like_link", comment: @comment %>";
+document.getElementById("likes-score-<%= @comment.id %>").innerHTML = "<%= j render "comments/likes_score", comment: @comment %>";

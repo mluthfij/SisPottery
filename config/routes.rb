@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   
   end
   resources :products, only: %i[ show index ] do
-      resources :comments
+      resources :comments do
+        member do
+          patch "like", to: "comments#like"
+        end
+      end
       member do
         patch "upvote", to: "products#upvote"
       end

@@ -9,7 +9,7 @@
                 <% end %>
                     <%#  %>
                 <div class="d-flex flex-column justify-content-start ml-2">
-                    <span class="d-block font-weight-bold name"><%= link_to comment.user.firstname, profile_path(comment.user.id), class:"text-decoration-none" %></span>
+                    <span class="d-block font-weight-bold name"><%= link_to comment.user.username, profile_path(comment.user.id), class:"text-decoration-none" %></span>
                     <span class="date text-black-50">
                         <%= time_ago_in_words(comment.created_at) %> ago
                         <%# Shared publicly - Jan 2020 %>
