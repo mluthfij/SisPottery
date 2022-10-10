@@ -21,10 +21,12 @@
             </div>
         </div>
         <div class="bg-white">
-            <div class="d-flex flex-row fs-12">
+            <div class="d-flex flex-row fs-8">
                 <div class="like p-2 cursor">
-                    <i class="bi bi-hand-thumbs-up"></i>
-                    <span class="">Like</span>
+                    <%# <i class="bi bi-hand-thumbs-up"></i>
+                    <span class="">Like</span> %>
+                    <%= render "comments/like_link", comment: comment %>
+                    <%= render "comments/likes_score", comment: comment %>
                 </div>
                 <% if current_user.id == comment.user.id %>
                 <div class="like p-2 cursor">

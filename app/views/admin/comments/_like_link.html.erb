@@ -1,0 +1,10 @@
+<%= content_tag "span", id: "like-#{comment.id}" do %>
+  <%# <%= link_to like_product_comment_path(comment), method: :patch, remote: true do %>
+  <%= link_to like_product_comment_path(comment.product,comment), class:"text-decoration-none", method: :patch, remote: true do %>
+    <% if current_user.voted_up_on? comment %>
+      <i class="bi bi-hand-thumbs-up-fill"></i>
+    <% else %>
+      <i class="bi bi-hand-thumbs-up"></i>
+    <% end %>
+  <% end %>
+<% end %>

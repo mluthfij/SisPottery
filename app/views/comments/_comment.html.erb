@@ -1,4 +1,5 @@
 <div class="subcomment" style="padding-left: <%= comment.parent_id != nil ? '40px' : '0px' %>;">
+ <div class="card p-4 mb-2">  
     <div class="bg-white p-2">
         <div class="d-flex flex-row user-info">
                 <% if comment.user.avatar.present? %>
@@ -21,15 +22,19 @@
         <div class="bg-white">
             <div class="d-flex flex-row fs-8">
             <%# <div class="d-flex flex-row fs-12"> %>
-                <% if user_signed_in? %>
+                <%# <% if user_signed_in? %>
                 <%#  %>
                 <%#  %>
                     <div class="like p-2 cursor">
                         <%# <i class="bi bi-hand-thumbs-up"></i> %>
-                        <%= render "comments/like_link", comment: comment %>
-                        <td><%= render "comments/likes_score", comment: comment %></td>
+                        <% if user_signed_in? %>
+                            <%= render "comments/like_link", comment: comment %>
+                        <% else %>
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        <% end %>
+                        <%= render "comments/likes_score", comment: comment %>
                     </div>
-                <% end %>
+                <%# <% end %>
                 <% if user_signed_in? && current_user.id == comment.user.id %>
                     <div class="like p-2 cursor">
                         <%# <i class="bi bi-backspace"></i> %>
@@ -54,6 +59,8 @@
                 </div>
             </div>
         <% end %>
+    </div>
 </div>
+
 
 <%= render comment.comments.order(id: :desc) %>

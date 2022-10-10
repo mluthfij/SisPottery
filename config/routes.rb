@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     resources :homepagesses, except: :index
     resources :abouts, except: :show
     resources :products do
-      resources :comments
+      resources :comments do
+        member do
+          patch "like", to: "comments#like"
+        end
+      end
     end
     get 'pages/dashboard'
     get 'pages/customer'
