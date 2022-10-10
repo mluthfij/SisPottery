@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  # 
+  # protect_from_forgery with: :exception
+  # 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_render_cart
   before_action :current_cart, if: :user_signed_in?
@@ -35,6 +39,12 @@ class ApplicationController < ActionController::Base
     elsif !current_user.admin?
       products_path
     end
+  end
+
+  private
+  def record_not_found
+    redirect_to root_path
+    flash[:notice] = "Record not found!"
   end
 
   protected

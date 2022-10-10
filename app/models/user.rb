@@ -8,12 +8,7 @@ class User < ApplicationRecord
         #  :confirmable
 
          has_many :messages, dependent: :destroy
-         has_many :chatrooms, through: :messages, dependent: :destroy
-        #  has_many :chatrooms, through: :messages, dependent: :destroy
-
-        #  has_many :messages, dependent: :delete_all
-        #  has_many :chatrooms, dependent: :delete_all
-         
+         has_many :chatrooms, dependent: :destroy
          has_many :orderables, dependent: :destroy
          has_many :carts, through: :orderables, dependent: :destroy
          has_many :products, dependent: :destroy

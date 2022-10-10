@@ -18,7 +18,7 @@
                                         </div>
                                       <% end %>
                                         <%# <div class="small mb-3 text-muted"></div> %>
-                                                <%= form.text_field :user_id, value: current_user.id, class:"form-control", placeholder:"Ask admin" %>
+                                                <%= form.hidden_field :user_id, value: current_user.id, class:"form-control", placeholder:"Ask admin" %>
                                         <form>
                                             <div class="form-floating mb-3">
                                                 <%= form.text_field :topic, class:"form-control", placeholder:"Ask admin" %>
