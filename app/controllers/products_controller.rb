@@ -4,6 +4,16 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def upvote
+  @product = Product.find(params[:id])
+    if current_user.voted_up_on? @product
+      @product.unvote_by current_user
+    else
+      @product.upvote_by current_user
+    end
+  render "vote.js.erb"
+  end
+
   # GET /products/1 or /products/1.json
   def show
     @product = Product.find(params[:id])

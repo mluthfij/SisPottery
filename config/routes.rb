@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   end
   resources :products, only: %i[ show index ] do
       resources :comments
+      member do
+        patch "upvote", to: "products#upvote"
+      end
   end
   get 'pages/about'
   get 'pages/home'

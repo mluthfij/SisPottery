@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+
+<%= content_tag "div", id: "upvote-#{product.id}" do %>
+  <%= link_to upvote_product_path(product), method: :patch, remote: true do %>
+    <% if current_user.voted_up_on? product %>
+      unvote
+    <% else %>
+      vote!
+    <% end %>
+  <% end %>
+<% end %>
+
+<% end %>
