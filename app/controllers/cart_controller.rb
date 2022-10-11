@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_action :check, except: :show, if: :user_signed_in?
   before_action :authenticate_user!
 
   def show
@@ -221,5 +222,11 @@ class CartController < ApplicationController
         format.json { render :show, status: :created, location: product_path(@post) }
     end
   end
-  
+
+  private 
+  def check
+    unless current_user.firstname? && current_user.my_address? && current_user.phone || current_user.wa_phone
+        redirect_to edit_user_registration_path(current_user.id), notice: "You must complete your profile data before order!"
+    end
+  end
 end
