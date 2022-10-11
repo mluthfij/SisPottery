@@ -12,6 +12,17 @@ module Admin
     def adminlist
       @customers = User.all
     end
+
+    def add_admin
+      @customers = User.find(params[:id])
+      if @customers.admin == true
+        @customers.update_attribute(:admin, false)
+      elsif @customers.admin == false
+        @customers.update_attribute(:admin, true)
+      end
+      redirect_to request.referrer
+    end
+    
     def newadmin
       @customers = User.all
     end

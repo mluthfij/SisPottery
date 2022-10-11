@@ -46,6 +46,10 @@
           <%= @product.quantity %>
         </div>
 
+        <h6 class="card-subtitle mb-2 text-muted">
+            <%= render "products/votes_score", product: @product %>
+        </h6>
+
         <div>
           <p class="justify-text">
             <%= simple_format(@product.description, style:"text-align:justify;") %>

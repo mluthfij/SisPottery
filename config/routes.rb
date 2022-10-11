@@ -27,10 +27,9 @@ Rails.application.routes.draw do
     get 'pages/order'
     get 'pages/message'
     get 'pages/newadmin'
-
     get 'pages/chatroom/:chatroom_id', to: 'pages#chatroom', as: :chatroom
     get 'pages/chatbox', to: 'pages#chatbox', as: :chatbox
-  
+    patch "pages/adminlist/:id", to: "pages#add_admin"
   end
   resources :products, only: %i[ show index ] do
       resources :comments do

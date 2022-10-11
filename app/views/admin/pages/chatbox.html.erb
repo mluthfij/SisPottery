@@ -1,29 +1,16 @@
-<div class="container mt-4">
-    <h1>All Chat</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">USER</th>
-      <th scope="col">Topic</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @chatboxes.each do |chatbox| %>
-    <tr>
-    
-        <th scope="row">1</th>
-        <th>
-            <%= link_to chatbox.user.username, profile_path(chatbox.user_id) %>
-        </th>
-        <th>
-            <%= link_to chatbox.topic, admin_chatroom_path(chatbox) %>
-        </th>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="container-fluid px-4">
+    <h2 class="mt-4">All Chat</h2>
+    <div class="list-group">
+      <% @chatboxes.each do |chatbox| %>
+        <a href="<%= admin_chatroom_path(chatbox) %>" class="list-group-item list-group-item-action" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">From: <%= chatbox.user.username %></h5>
+            <small><%= time_ago_in_words(chatbox.created_at) %> ago</small>
+          </div>
+          <p class="mb-1"><%= chatbox.topic %></p>
+          <%# <small>And some small print.</small> %>
+        </a>
+      <% end %>
+    </div>
 </div>
 

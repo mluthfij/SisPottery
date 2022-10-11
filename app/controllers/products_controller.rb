@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: :upvote
+  
   # GET /products or /products.json
   def index
     # @products = Product.all

@@ -22,7 +22,7 @@
                     </div>
                     Add New Product
                 </a>
-                <a class="nav-link <%= params[:action] == 'index' || params[:action] == 'show' && params[:controller] == 'admin/products'  || params[:action] == 'edit' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= admin_products_path %>">
+                <a class="nav-link <%= params[:action] == 'index' && params[:controller] == 'admin/products' || params[:action] == 'show' && params[:controller] == 'admin/products' || params[:action] == 'edit' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= admin_products_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-boxes"></i>
                     </div>
@@ -55,7 +55,7 @@
                         <i class="bi bi-layout-text-window-reverse"></i>
                     </div>
                     Layouts
-                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'index' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'new' && params[:controller] || params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'text-white' : '' %>">
+                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'show' && params[:controller] == 'admin/homepagesses' || params[:action] == 'index' && params[:controller] == 'admin/abouts' || params[:action] == 'edit' && params[:controller] == 'admin/homepagesses' || params[:action] == 'edit' && params[:controller] == 'admin/abouts' || params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'text-white' : '' %>">
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </a>
@@ -83,7 +83,7 @@
                 <%# end %>
                 <%# start %>
                 <a
-                    class="nav-link collapsed"
+                    class="nav-link collapsed <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>"
                     href="#"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapsePages"
@@ -91,10 +91,10 @@
                     aria-controls="collapsePages">
                     <div class="sb-nav-link-icon">
                         <%# <i class="fas fa-book-open"></i> %>
-                        <i class="bi bi-wrench-adjustable-circle"></i>
+                        <i class="bi bi-wrench-adjustable-circle <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>"></i>
                     </div>
                     Actions
-                    <div class="sb-sidenav-collapse-arrow">
+                    <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' || params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>">
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </a>
@@ -105,17 +105,17 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                         <a
-                            class="nav-link collapsed"
+                            class="nav-link collapsed <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' ? 'text-white' : '' %>"
                             href="#"
                             data-bs-toggle="collapse"
                             data-bs-target="#pagesCollapseError"
                             aria-expanded="false"
                             aria-controls="pagesCollapseError">
-                            <div class="sb-nav-link-icon">
+                            <div class="sb-nav-link-icon <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' ? 'text-white' : '' %>">
                                 <i class="bi bi-person"></i>
                             </div>
                             Admin Action
-                            <div class="sb-sidenav-collapse-arrow">
+                            <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' || params[:action] == 'adminlist' && params[:controller] == 'admin/pages' ? 'text-white' : '' %>">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
@@ -125,22 +125,22 @@
                             aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<%= admin_pages_newadmin_path %>">Add New Admin</a>
-                                <a class="nav-link" href="<%= admin_pages_adminlist_path %>">Admin Lists</a>
+                                <a class="nav-link <%= params[:action] == 'newadmin' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_newadmin_path %>">Add New Admin</a>
+                                <a class="nav-link <%= params[:action] == 'adminlist' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_adminlist_path %>">Admin Lists</a>
                             </nav>
                         </div>
                         <a
-                            class="nav-link collapsed"
+                            class="nav-link collapsed <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>"
                             href="#"
                             data-bs-toggle="collapse"
                             data-bs-target="#pagesCollapseAuth"
                             aria-expanded="false"
                             aria-controls="pagesCollapseAuth">
-                            <div class="sb-nav-link-icon">
+                            <div class="sb-nav-link-icon <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                             Authentication
-                            <div class="sb-sidenav-collapse-arrow">
+                            <div class="sb-sidenav-collapse-arrow <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'text-white' : '' %>">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
@@ -151,7 +151,7 @@
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <%# <a class="nav-link" href="login.html">Login</a> %>
-                                <a class="nav-link" href="<%= edit_user_registration_path %>">Edit Admin Registration</a>
+                                <a class="nav-link <%= params[:action] == 'edit' && params[:controller] == 'devise/registrations' ? 'active' : '' %>" href="<%= edit_user_registration_path %>">Edit Admin Registration</a>
                                 <a class="nav-link" href="#">Forgot Password</a>
                             </nav>
                         </div>
@@ -160,18 +160,12 @@
                 <%# end %>
 
                 <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="#">
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user.id) %>">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-chart-area"></i>
                     </div>
-                    Admin Registration
+                    Admin Profile
                 </a>
-                <%# <a class="nav-link" href="tables.html">
-                    <div class="sb-nav-link-icon">
-                        <i class="fas fa-table"></i>
-                    </div>
-                    Tables
-                </a> %>
             </div>
         </div>
         <div class="sb-sidenav-footer">

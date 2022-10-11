@@ -11,6 +11,10 @@
         <% end %>
         <td><%= customer.email %></td>
         <td><%= time_ago_in_words(customer.created_at) %></td>
-        <td>Test</td>
+        <td>
+            <% unless customer.id == current_user.id %>
+                <%= link_to customer.admin == true ? "User" : "Admin", admin_path(customer), method: :patch, class:customer.admin == true ? "btn btn-warning" : "btn btn-danger" %>
+            <% end %>
+        </td>
     </tr>
 <% end %>
