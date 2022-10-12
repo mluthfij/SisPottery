@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :messages, only: %i[ new create ]
     resources :homepagesses, except: :index
     resources :abouts, except: :show
+    resources :user_lists, except: :show
     resources :products do
       resources :comments do
         member do

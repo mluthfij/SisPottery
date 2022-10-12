@@ -7,7 +7,7 @@ class User < ApplicationRecord
         #  ,
         #  :confirmable
 
-        acts_as_voter
+         acts_as_voter
 
          has_many :messages, dependent: :destroy
          has_many :chatrooms, dependent: :destroy

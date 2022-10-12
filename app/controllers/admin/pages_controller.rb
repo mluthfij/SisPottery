@@ -5,6 +5,9 @@ module Admin
 
     def dashboard
       @products = Product.all
+      @chatboxes = Chatroom.all
+      @customers = User.all
+      
     end
     def customer
       @customers = User.all
