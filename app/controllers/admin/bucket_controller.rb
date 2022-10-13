@@ -17,6 +17,8 @@ module Admin
       order_end = params[:order_end].to_s
       point = params[:point].to_i 
 
+      point_orderable = params[:point_orderable].to_i 
+
       # if @keep
       #   @keep.update(point: point, customer: customer, product_price: product_price, product_name: product_name, 
       #                                   quantity: quantity, total_price: total_price, order_start: order_start, 
@@ -35,6 +37,7 @@ module Admin
       end
       # end
     end
+    
     
 
     def remove

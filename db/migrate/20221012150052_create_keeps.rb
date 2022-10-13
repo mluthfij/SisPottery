@@ -10,10 +10,7 @@ class CreateKeeps < ActiveRecord::Migration[6.1]
       t.integer :total_price
       t.date :order_start
       t.date :order_end
-
       t.integer :point
-      
-      
 
       t.timestamps
     end

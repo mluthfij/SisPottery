@@ -17,10 +17,8 @@ class User < ApplicationRecord
          has_many :comments, dependent: :destroy
          has_many :vessels, dependent: :destroy
          has_many :histories, through: :vessels, dependent: :destroy
-        #  
          has_many :keeps, dependent: :destroy
          has_many :buckets, through: :keeps, dependent: :destroy
-        #  
          has_one_attached :avatar
 
   

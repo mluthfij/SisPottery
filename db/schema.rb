@@ -189,7 +189,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_150311) do
   end
 
   create_table "vessels", force: :cascade do |t|
-    t.integer "orderable_id", null: false
     t.integer "history_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -198,8 +197,11 @@ ActiveRecord::Schema.define(version: 2022_10_12_150311) do
     t.integer "quantity"
     t.string "order_at"
     t.date "date"
+    t.string "customer"
+    t.string "product_name"
+    t.integer "product_price"
+    t.string "point"
     t.index ["history_id"], name: "index_vessels_on_history_id"
-    t.index ["orderable_id"], name: "index_vessels_on_orderable_id"
     t.index ["user_id"], name: "index_vessels_on_user_id"
   end
 
@@ -226,5 +228,4 @@ ActiveRecord::Schema.define(version: 2022_10_12_150311) do
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
   add_foreign_key "vessels", "histories"
-  add_foreign_key "vessels", "orderables"
 end

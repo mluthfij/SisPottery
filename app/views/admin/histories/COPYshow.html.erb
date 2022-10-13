@@ -1,0 +1,103 @@
+<div class="container-fluid px-4">
+    <h2 class="mt-4">
+        Production Process
+    </h2>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="text-center">No.</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Order Time</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @history.vessels.order(id: :desc).each_with_index do |vessel, index| %>
+                        <% orderable = vessel.orderable %>
+                        <% product = orderable.product %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td>
+                                <%= orderable.user.username %>
+                            </td>
+                            <td>
+                                <% if product.images.attached? %>
+                                    <% product.images.each_with_index do |image, idx| %>
+                                        <% if idx == 0 %>
+                                            <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                                        <% end %>
+                                    <% end %>
+                                <% else %>
+                                    <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-thumbnail", width:50) %>
+                                <% end %>
+                            </td>
+                            
+                                <td><%= truncate(product.name, length: 20) %></td>
+                                <td>
+                                    <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </td>
+                                <td><%= orderable.quantity %></td>
+                                <td>
+                                    <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </td>
+                                <td>
+                                <%= orderable.created_at.strftime("%d/%m/%y") %>
+                                <%# <%= time_ago_in_words(orderable.created_at) %>
+                                </td>
+                                <td><%= vessel.date.strftime("%d/%m/%y") if !vessel.date.nil? %></td>
+                                <td>
+                                    
+                                    <%#  %>
+                                    <%= form_with(url: admin_bucket_add_path) do |f| %>
+                                        <%= f.hidden_field :id, value: vessel.id %>
+                                        <%= f.hidden_field :customer, value: orderable.user.username %>
+                                        <%= f.hidden_field :product_name, value: product.name %>
+                                        <%= f.hidden_field :quantity, value: orderable.quantity %>
+                                        <%= f.hidden_field :product_price, value: product.price %>
+                                        <%= f.hidden_field :total_price, value: product.price * orderable.quantity %>
+                                        <%= f.hidden_field :order_start, value: orderable.created_at %>
+                                        <%= f.hidden_field :order_end, value: vessel.date %>
+                                        <%= f.text_field :point, value: vessel.id %>
+                                        <%= f.submit "Done" %>
+                                    <% end %>
+                                    
+                                <%= form_with(url: admin_histories_remove_path) do |f| %>
+                                    <%= f.hidden_field :id, value: vessel.id %>
+                                    <%= f.submit "Cancel" %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                    
+                        <tr class="table-warning">
+                            <td colspan="5">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    <%= @quantity_vessel %>
+                                </strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
+                                    <%= number_to_currency(@price_vessel, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td> </td>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
