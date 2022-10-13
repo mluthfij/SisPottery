@@ -55,7 +55,7 @@
                             <%= f.hidden_field :total_price, value: vessel.price * vessel.quantity %>
                             <%= f.hidden_field :order_start, value: vessel.order_at %>
                             <%= f.hidden_field :order_end, value: vessel.date %>
-                            <%= f.text_field :point, value: vessel.id %>
+                            <%= f.hidden_field :point, value: vessel.id %>
                             <%= f.submit "Done" %>
                             <% end %>
 

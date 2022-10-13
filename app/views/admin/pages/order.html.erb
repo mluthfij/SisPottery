@@ -62,11 +62,11 @@
                                         <%= f.hidden_field :price, value: product.price * order.quantity %>
                                         <%= f.hidden_field :quantity, value: order.quantity %>
                                         <%= f.hidden_field :order_at, value: order.created_at.strftime("%d/%m/%y") %>
+                                        <%= f.hidden_field :customer, value: user.username %>
+                                        <%= f.hidden_field :product_name, value: product.name %>
+                                        <%= f.hidden_field :product_price, value: product.price %>
+                                        <%= f.hidden_field :point, value: order.id %>
                                         <%= f.date_field :date %>
-                                        <%= f.text_field :customer, value: user.username %>
-                                        <%= f.text_field :product_name, value: product.name %>
-                                        <%= f.text_field :product_price, value: product.price %>
-                                        <%= f.text_field :point, value: order.id %>
                                         <%= f.submit "Process" %>
                                     <% end %>
                                     <%#  %>
