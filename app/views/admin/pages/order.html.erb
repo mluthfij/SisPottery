@@ -1,7 +1,7 @@
 <div class="container-fluid px-4">
-    <h1 class="mt-4 mb-4">
+    <h2 class="mt-4">
         Order page
-    </h1>
+    </h2>
 <%# table %>
 <div class="table-responsive">
     <table class="table table-hover table-striped table-bordered table-sm">
@@ -55,6 +55,17 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
                                         Detail
                                     </button>
+                                    
+                                    <%#  %>
+                                    <%= form_with(url: admin_histories_add_path) do |f| %>
+                                        <%= f.hidden_field :id, value: order.id %>
+                                        <%= f.hidden_field :price, value: product.price * order.quantity %>
+                                        <%= f.hidden_field :quantity, value: order.quantity %>
+                                        <%= f.hidden_field :order_at, value: order.created_at.strftime("%d/%m/%y") %>
+                                        <%= f.date_field :date %>
+                                        <%= f.submit "Success" %>
+                                    <% end %>
+                                    <%#  %>
                                 </td>
                             </tr>
                         <% end %>
@@ -72,7 +83,8 @@
                                     <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %>
                                 </strong>
                             </td>
-                            <td> </td>
+                            <td>
+                            </td>
                             <td> </td>
                         </tr>
                     </tbody>

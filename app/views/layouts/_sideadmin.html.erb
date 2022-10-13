@@ -10,12 +10,6 @@
                     </div>
                     Dashboard
                 </a>
-                <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_order_path %>">
-                    <div class="sb-nav-link-icon">
-                        <i class="bi bi-journal-text"></i>
-                    </div>
-                    Orders
-                </a>
                 <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/products' ? 'active' : '' %>" href="<%= new_admin_product_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-box-seam"></i>
@@ -39,6 +33,26 @@
                         <i class="bi bi-envelope"></i>
                     </div>
                     Messages
+                </a>
+                <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_order_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    Orders
+                </a>
+                
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/histories' ? 'active' : '' %>" href="<%= admin_history_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    Production Process
+                </a>
+                
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/bucket' ? 'active' : '' %>" href="<%= admin_bucket_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-check"></i>
+                    </div>
+                    Sold Product
                 </a>
                 <%# end core %>
                 <div class="sb-sidenav-menu-heading">Edit</div>

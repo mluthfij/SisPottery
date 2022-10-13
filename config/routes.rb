@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'keep/show'
+  # get 'histories/show'
   devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
@@ -22,6 +24,16 @@ Rails.application.routes.draw do
         end
       end
     end
+    # c
+    get 'bucket', to: 'bucket#show'
+    post 'bucket/add'
+    post 'bucket/remove'
+    # c
+    # c
+    get 'history', to: 'histories#show'
+    post 'histories/add'
+    post 'histories/remove'
+    # c
     get 'pages/dashboard'
     get 'pages/customer'
     get 'pages/adminlist'

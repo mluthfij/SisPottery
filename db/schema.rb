@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_10_151908) do
+ActiveRecord::Schema.define(version: 2022_10_12_150311) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 2022_10_10_151908) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "buckets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_buckets_on_user_id"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -83,12 +90,36 @@ ActiveRecord::Schema.define(version: 2022_10_10_151908) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_histories_on_user_id"
+  end
+
   create_table "homepagesses", force: :cascade do |t|
     t.string "brand_name"
     t.string "title"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "keeps", force: :cascade do |t|
+    t.integer "bucket_id", null: false
+    t.string "customer"
+    t.string "product_name"
+    t.integer "product_price"
+    t.integer "quantity"
+    t.integer "total_price"
+    t.date "order_start"
+    t.date "order_end"
+    t.integer "point"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["bucket_id"], name: "index_keeps_on_bucket_id"
+    t.index ["user_id"], name: "index_keeps_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -157,6 +188,21 @@ ActiveRecord::Schema.define(version: 2022_10_10_151908) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "vessels", force: :cascade do |t|
+    t.integer "orderable_id", null: false
+    t.integer "history_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "price"
+    t.integer "quantity"
+    t.string "order_at"
+    t.date "date"
+    t.index ["history_id"], name: "index_vessels_on_history_id"
+    t.index ["orderable_id"], name: "index_vessels_on_orderable_id"
+    t.index ["user_id"], name: "index_vessels_on_user_id"
+  end
+
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
@@ -176,6 +222,9 @@ ActiveRecord::Schema.define(version: 2022_10_10_151908) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "products"
+  add_foreign_key "keeps", "buckets"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
+  add_foreign_key "vessels", "histories"
+  add_foreign_key "vessels", "orderables"
 end
