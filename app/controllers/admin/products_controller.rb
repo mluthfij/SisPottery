@@ -6,7 +6,16 @@ module Admin
 
     # GET /products or /products.json
     def index
-      @products = Product.all
+      # @products = Product.all
+      # @products = Product.order(cached_votes_score: :desc).page(params[:page])
+      # 
+      @q = Product.ransack(params[:q])
+      @products = @q.result.order(cached_votes_score: :desc).page(params[:page])
+    end
+
+    def search
+      index
+      render :index
     end
 
     # GET /products/1 or /products/1.json

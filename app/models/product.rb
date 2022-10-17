@@ -8,6 +8,8 @@ class Product < ApplicationRecord
 
     validate :validate_images
 
+    # paginates_per 6
+
     # validates :name, presence: true
     # validates :price, presence: true
 

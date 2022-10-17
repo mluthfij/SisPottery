@@ -1,5 +1,54 @@
 <div class="container-fluid px-4">
   <h1 class="mt-4">Products</h1>
+      <%# <%= search_form_for @q, class:"input-group mb-3" do |f| %>
+      <%= search_form_for @q, url: search_admin_products_path, html: { method: :post } do |f| %>
+        <div class="input-group">
+          <%# <%= f.search_field :name_cont, class:"form-control", placeholder:"Search products" %>
+          <%= f.search_field :name_or_description_cont, class:"form-control", placeholder:"Search products" %>
+          <%= f.submit class:"btn btn-success" %>
+        </div>
+      <% end %>
+    <div class="rounded bg-dark mb-3 mt-2">
+    
+      <ul class="nav nav-pills nav-fill">
+      
+      <%# <ul class="nav nav-pills nav-fill bg-dark rounded mb-3"> %>
+
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :name, 'Name', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+        
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :price, 'Price', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+        
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :cached_votes_score, 'Like', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+
+      
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :created_at, 'Created', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+      </ul>
+    <%#  %>
+  </div>
 
   <%= render 'shop', obj: @products %>
+
+  <div class="d-flex justify-content-center">
+    <%= paginate @products %>
+  </div>
+  <div class="text-center">
+    <%= page_entries_info @products %>
+  </div>
+  <br>
 </div>

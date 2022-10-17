@@ -1,5 +1,53 @@
-<div class="container">
-  <h1>Products</h1>
+<div class="container-fluid px-4">
+  <h1 class="mt-4">Products</h1>
+  
+  <%= search_form_for @q, class:"input-group" do |f| %>
+    <%= f.search_field :name_or_description_cont, class:"form-control", placeholder:"Search products" %>
+    <%= f.submit class:"btn btn-success" %>
+  <% end %>
+
+  
+    <div class="rounded bg-dark mb-3 mt-2">
+    
+      <ul class="nav nav-pills nav-fill">
+      
+      <%# <ul class="nav nav-pills nav-fill bg-dark rounded mb-3"> %>
+
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :name, 'Name', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+        
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :price, 'Price', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+        
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :cached_votes_score, 'Like', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+
+      
+        <li class="nav-item mb-4">
+          <a class="nav-link">
+            <%= sort_link(@q, :created_at, 'Created', class:"fs-4 decoration-hover text-white") %>
+          </a>
+        </li>
+      </ul>
+    <%#  %>
+  </div>
+
 
   <%= render 'shop', obj: @products %>
+
+  <div class="d-flex justify-content-center">
+    <%= paginate @products %> 
+  </div>
+  <div class="text-center">
+    <%= page_entries_info @products %>
+  </div>
 </div>

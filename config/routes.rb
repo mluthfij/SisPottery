@@ -18,22 +18,25 @@ Rails.application.routes.draw do
     resources :abouts, except: :show
     resources :user_lists, except: :show
     resources :products do
+      collection do
+        match 'search' => 'products#search', via: [:get, :post], as: :search
+      end
       resources :comments do
         member do
           patch "like", to: "comments#like"
         end
       end
     end
-    # c
+
     get 'bucket', to: 'bucket#show'
     post 'bucket/add'
     post 'bucket/remove'
-    # c
-    # c
+
+
     get 'history', to: 'histories#show'
     post 'histories/add'
     post 'histories/remove'
-    # c
+
     get 'pages/dashboard'
     get 'pages/customer'
     get 'pages/adminlist'

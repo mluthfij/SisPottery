@@ -4,7 +4,14 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     # @products = Product.all
-    @products = Product.all.order(cached_votes_score: :desc)
+    # @products = Product.all.order(cached_votes_score: :desc)
+    # 
+    # @products = Product.all.order(cached_votes_score: :desc).page params[:page]
+    # 
+    # @products = Product.order(cached_votes_score: :desc).page(params[:page])
+    # 
+    @q = Product.ransack(params[:q])
+    @products = @q.result.order(cached_votes_score: :desc).page(params[:page])
   end
 
   def upvote
