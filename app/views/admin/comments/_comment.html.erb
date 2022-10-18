@@ -1,53 +1,52 @@
 <div class="subcomment" style="padding-left: <%= comment.parent_id != nil ? '40px' : '0px' %>;">
     <div class="bg-white p-2">
         <div class="d-flex flex-row user-info">
-            <%# <img class="rounded-circle me-2" src="https://i.imgur.com/RpzrMR2.jpg" width="40"> %>
-                <% if comment.user.avatar.present? %>
-                    <%= link_to image_tag(comment.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2"), profile_path(comment.user.id) %>
-                <% else %>
-                    <%= link_to image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "rounded-circle me-2", width: 40), profile_path(comment.user.id) %>
-                <% end %>
-                    <%#  %>
-                <div class="d-flex flex-column justify-content-start ml-2">
-                    <span class="d-block font-weight-bold name"><%= link_to comment.user.username, profile_path(comment.user.id), class:"text-decoration-none" %></span>
-                    <span class="date text-black-50">
-                        <%= time_ago_in_words(comment.created_at) %> ago
-                        <%# Shared publicly - Jan 2020 %>
-                    </span>
-                </div>
-            </div>
-            <div class="mt-2">
-                <p class="comment-text"><%= comment.content %></p>
+            <% if comment.user.avatar.present? %>
+                <%= link_to image_tag(comment.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2"), profile_path(comment.user.id) %>
+            <% else %>
+                <%= link_to image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "rounded-circle me-2", width: 40), profile_path(comment.user.id) %>
+            <% end %>
+            <div class="d-flex flex-column justify-content-start ml-2">
+                <span class="d-block font-weight-bold name">
+                    <%= link_to comment.user.username, profile_path(comment.user.id), class:"text-decoration-none" %>
+                    <% if comment.reply_to.present? %>
+                        <strong>replying to <%= link_to truncate(comment.reply_to, length:20), profile_path(comment.user.id), class:"text-decoration-none" %></strong>
+                    <% end %>
+                </span>
+                <span class="date text-black-50">
+                    <%= time_ago_in_words(comment.created_at) %> ago
+                </span>
             </div>
         </div>
-        <div class="bg-white">
-            <div class="d-flex flex-row fs-8">
-                <div class="like p-2 cursor">
-                    <%# <i class="bi bi-hand-thumbs-up"></i>
-                    <span class="">Like</span> %>
-                    <%= render "comments/like_link", comment: comment %>
-                    <%= render "comments/likes_score", comment: comment %>
-                </div>
-                <% if current_user.id == comment.user.id %>
+        <div class="mt-2">
+            <p class="comment-text"><%= comment.content %></p>
+        </div>
+    </div>
+    <div class="bg-white">
+        <div class="d-flex flex-row fs-8">
+            <div class="like p-2 cursor">
+                <%= render "comments/like_link", comment: comment %>
+                <%= render "comments/likes_score", comment: comment %>
+            </div>
+            <% if current_user.id == comment.user.id %>
                 <div class="like p-2 cursor">
                     <i class="bi bi-backspace"></i>
                     <%= link_to 'Delete', [comment.product, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"text-decoration-none" %>
                 </div>
-                <% end %>
-                <div class="like p-2 cursor">
-                    <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapse<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="bi bi-reply"></i>
-                        <span class="">Reply</span>
-                    </a>
-                </div>
+            <% end %>
+            <div class="like p-2 cursor">
+                <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapse<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="bi bi-reply"></i>
+                    <span class="">Reply</span>
+                </a>
             </div>
         </div>
-        
-        <div class="collapse" id="collapse<%= comment.id %>">
-            <div class="bg-light p-2">
-                <%= render partial: 'comments/form', locals: { product: comment.product, parent: comment } %>
-            </div>
+    </div>
+    <div class="collapse" id="collapse<%= comment.id %>">
+        <div class="bg-light p-2">
+            <%= render partial: 'comments/form', locals: { product: comment.product, parent: comment } %>
         </div>
+    </div>
 </div>
 
 <%= render comment.comments.order(id: :desc) %>

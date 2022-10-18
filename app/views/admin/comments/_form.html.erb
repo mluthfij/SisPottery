@@ -2,6 +2,7 @@
 
     <% if !parent.nil? %>
         <%= form.hidden_field :parent_id, value:parent.id %>
+        <%= form.hidden_field :reply_to, value:parent.user.username %>
     <% end %>
     
     <% form.label :reply_to %>

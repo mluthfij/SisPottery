@@ -19,18 +19,18 @@
                 <%#  %>
                 <% if user_signed_in? %>
 
-                <a class="nav-link <%= params[:action] == "show" && params[:controller] == "chatrooms" || params[:action] == "new" && params[:controller] == "chatrooms" ? 'active' : '' %>" href="<%= current_user.chatrooms.count > 0 ? chatroom_path(Chatroom.first) : new_chatroom_path %>">
+                <a class="nav-link <%= params[:action] == "show" && params[:controller] == "chatrooms" || params[:action] == "new" && params[:controller] == "chatrooms" || params[:action] == "edit" && params[:controller] == "chatrooms" ? 'active' : '' %>" href="<%= current_user.chatrooms.count > 0 ? chatroom_path(Chatroom.first) : new_chatroom_path %>">
                     <div class="sb-nav-link-icon">
                         <%# <i class="bi bi-telephone"></i> %>
                         <i class="bi bi-chat-dots"></i>
                     </div>
                     <%# Contact Us %>
-                    Contact Admin
+                    Chat Admin
                 </a>
                 <% end %>
                 <%#  %>
 
-                <a class="nav-link <%= params[:action] == "index" && params[:controller] == "products" ? 'active' : '' %>" href="<%= products_path %>">
+                <a class="nav-link <%= params[:action] == "index" && params[:controller] == "products" || params[:action] == "show" && params[:controller] == "products" ? 'active' : '' %>" href="<%= products_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-cart2"></i>
                     </div>

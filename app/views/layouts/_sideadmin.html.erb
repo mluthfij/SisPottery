@@ -22,17 +22,19 @@
                     </div>
                     Products
                 </a>
+                <%# admin_chatroom_path %>
+                <a class="nav-link <%= params[:action] == 'chatroom' && params[:controller] == 'admin/pages' || params[:action] == 'chatbox' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_chatbox_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-chat-dots"></i>
+                        <%# <i class="bi bi-envelope"></i> %>
+                    </div>
+                    Chat
+                </a>
                 <a class="nav-link <%= params[:action] == 'customer' ? 'active' : '' %>" href="<%= admin_pages_customer_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-people"></i>
                     </div>
                     Customers
-                </a>
-                <a class="nav-link <%= params[:action] == 'chatbox' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_chatbox_path %>">
-                    <div class="sb-nav-link-icon">
-                        <i class="bi bi-envelope"></i>
-                    </div>
-                    Messages
                 </a>
                 <a class="nav-link <%= params[:action] == 'order' && params[:controller] == 'admin/pages' ? 'active' : '' %>" href="<%= admin_pages_order_path %>">
                     <div class="sb-nav-link-icon">

@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
   def set_params
     @product = Product.find(params[:product_id])
   end
+  
   def params_comment
     params
     .require(:comment)
