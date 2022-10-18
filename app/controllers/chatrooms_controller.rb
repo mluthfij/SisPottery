@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chatroom, only: %i[ show edit update destroy ]
-  before_action :correct_user, only: %i[ edit update destroy ] 
+  before_action :correct_user, only: %i[ edit update destroy show ] 
   before_action :only_one_row_record, only: %i[ new create ]
 
   # GET /chatrooms or /chatrooms.json
@@ -77,7 +77,7 @@ class ChatroomsController < ApplicationController
   private
     def correct_user
       @chatroom = current_user.chatrooms.find_by(id: params[:id])
-      redirect_to request.referrer, notice: "Not authorized to see this chat." if @chatroom.nil?
+      redirect_to chatroom_url(current_user.chatrooms.first), notice: "Not authorized to see this chat." if @chatroom.nil?
     end
 
     def only_one_row_record

@@ -18,7 +18,7 @@
                     <%= f.hidden_field :chatroom_id, value: @chatroom.id %>
                     <%= f.hidden_field :user_id, value: current_user.id %>
                     <%= f.text_field :content, class:"form-control", placeholder:"Type here..." %>
-                    <%# <%= f.submit class:"btn btn-success" %> 
+                    <%= f.submit class:"btn btn-success", style:"display:none;" %> 
                 </div>
                 <% end %>
             </div>
