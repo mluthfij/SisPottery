@@ -21,9 +21,12 @@ module Admin
       product_name = params[:product_name].to_s
       point = params[:point].to_i 
 
+      user_id = params[:user_id].to_i
+
       @new_history = @history.vessels.new(point: point, customer: customer, product_price: product_price, 
                                       product_name: product_name, quantity: quantity, price: price,
-                                      order_at: order_at, date: date, user: current_user)
+                                      order_at: order_at, date: date, user_id: user_id)
+                                      # order_at: order_at, date: date, user: current_user)
       if @new_history.save
         delete_to_save
         # redirect_to request.referrer, notice: @new_history.errors.full_messages.to_sentence

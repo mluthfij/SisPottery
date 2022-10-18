@@ -66,6 +66,7 @@
                                         <%= f.hidden_field :product_name, value: product.name %>
                                         <%= f.hidden_field :product_price, value: product.price %>
                                         <%= f.hidden_field :point, value: order.id %>
+                                        <%= f.hidden_field :user_id, value: order.user.id %>
                                         <%= f.date_field :date %>
                                         <%= f.submit "Process" %>
                                     <% end %>

@@ -1,17 +1,8 @@
 Rails.application.routes.draw do
-  # get 'keep/show'
-  # get 'histories/show'
   devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
   resources :profiles, only: :show
-  get 'cart', to: 'cart#show'
-  post 'cart/addcart'
-  post 'cart/add'
-  post 'cart/removecart'
-  post 'cart/remove'
-  post 'cart/delete'
-  get 'comments/comment'
   namespace :admin do
     resources :messages, only: %i[ new create ]
     resources :homepagesses, except: :index
@@ -27,16 +18,12 @@ Rails.application.routes.draw do
         end
       end
     end
-
     get 'bucket', to: 'bucket#show'
     post 'bucket/add'
     post 'bucket/remove'
-
-
     get 'history', to: 'histories#show'
     post 'histories/add'
     post 'histories/remove'
-
     get 'pages/dashboard'
     get 'pages/customer'
     get 'pages/adminlist'
@@ -57,6 +44,22 @@ Rails.application.routes.draw do
         patch "upvote", to: "products#upvote"
       end
   end
+
+  get 'bucket', to: 'bucket#show'
+  # post 'bucket/add'
+  # post 'bucket/remove'
+
+  get 'history', to: 'histories#show'
+  # post 'histories/add'
+  # post 'histories/remove'
+  
+  get 'cart', to: 'cart#show'
+  get 'comments/comment'
+  post 'cart/addcart'
+  post 'cart/add'
+  post 'cart/removecart'
+  post 'cart/remove'
+  post 'cart/delete'
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'

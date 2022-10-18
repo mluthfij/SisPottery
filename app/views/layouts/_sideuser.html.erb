@@ -42,6 +42,24 @@
                     </div>
                     My Order
                 </a>
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'histories' ? 'active' : '' %>" href="<%= history_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    Processed
+                </a>
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'bucket' ? 'active' : '' %>" href="<%= bucket_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-check"></i>
+                    </div>
+                    Purchase History
+                </a>
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'bucket' ? 'active' : '' %>" href="<%= bucket_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-x"></i>
+                    </div>
+                    Canceled Order
+                </a>
                 <%# end core %>
                 <% if user_signed_in? %>
                 <div class="sb-sidenav-menu-heading">Edit</div>
