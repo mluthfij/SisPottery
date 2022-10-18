@@ -1,6 +1,9 @@
-<h1>Editing About</h1>
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Editing About</h1>
+    
+    <div class="mb-4 p-4 border border-secondary">
+        <%= render 'form', about: @about %>
+    </div>
+</div>
 
-<%= render 'form', about: @about %>
 
-<%= link_to 'Show', admin_about_path(About.first) %> |
-<%= link_to 'Back', :back %>

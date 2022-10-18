@@ -1,37 +1,49 @@
 <%= form_with model: [:admin, @about] do |form| %>
   <% if about.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
-
-      <ul>
-        <% about.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+      <div id="error_explanation">
+          <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+          <ul>
+              <% about.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+              <% end %>
+          </ul>
+      </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_name %>
-    <%= form.text_field :company_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sub_title %>
-    <%= form.text_field :sub_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <ul class="timeline">
+    <%#  %>
+    <li class="timeline-inverted">
+        <div class="timeline-image circular">
+            <img class="" src="https://lpm.ulm.ac.id/image/desain/empty.jpg" alt="..." />
+            <%# <img class="" src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." /> %>
+        </div>
+        <div class="timeline-panel">
+            <div class="timeline-heading">
+            <%# <h4>2009-2011</h4> %>
+                <div class="mb-3">
+                    <%= form.file_field :image, class:"form-control" %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.text_field :sub_title, class:"form-control", placeholder:"title" %>
+                    <label for="floatingInput">Date</label>
+                </div>
+                <div class="subheading form-floating mb-3">
+                    <%= form.text_field :title, class:"form-control", placeholder:"title" %>
+                    <label for="floatingInput">Title</label>
+                </div>
+            </div>
+            <div class="timeline-body">
+            <%# <p class="text-muted"> %>
+                <div class="form-floating mb-3">
+                    <%= form.text_area :description, class:"form-control", placeholder:"title", style:"height:150px;" %>
+                    <label for="floatingInput">Description</label>
+                </div>
+                <div class="">
+                    <%= form.submit class:"btn btn-dark" %>
+                    <%= link_to 'Back', admin_abouts_path, class:"btn btn-dark" %>
+                </div>
+            </div>
+        </div>
+    </li>
+  </ul>
 <% end %>

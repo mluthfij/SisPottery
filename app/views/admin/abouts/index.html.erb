@@ -1,15 +1,12 @@
-<div class="container-fluid px-4">
-    <div class="card mb-3 mt-4 bg-light">
+<div class="container-fluid px-4 mt-4">
+    <%# <div class="card mb-3 mt-4 bg-light">
         <div class="card-body">
-            <%= link_to 'New About', new_admin_about_path, class:"btn btn-lg btn-dark" %>
-            <%# <%= link_to 'Edit', edit_admin_about_path(@about), class:"btn btn-lg btn-outline-dark" %>
-            <%# <%= link_to 'Delete', admin_about_path(@about), class:"btn btn-lg btn-outline-dark", method: :delete, data: { confirm: "Are you sure?" } %>
-            <%# <%= link_to 'Exit', admin_pages_dashboard_path, class:"btn btn-lg btn-outline-dark float-end" %>
         </div>
-    </div>
+    </div> %>
     
     <div class="mb-4 border border-secondary">
         <%= render 'admin/abouts/about', obj: @abouts %>
     </div>
 </div>
+
 

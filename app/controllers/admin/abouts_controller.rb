@@ -7,6 +7,7 @@ module Admin
 
     # GET /abouts or /abouts.json
     def index
+      @about = About.new
       @abouts = About.all
     end
 
@@ -16,9 +17,9 @@ module Admin
     # end
 
     # GET /abouts/new
-    def new
-      @about = About.new
-    end
+    # def new
+    #   @about = About.new
+    # end
 
     # GET /abouts/1/edit
     def edit
@@ -30,8 +31,8 @@ module Admin
 
       respond_to do |format|
         # if About.count > 0
-          format.html { redirect_to admin_abouts_url, notice: "You can create only one row of this table" }
-          format.json { render :show, status: :created, location: @about }
+          # format.html { redirect_to admin_abouts_url, notice: "You can create only one row of this table" }
+          # format.json { render :show, status: :created, location: @about }
         # else
           if @about.save
             format.html { redirect_to admin_abouts_url, notice: "About was successfully created." }
@@ -48,7 +49,7 @@ module Admin
     def update
       respond_to do |format|
         if @about.update(about_params)
-          format.html { redirect_to admin_about_url(@about), notice: "About was successfully updated." }
+          format.html { redirect_to admin_abouts_url, notice: "About was successfully updated." }
           format.json { render :show, status: :ok, location: @about }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +63,7 @@ module Admin
       @about.destroy
 
       respond_to do |format|
-        format.html { redirect_to new_admin_about_url, notice: "About was successfully destroyed." }
+        format.html { redirect_to admin_abouts_url, notice: "About was successfully destroyed." }
         format.json { head :no_content }
       end
     end
@@ -78,7 +79,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def about_params
-        params.require(:about).permit(:description, :company_name, :sub_title, :title)
+        params.require(:about).permit(:description, :company_name, :sub_title, :title, :image)
       end
     
     protected

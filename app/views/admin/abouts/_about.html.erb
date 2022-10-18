@@ -1,38 +1,94 @@
+<!-- About-->
+<section class="page-section" id="about">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">About</h2>
+            <h3 class="section-subheading text-muted">Sawargi Itong Saputra Pottery</h3>
+        </div>
 
-        <!-- About-->
-        <section class="page-section" id="about">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <ul class="timeline">
-                <% obj.each do |about| %>
-                <%# <%= about.inspect %>
-                    <li class="<%= about.id.odd? ? 'timeline-inverted' : '' %>">
-                        <div class="timeline-image circular">
-                                <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." />
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                <% end %>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>
-                                Be Part
-                                <br />
-                                Of Our
-                                <br />
-                                Story!
-                            </h4>
-                        </div>
-                    </li>
+        <%= form_with model: [:admin, @about] do |form| %>
+        <% if @about.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@about.errors.count, "error") %> prohibited this about from being saved:</h2>
+                <ul>
+                    <% @about.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                    <% end %>
                 </ul>
             </div>
-        </section>
+        <% end %>
+
+        <ul class="timeline">
+            <%#  %>
+            <li class="timeline-inverted">
+                <div class="timeline-image circular">
+                    <img class="" src="https://lpm.ulm.ac.id/image/desain/empty.jpg" alt="..." />
+                    <%# <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." /> %>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                    <%# <h4>2009-2011</h4> %>
+                        <div class="mb-3">
+                            <%= form.file_field :image, class:"form-control" %>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <%= form.date_field :sub_title, class:"form-control", placeholder:"title" %>
+                            <label for="floatingInput">Date</label>
+                        </div>
+                        <div class="subheading form-floating mb-3">
+                            <%= form.text_field :title, class:"form-control", placeholder:"title" %>
+                            <label for="floatingInput">Title</label>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                    <%# <p class="text-muted"> %>
+                        <div class="form-floating mb-3">
+                            <%= form.text_area :description, class:"form-control", placeholder:"title", style:"height:150px;" %>
+                            <label for="floatingInput">Description</label>
+                        </div>
+                        <div class="">
+                            <%= form.submit class:"btn btn-dark" %>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+            <% obj.order(id: :desc).each_with_index do |about, index| %>
+            <li class="<%= index.odd? ? 'timeline-inverted' : '' %>">
+                <div class="timeline-image circular">
+                    <% if about.image.attached? %>
+                        <%= image_tag(about.image.variant(resize_to_fill: [200, 200])) %>
+                    <% else %>
+                        <%# <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." /> %>
+                      <img class="" src="https://lpm.ulm.ac.id/image/desain/empty.jpg" alt="..." />
+                    <% end %>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4><%= about.sub_title %></h4>
+                        <h4 class="subheading"><%= about.title %></h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="text-muted">
+                            <%= about.description %>
+                        </p>
+                    </div>
+                    <%= link_to 'Edit', edit_admin_about_path(about), class:"btn btn-lg btn-dark" %>
+                    <%= link_to 'Delete', admin_about_path(about), class:"btn btn-lg btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+                </div>
+            </li>
+            <% end %>
+            <li class="timeline-inverted">
+                <div class="timeline-image">
+                    <h4>
+                    Be Part
+                    <br />
+                    Of Our
+                    <br />
+                    Story!
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
