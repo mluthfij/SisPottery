@@ -1,6 +1,8 @@
 module Admin
   class UserListsController < ApplicationController
     before_action :set_params, except: :index
+    before_action :restrict_user_by_role
+
         def index
             @users = User.all
         end
@@ -33,6 +35,12 @@ module Admin
 
         def user_params
             params.require(:user).permit(:username, :password, :email)
+        end
+    
+        protected
+        # redirect if user not logged in or does not have a valid role
+        def restrict_user_by_role
+            redirect_to root_path, notice: "You're not authorized!" if current_user.admin == false
         end
     end
 end

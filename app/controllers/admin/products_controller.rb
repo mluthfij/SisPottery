@@ -10,7 +10,7 @@ module Admin
       # @products = Product.order(cached_votes_score: :desc).page(params[:page])
       # 
       @q = Product.ransack(params[:q])
-      @products = @q.result.order(cached_votes_score: :desc).page(params[:page])
+      @products = @q.result(distinct: true).order(cached_votes_score: :desc).page(params[:page])
     end
 
     def search
