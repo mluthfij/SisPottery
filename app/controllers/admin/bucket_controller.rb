@@ -4,7 +4,9 @@ module Admin
     before_action :restrict_user_by_role
     
     def show
-      @keeps = Keep.all
+      # @keeps = Keep.all
+      @q = Keep.ransack(params[:q])
+      @keeps = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
       @quantity_keep = Keep.sum(:quantity)
       @price_keep = Keep.sum(:total_price)
     end

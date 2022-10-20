@@ -2,75 +2,90 @@
     <h2 class="mt-4">
         Sold products
     </h2>
-        <div class="table-responsive">
-            <table class="table table-hover table-striped table-bordered table-sm">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col" class="text-center">No.</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col" class="text-center">Image</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Order Time</th>
-                        <th scope="col" class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <%#  %>
-                        <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
-                        <tr>
-                            <td>
-                                <%= index + 1 %>
-                            </td>
-                            <td>
-                                <%= keep.customer %>
-                            </td>
-                            <td>
-                                <%=  %>
-                            </td>
-                            <td>
-                                <%= keep.product_name %>
-                            </td>
-                            <td>
-                                <%= number_to_currency(keep.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                            </td>
-                            <td>
-                                <%= keep.quantity %>
-                            </td>
-                            <td>
-                                <%= number_to_currency(keep.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                            </td>
-                            <td>
-                                <%= keep.order_start.strftime("%d/%m/%y") if !keep.order_start.nil? %>
-                            </td>
-                            <td>
-                                <%= keep.order_end.strftime("%d/%m/%y") if !keep.order_end.nil?  %>
-                            </td>
-                        </tr>
-                        <% end %>
-                        
-                    
-                        <tr class="table-warning">
-                            <td colspan="5">
-                                <strong>Total</strong>
-                            </td>
-                            <td class="table-danger">
-                                <strong>
-                                    <%= @quantity_keep %>
-                                </strong>
-                            </td>
-                            <td class="table-danger">
-                                <strong>
-                                    <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
-                                    <%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                                </strong>
-                            </td>
-                            <td>
-                            </td>
-                            <td> </td>
-                        </tr>
+
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @keeps %>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="text-center">No.</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col" class="text-center">Image</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Order Time</th>
+                    <th scope="col" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%#  %>
+                <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
+                <tr>
+                    <td>
+                    <%= index + 1 %>
+                    </td>
+                    <td>
+                    <%= keep.customer %>
+                    </td>
+                    <td>
+                    <%=  %>
+                    </td>
+                    <td>
+                    <%= keep.product_name %>
+                    </td>
+                    <td>
+                    <%= number_to_currency(keep.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    </td>
+                    <td>
+                    <%= keep.quantity %>
+                    </td>
+                    <td>
+                    <%= number_to_currency(keep.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    </td>
+                    <td>
+                    <%= keep.order_start.strftime("%d/%m/%y") if !keep.order_start.nil? %>
+                    </td>
+                    <td>
+                    <%= keep.order_end.strftime("%d/%m/%y") if !keep.order_end.nil?  %>
+                    </td>
+                </tr>
+                <% end %>
+
+
+                <tr class="table-warning">
+                    <td colspan="5">
+                    <strong>Total</strong>
+                    </td>
+                    <td class="table-danger">
+                    <strong>
+                    <%= @quantity_keep %>
+                    </strong>
+                    </td>
+                    <td class="table-danger">
+                    <strong>
+                    <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
+                    <%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    </strong>
+                    </td>
+                    <td>
+                    </td>
+                    <td> </td>
+                </tr>
             </tbody>
         </table>
     </div>

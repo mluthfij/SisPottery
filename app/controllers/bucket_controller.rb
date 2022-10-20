@@ -7,7 +7,9 @@ class BucketController < ApplicationController
     # @quantity_keep = Keep.sum(:quantity)
     # @price_keep = Keep.sum(:total_price)
 
-    @keeps = current_user.keeps.all
+    # @keeps = current_user.keeps.all
+    @q = current_user.keeps.ransack(params[:q])
+    @keeps = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     @quantity_keep = current_user.keeps.sum(:quantity)
     @price_keep = current_user.keeps.sum(:total_price)
   end
