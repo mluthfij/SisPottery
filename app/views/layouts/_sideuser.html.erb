@@ -54,12 +54,6 @@
                     </div>
                     Purchase History
                 </a>
-                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'bucket' ? 'active' : '' %>" href="<%= bucket_path %>">
-                    <div class="sb-nav-link-icon">
-                        <i class="bi bi-journal-x"></i>
-                    </div>
-                    Canceled Order
-                </a>
                 <%# end core %>
                 <% if user_signed_in? %>
                 <div class="sb-sidenav-menu-heading">Edit</div>

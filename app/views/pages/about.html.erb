@@ -1,1 +1,48 @@
-<%= render 'admin/abouts/about', obj: @abouts %>
+<%# <%= render 'admin/abouts/about', obj: @abouts %>
+
+<!-- About-->
+<section class="page-section" id="about">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">About</h2>
+            <h3 class="section-subheading text-muted">Sawargi Itong Saputra Pottery</h3>
+        </div>
+
+        <ul class="timeline">
+            <% @abouts.order(id: :desc).each_with_index do |about, index| %>
+            <li class="<%= index.odd? ? 'timeline-inverted' : '' %>">
+                <div class="timeline-image circular">
+                    <% if about.image.attached? %>
+                        <%= image_tag(about.image.variant(resize_to_fill: [200, 200])) %>
+                    <% else %>
+                        <%# <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." /> %>
+                      <img class="" src="https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" alt="..." />
+                    <% end %>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4><%= about.sub_title %></h4>
+                        <h4 class="subheading"><%= about.title %></h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="text-muted">
+                            <%= about.description %>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+            <li class="timeline-inverted">
+                <div class="timeline-image">
+                    <h4>
+                    That's all
+                    <br />
+                    Of Our
+                    <br />
+                    Story!
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
