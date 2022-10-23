@@ -18,6 +18,17 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    # 
+    post 'faileds/removecart'
+    post 'faileds/removebucket'
+    # 
+    get 'failed', to: 'faileds#show'
+    # post 'faileds/add'
+    post 'faileds/add_cart'
+    post 'faileds/add_bucket'
+    # post 'faileds/remove'
+
     get 'bucket', to: 'bucket#show'
     post 'bucket/add'
     post 'bucket/remove'
@@ -44,6 +55,11 @@ Rails.application.routes.draw do
         patch "upvote", to: "products#upvote"
       end
   end
+  
+  # post 'faileds/removecart'
+  # 
+  get 'failed', to: 'faileds#show'
+  post 'faileds/add'
 
   get 'bucket', to: 'bucket#show'
   # post 'bucket/add'

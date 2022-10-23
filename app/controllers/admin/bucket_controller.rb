@@ -50,7 +50,7 @@ module Admin
     def remove
       @vessel = Vessel.find_by(id: params[:id])
       if @vessel.destroy
-        redirect_to request.referrer, notice: "Order was successfully saved."
+        redirect_to admin_bucket_url, notice: "Order was successfully saved."
       else
         redirect_to request.referrer, notice: "Order was failed to save."
       end

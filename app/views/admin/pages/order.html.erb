@@ -51,6 +51,22 @@
                                 <%# <%= time_ago_in_words(order.created_at) %>
                                 </td>
                                 <td class="text-center">
+
+                                <%#  %>
+                                    <%= form_with(url: admin_faileds_add_cart_path) do |f| %>
+                                        <%= f.hidden_field :id, value: order.id %>
+                                        <%= f.hidden_field :total_price, value: product.price * order.quantity %>
+                                        <%= f.hidden_field :quantity, value: order.quantity %>
+                                        <%= f.hidden_field :order_start, value: order.created_at.strftime("%d/%m/%y") %>
+                                        <%= f.hidden_field :customer, value: user.username %>
+                                        <%= f.hidden_field :product_name, value: product.name %>
+                                        <%= f.hidden_field :product_price, value: product.price %>
+                                        <%= f.hidden_field :point, value: order.id %>
+                                        <%= f.hidden_field :user_id, value: order.user.id %>
+                                        <%# <%= f.date_field :date %>
+                                        <%= f.submit "Cancel" %>
+                                    <% end %>
+                                <%#  %>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
                                         Detail

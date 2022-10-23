@@ -56,6 +56,12 @@
                     </div>
                     Sold Product
                 </a>
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'admin/faileds' ? 'active' : '' %>" href="<%= admin_failed_path %>">
+                    <div class="sb-nav-link-icon">
+                        <i class="bi bi-journal-x"></i>
+                    </div>
+                    Failed History
+                </a>
                 <%# end core %>
                 <div class="sb-sidenav-menu-heading">Edit</div>
                 <%# start %>

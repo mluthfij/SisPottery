@@ -56,14 +56,30 @@
                                 <%= f.hidden_field :order_start, value: vessel.order_at %>
                                 <%= f.hidden_field :order_end, value: vessel.date %>
                                 <%= f.hidden_field :point, value: vessel.id %>
-                                <%= f.text_field :user_id, value: vessel.user_id %>
+                                <%= f.hidden_field :user_id, value: vessel.user_id %>
                                 <%= f.submit "Done" %>
                             <% end %>
 
-                            <%= form_with(url: admin_histories_remove_path) do |f| %>
+                            <%#  %>
+                            <%= form_with(url: admin_faileds_add_bucket_path) do |f| %>
                                 <%= f.hidden_field :id, value: vessel.id %>
+                                <%= f.hidden_field :total_price, value: vessel.price * vessel.quantity %>
+                                <%= f.hidden_field :quantity, value: vessel.quantity %>
+                                <%= f.hidden_field :order_start, value: vessel.created_at.strftime("%d/%m/%y") %>
+                                <%= f.hidden_field :customer, value: vessel.customer %>
+                                <%= f.hidden_field :product_name, value: vessel.product_name %>
+                                <%= f.hidden_field :product_price, value: vessel.price %>
+                                <%= f.hidden_field :point, value: vessel.id %>
+                                <%= f.hidden_field :user_id, value: vessel.user.id %>
+                                <%# <%= f.date_field :date %>
                                 <%= f.submit "Cancel" %>
                             <% end %>
+                            <%#  %>
+
+                            <%# <%= form_with(url: admin_histories_remove_path) do |f| %> %>
+                                <%# <%= f.hidden_field :id, value: vessel.id %> %>
+                                <%# <%= f.submit "Cancel" %> %>
+                            <%# <% end %> %>
                         </td>
                     </tr>
                 <% end %>

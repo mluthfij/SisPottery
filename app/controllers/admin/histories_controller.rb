@@ -48,7 +48,7 @@ module Admin
     def delete_to_save
       @orderable = Orderable.find_by(id: params[:id])
       if @orderable.destroy
-        redirect_to request.referrer, notice: "Order was successfully processed."
+        redirect_to admin_history_url, notice: "Order was successfully processed."
       else
         redirect_to request.referrer, notice: "Order was failed to process."
       end

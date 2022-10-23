@@ -1,0 +1,75 @@
+<div class="container-fluid px-4">
+    <h2 class="mt-4">
+        Failed Transaction History
+    </h2>
+
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @faileds %>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @faileds), class: @faileds.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @faileds), class: @faileds.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="text-center">No.</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col" class="text-center">Image</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Order Time</th>
+                    <th scope="col">Canceled Time</th>
+                    <%# <th scope="col" class="text-center">Action</th> %>
+                </tr>
+            </thead>
+            <tbody>
+                <%#  %>
+                <% @faileds.order(id: :desc).each_with_index do |failed, index| %>
+                <tr>
+                    <td>
+                    <%= index + 1 %>
+                    </td>
+                    <td>
+                    <%= failed.customer %>
+                    </td>
+                    <td>
+                    <%=  %>
+                    </td>
+                    <td>
+                    <%= failed.product_name %>
+                    </td>
+                    <td>
+                    <%= number_to_currency(failed.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    </td>
+                    <td>
+                    <%= failed.quantity %>
+                    </td>
+                    <td>
+                    <%= number_to_currency(failed.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    </td>
+                    <td>
+                    <%= failed.order_start.strftime("%d/%m/%y") if !failed.order_start.nil? %>
+                    </td>
+                    <td>
+                    <%= failed.created_at.strftime("%d/%m/%y") if !failed.created_at.nil?  %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

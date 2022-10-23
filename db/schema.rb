@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_150311) do
+ActiveRecord::Schema.define(version: 2022_10_23_120117) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -88,6 +88,21 @@ ActiveRecord::Schema.define(version: 2022_10_12_150311) do
     t.float "cached_weighted_average", default: 0.0
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "faileds", force: :cascade do |t|
+    t.string "customer"
+    t.string "product_name"
+    t.integer "product_price"
+    t.integer "quantity"
+    t.integer "total_price"
+    t.date "order_start"
+    t.date "order_end"
+    t.integer "point"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_faileds_on_user_id"
   end
 
   create_table "histories", force: :cascade do |t|
