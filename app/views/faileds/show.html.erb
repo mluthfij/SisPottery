@@ -1,75 +1,69 @@
-<div class="container-fluid px-4">
-    <h2 class="mt-4">
-        Failed Transaction History
-    </h2>
-
-    <div class="row mb-2">
-        <div class="col">
-            <%= page_entries_info @faileds %>
-        </div>
-        <div class="col">
-            <div class="d-flex flex-row-reverse">
-                <div class="btn-group border">
-                    <%= link_to " ", (path_to_prev_page @faileds), class: @faileds.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
-                    <%= link_to " ", (path_to_next_page @faileds), class: @faileds.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid py-5">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-10">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-normal mb-0 text-black">Failed Transaction History</h3>
+      <div>
+      <%#  %>
     </div>
+  </div>
+  <div class="text-center mb-3">
+    <span class="badge text-bg-warning">
+      <span>Total Quantity: <%= @quantity_failed %></span>
+    </span>
+  </div>
 
-    <div class="table-responsive">
-        <table class="table table-hover table-striped table-bordered table-sm">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col" class="text-center">No.</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col" class="text-center">Image</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Order Time</th>
-                    <th scope="col">Canceled Time</th>
-                    <%# <th scope="col" class="text-center">Action</th> %>
-                </tr>
-            </thead>
-            <tbody>
-                <%#  %>
-                <% @faileds.order(id: :desc).each_with_index do |failed, index| %>
-                <tr>
-                    <td>
-                    <%= index + 1 %>
-                    </td>
-                    <td>
-                    <%= failed.customer %>
-                    </td>
-                    <td>
-                    <%=  %>
-                    </td>
-                    <td>
-                    <%= failed.product_name %>
-                    </td>
-                    <td>
-                    <%= number_to_currency(failed.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                    </td>
-                    <td>
-                    <%= failed.quantity %>
-                    </td>
-                    <td>
-                    <%= number_to_currency(failed.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                    </td>
-                    <td>
-                    <%= failed.order_start.strftime("%d/%m/%y") if !failed.order_start.nil? %>
-                    </td>
-                    <td>
-                    <%= failed.created_at.strftime("%d/%m/%y") if !failed.created_at.nil?  %>
-                    </td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+  <% @faileds.order(id: :desc).each_with_index do |failed, index| %>
+    <div class="card rounded-3 mb-4">
+      <div class="position-absolute top-0 end-0 m-1">
+        <h5>
+          <span class="badge bg-danger">
+            Canceled date: <%= failed.created_at.strftime("%Y-%m-%d") if !failed.created_at.nil?  %>
+          </span>
+        </h5>
+      </div>
+      <%# <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
+        BTN COLAPE
+      </div> %>
+    <div class="card-body p-4">
+      <div class="row d-flex justify-content-between align-items-center">
+        <div class="col-md-2 col-lg-2 col-xl-2">
+          <%# PICT %>
+          <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <span data-turbo="false">
+            <p class="lead fw-normal mb-2">
+              <%= failed.product_name %>
+              <%# <%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %> 
+            </p>
+          </span>
+        <div>
+        <%# </span> %>
+        <%= number_to_currency(failed.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          <%# <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        </div>
+        <div>
+          <span class="text-muted">Quantity: </span>
+            <%# <%= orderable.quantity %>
+            <%= failed.quantity %>
+      </div>
     </div>
+    <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link text-decoration-none">
+        <i class="bi bi-card-list"></i> Note    
+      </button>
+      </div>
+        <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
+          <h5 class="mb-0">
+          <%= number_to_currency(failed.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+            <%# <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          </h5>
+        </div>
+      </div>
+    </div>
+    </div>
+  <% end %>
 </div>
-
-
-

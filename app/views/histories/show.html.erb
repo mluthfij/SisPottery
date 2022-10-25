@@ -15,7 +15,7 @@
     </span>
   </div>
 
-  <% @vessels.each_with_index do |vessel, index| %>
+  <% @vessels.order(id: :desc).each_with_index do |vessel, index| %>
     <div class="card rounded-3 mb-4">
       <div class="position-absolute top-0 end-0 m-1">
         <h5>

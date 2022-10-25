@@ -15,12 +15,12 @@
     </span>
   </div>
 
-  <% @keeps.each_with_index do |keep, index| %>
+  <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
     <div class="card rounded-3 mb-4">
       <div class="position-absolute top-0 end-0 m-1">
         <h5>
           <span class="badge bg-danger">
-            Due date: <%= keep.order_end %>
+            Completed date: <%= keep.order_end %>
           </span>
         </h5>
       </div>
