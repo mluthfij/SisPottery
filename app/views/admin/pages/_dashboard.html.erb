@@ -18,7 +18,7 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Edit About Page</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<%= About.count == 0 ? new_admin_about_path : admin_abouts_path %>">View Details</a>
+                    <a class="small text-white stretched-link" href="<%= admin_abouts_path %>">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -102,8 +102,8 @@
                                 <td>empty<% product.images %></td>
                                 <td><%= product.name %></td>
                                 <td><%= product.price %></td>
-                                <td><%= product.quantity %></td>
                                 <td><%= truncate(product.description, length: 20) %></td>
+                                <td>Test</td>
                                 <td>Test</td>
                             </tr>
                         <% end %>

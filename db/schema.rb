@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
   create_table "abouts", force: :cascade do |t|
     t.text "description"
     t.string "company_name"
-    t.string "sub_title"
+    t.date "sub_title"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -163,7 +163,6 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "price", precision: 15, scale: 2
-    t.integer "quantity"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

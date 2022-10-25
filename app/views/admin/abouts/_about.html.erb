@@ -8,17 +8,6 @@
 
         <% if user_signed_in? && current_user.admin? %>
         <%= form_with model: [:admin, @about] do |form| %>
-        <% if @about.errors.any? %>
-            <div id="error_explanation">
-                <h2><%= pluralize(@about.errors.count, "error") %> prohibited this about from being saved:</h2>
-                <ul>
-                    <% @about.errors.each do |error| %>
-                        <li><%= error.full_message %></li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
-
         <ul class="timeline">
             <%#  %>
             <li class="timeline-inverted">
@@ -84,7 +73,7 @@
             <li class="timeline-inverted">
                 <div class="timeline-image">
                     <h4>
-                    Be Part
+                    That's all
                     <br />
                     Of Our
                     <br />

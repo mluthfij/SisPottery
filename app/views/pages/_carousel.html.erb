@@ -2,8 +2,6 @@
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner carousel-inner-custom bg-light bg-opacity-50">
     <%#  %>
-    <%# <div class="carousel-item active"> %>
-    
     <% if obj.attached? %>
       <% obj.each_with_index do |cover, index| %>
           <div class="carousel-item <%= index == 0 ? 'active' : '' %>" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('<%= cover.url %>');background-repeat: no-repeat;background-attachment: scroll;background-position: center center;background-size: cover;">
@@ -19,9 +17,6 @@
         <img src="https://img.freepik.com/free-photo/woman-showing-pinterest-icon_53876-40589.jpg?w=2000" class="card-img-top" alt="bg-light w-100 carousel-fit">
       </div>
     <% end %>
-
-    <%# </div> %>
-    
     <%#  %>
   </div>
 </div>

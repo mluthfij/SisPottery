@@ -10,16 +10,6 @@
                 </div>
             </div>
             <%= form_for [:admin, @user], url: admin_user_list_path do |form| %>
-                <% if @user.errors.any? %>
-                    <div id="error_explanation">
-                        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-                        <ul>
-                            <% @user.errors.each do |error| %>
-                                <li><%= error.full_message %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                <% end %>
 
                 <div class="form-floating mb-3">
                     <%= form.text_field :email, class:"form-control", placeholder:"email" %>
@@ -30,11 +20,10 @@
                     <%= form.text_field :username, class:"form-control", placeholder:"username" %>
                     <%= form.label :username, class:"form-label" %>
                 </div>
-
-                <div>Reset Password</div>
+                
                 <div class="form-floating mb-3">
                     <%= form.password_field :password, class:"form-control", placeholder:"password" %>
-                    <%= form.label :password, class:"form-label" %>
+                    <%= form.label :password, "Reset Password", class:"form-label" %>
                 </div>
 
                 <div class="d-grid gap-2 col-6 mx-auto">

@@ -15,6 +15,7 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
                 <th scope="col">Order Time</th>
+                <th scope="col">Due Date</th>
                 <th scope="col" class="text-center">Action</th>
             </tr>
         </thead>
@@ -50,6 +51,28 @@
                                 <%= order.created_at.strftime("%d/%m/%y") %>
                                 <%# <%= time_ago_in_words(order.created_at) %>
                                 </td>
+                                <td>
+                                <%#  %>
+                                <%= form_with(url: admin_histories_add_path) do |f| %>
+                                    <%= f.hidden_field :id, value: order.id %>
+                                    <%= f.hidden_field :price, value: product.price * order.quantity %>
+                                    <%= f.hidden_field :quantity, value: order.quantity %>
+                                    <%= f.hidden_field :order_at, value: order.created_at.strftime("%d/%m/%y") %>
+                                    <%= f.hidden_field :customer, value: user.username %>
+                                    <%= f.hidden_field :product_name, value: product.name %>
+                                    <%= f.hidden_field :product_price, value: product.price %>
+                                    <%= f.hidden_field :point, value: order.id %>
+                                    <%= f.hidden_field :user_id, value: order.user.id %>
+                                    <div class="form-floating mb-1">
+                                        <%= f.date_field :date, class: "form-control" %>
+                                        <label for="floatingInput">Due date</label>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <%= f.submit "Process", class:"btn btn-dark" %>
+                                    </div>
+                                <% end %>
+                                <%#  %>
+                                </td>
                                 <td class="text-center">
 
                                 <%#  %>
@@ -64,29 +87,13 @@
                                         <%= f.hidden_field :point, value: order.id %>
                                         <%= f.hidden_field :user_id, value: order.user.id %>
                                         <%# <%= f.date_field :date %>
-                                        <%= f.submit "Cancel" %>
+                                        <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1" %>
                                     <% end %>
                                 <%#  %>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
                                         Detail
                                     </button>
-                                    
-                                    <%#  %>
-                                    <%= form_with(url: admin_histories_add_path) do |f| %>
-                                        <%= f.hidden_field :id, value: order.id %>
-                                        <%= f.hidden_field :price, value: product.price * order.quantity %>
-                                        <%= f.hidden_field :quantity, value: order.quantity %>
-                                        <%= f.hidden_field :order_at, value: order.created_at.strftime("%d/%m/%y") %>
-                                        <%= f.hidden_field :customer, value: user.username %>
-                                        <%= f.hidden_field :product_name, value: product.name %>
-                                        <%= f.hidden_field :product_price, value: product.price %>
-                                        <%= f.hidden_field :point, value: order.id %>
-                                        <%= f.hidden_field :user_id, value: order.user.id %>
-                                        <%= f.date_field :date %>
-                                        <%= f.submit "Process" %>
-                                    <% end %>
-                                    <%#  %>
                                 </td>
                             </tr>
                         <% end %>
@@ -103,6 +110,8 @@
                                 <strong>
                                     <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %>
                                 </strong>
+                            </td>
+                            <td>
                             </td>
                             <td>
                             </td>

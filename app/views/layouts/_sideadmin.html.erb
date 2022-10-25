@@ -98,7 +98,7 @@
                         <% if About.count > 0 %>
                             <a class="nav-link <%= params[:action] == 'index' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= admin_abouts_path %>">About</a>
                         <% else %>
-                            <a class="nav-link <%= params[:action] == 'new' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= new_admin_about_path %>">About</a>
+                            <a class="nav-link <%= params[:action] == 'index' && params[:controller] == 'admin/abouts' ? 'active' : '' %>" href="<%= admin_abouts_path %>">About</a>
                         <% end %>
                     </nav>
                 </div>

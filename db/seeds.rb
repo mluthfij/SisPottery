@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
-# User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
+User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
+User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
 
-Product.create(name: 'product', user_id: 1, price: '999')
-Product.create(name: 'product', user_id: 1, price: '999')
-Product.create(name: 'product', user_id: 1, price: '999')
-Product.create(name: 'product', user_id: 1, price: '999')
+Product.create(name: 'New', user_id: 1, price: '1999')
+Product.create(name: 'product laksjd;a', user_id: 1, price: '5999')
+Product.create(name: 'product sadasda', user_id: 1, price: '6999')
+Product.create(name: 'kakaka', user_id: 1, price: '43999')
 Product.create(name: 'product', user_id: 1, price: '999')
 Product.create(name: 'product', user_id: 1, price: '999')
 Product.create(name: 'product', user_id: 1, price: '999')

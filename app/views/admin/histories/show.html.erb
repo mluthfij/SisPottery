@@ -15,6 +15,7 @@
                     <th scope="col">Total</th>
                     <th scope="col">Order Time</th>
                     <th scope="col">Due Date</th>
+                    <th scope="col">Action</th>
                     <%# <th scope="col" class="text-center">Action</th> %>
                 </tr>
             </thead>
@@ -46,6 +47,9 @@
                             <%= vessel.order_at %>
                         </td>
                         <td>
+                            <%= vessel.date.strftime("%d/%m/%y") %>
+                        </td>
+                        <td class="text-center">
                             <%= form_with(url: admin_bucket_add_path) do |f| %>
                                 <%= f.hidden_field :id, value: vessel.id %>
                                 <%= f.hidden_field :customer, value: vessel.customer %>
@@ -57,10 +61,9 @@
                                 <%= f.hidden_field :order_end, value: vessel.date %>
                                 <%= f.hidden_field :point, value: vessel.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user_id %>
-                                <%= f.submit "Done" %>
+                                <%= f.submit "Done", class: "btn btn-dark btn-sm mb-1" %>
                             <% end %>
 
-                            <%#  %>
                             <%= form_with(url: admin_faileds_add_bucket_path) do |f| %>
                                 <%= f.hidden_field :id, value: vessel.id %>
                                 <%= f.hidden_field :total_price, value: vessel.price * vessel.quantity %>
@@ -72,14 +75,8 @@
                                 <%= f.hidden_field :point, value: vessel.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user.id %>
                                 <%# <%= f.date_field :date %>
-                                <%= f.submit "Cancel" %>
+                                <%= f.submit "Cancel", class: "btn btn-dark btn-sm" %>
                             <% end %>
-                            <%#  %>
-
-                            <%# <%= form_with(url: admin_histories_remove_path) do |f| %> %>
-                                <%# <%= f.hidden_field :id, value: vessel.id %> %>
-                                <%# <%= f.submit "Cancel" %> %>
-                            <%# <% end %> %>
                         </td>
                     </tr>
                 <% end %>
@@ -98,6 +95,7 @@
                             <%= number_to_currency(@price_vessel, unit: "Rp. ", separator: ",", delimiter: ".") %>
                         </strong>
                     </td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>

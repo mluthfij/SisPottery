@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :messages, only: %i[ new create ]
     resources :homepagesses, except: :index
-    resources :abouts, except: :show
+    resources :abouts, except: %i[ show new ]
     resources :user_lists, except: :show
     resources :products do
       collection do

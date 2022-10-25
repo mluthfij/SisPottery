@@ -1,5 +1,6 @@
 <%= form_with model: [:admin, @about] do |form| %>
   <% if about.errors.any? %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <div id="error_explanation">
           <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
           <ul>
@@ -8,6 +9,8 @@
               <% end %>
           </ul>
       </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <% end %>
 
   <ul class="timeline">
@@ -24,7 +27,7 @@
                     <%= form.file_field :image, class:"form-control" %>
                 </div>
                 <div class="form-floating mb-3">
-                    <%= form.text_field :sub_title, class:"form-control", placeholder:"title" %>
+                    <%= form.date_field :sub_title, class:"form-control", placeholder:"title" %>
                     <label for="floatingInput">Date</label>
                 </div>
                 <div class="subheading form-floating mb-3">

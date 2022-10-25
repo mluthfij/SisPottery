@@ -7,8 +7,8 @@ module Admin
 
     # GET /abouts or /abouts.json
     def index
-      @about = About.new
       @abouts = About.all
+      @about = About.new
     end
 
     # GET /abouts/1 or /abouts/1.json
@@ -27,21 +27,14 @@ module Admin
 
     # POST /abouts or /abouts.json
     def create
-      @about = About.new(about_params)
-
-      respond_to do |format|
-        # if About.count > 0
-          # format.html { redirect_to admin_abouts_url, notice: "You can create only one row of this table" }
-          # format.json { render :show, status: :created, location: @about }
-        # else
-          if @about.save
-            format.html { redirect_to admin_abouts_url, notice: "About was successfully created." }
-            format.json { render :show, status: :created, location: @about }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @about.errors, status: :unprocessable_entity }
-          end
-        # end
+    @about = About.new(about_params)
+      if @about.save
+        respond_to do |format|
+          format.html { redirect_to admin_abouts_url, notice: "About was successfully created." }
+          format.json { render :show, status: :created, location: @about }
+        end
+      else
+        redirect_to request.referrer, notice: @about.errors.full_messages.to_sentence
       end
     end
 

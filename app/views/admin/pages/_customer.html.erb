@@ -1,9 +1,14 @@
 <% obj.order(id: :desc).where(admin: :false).each do |customer| %>
-    <% if !customer.orderables.empty? %>
+    <%# <% if !customer.orderables.empty? %>
+    <%# <% if !customer.orderables.empty? || !customer.vessels.empty? || !customer.keeps.empty? || !customer.faileds.empty? %>
+    <% if !customer.orderables.empty? || !customer.vessels.empty? || !customer.keeps.empty? || !customer.faileds.empty? %>
         <tr>
             <td><%= customer.username %></td>
             <td><%= customer.orderables.count %> <%= customer.orderables.count <= 1 ? 'product' : 'products' %></td>
-            <td><%= link_to 'Detail', profile_path(customer), class:"btn btn-sm btn-primary" %></td>
+            <td><%= customer.vessels.count %> <%= customer.vessels.count <= 1 ? 'product' : 'products' %></td>
+            <td><%= customer.keeps.count %> <%= customer.keeps.count <= 1 ? 'product' : 'products' %></td>
+            <td><%= customer.faileds.count %> <%= customer.faileds.count <= 1 ? 'product' : 'products' %></td>
+            <%# <td><%= link_to 'Detail', profile_path(customer), class:"btn btn-sm btn-primary" %>
         </tr>
     <% end %>
 <% end %>

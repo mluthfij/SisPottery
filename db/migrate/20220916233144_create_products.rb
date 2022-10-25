@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       # t.float :price
       # t.decimal :price, precision: 5, scale: 2
       t.decimal :price, precision: 15, scale: 2
-      t.integer :quantity
+      # t.integer :quantity
       t.text :description
 
       t.timestamps

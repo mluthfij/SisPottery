@@ -10,8 +10,8 @@ class Product < ApplicationRecord
 
     paginates_per 9
 
-    # validates :name, presence: true
-    # validates :price, presence: true
+    validates :name, presence: true
+    validates :price, presence: true
 
     # 
     # def set_quantity

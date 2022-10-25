@@ -1,6 +1,7 @@
 module Admin
   class UserListsController < ApplicationController
     before_action :set_params, except: :index
+    before_action :authenticate_user!
     before_action :restrict_user_by_role
 
         def index
@@ -11,12 +12,10 @@ module Admin
         end
         
         def update
-            respond_to do |format|
-                if @user.update(user_params)
-                    format.html { redirect_to admin_user_lists_url, notice: "User was successfully updated." }
-                else
-                    format.html { render :edit, status: :unprocessable_entity }
-                end
+            if @user.update(user_params)
+                redirect_to request.referrer, notice: "User was successfully deleted."
+            else
+                redirect_to request.referrer, notice: @user.errors.full_messages.to_sentence
             end
         end
 

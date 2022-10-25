@@ -3,9 +3,8 @@ class PagesController < ApplicationController
     @homepagess = Homepagess.first
     @products = Product.all
     # 
-    
-      @chatboxes = Chatroom.all
-      @customers = User.all
+    @chatboxes = Chatroom.all
+    @customers = User.all
     # 
   end
   def about

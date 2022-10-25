@@ -1,18 +1,30 @@
 <% if Homepagess.count == 0 %>
     <%# <header class="masthead bg-dark" style="background-image: url('../assets/img/header-bg.jpg');"> %>
-    <header class="masthead bg-dark" style="background-image: url('https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg');">
+    <header class="masthead bg-dark" style="background-image: url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');">
         <div class="container">
-            <%# <div class="masthead-subheading">Welcome To Our Gallery!</div>
-            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div> %>
-                <div class="masthead-subheading"><%= @homepagess.brand_name %></div>
-                <div class="masthead-heading text-uppercase"><%= @homepagess.description %></div>
+            <div class="masthead-subheading">Welcome To Our Gallery!</div>
+            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
             <%= link_to 'Tell Me More', pages_about_path, class:"btn btn-primary btn-lg text-uppercase" %>
         </div>
     </header>
+    
+    <div class="p-5 mb-4 bg-light bg-opacity-50">
+        <div class="container-fluid py-5">
+            <h1 class="col-md-8 display-5 fw-bold">
+                Let's find your pottery!
+            </h1>
+            <%= link_to "Shop now?", products_path, class:"btn btn-primary btn-lg" %>
+        </div>
+    </div>
 <% else %>
 <%#  %>
     <div class="position-relative">
-        <%= render 'pages/carousel', obj: @homepagess.covers if @homepagess.covers.attached? %>
+        <% if @homepagess.covers.attached? %>
+            <%= render 'pages/carousel', obj: @homepagess.covers %>
+        <% else %>
+            <%= render 'pages/carousel_empty' %>
+        <% end %>
+        
         <header class="masthead position-absolute top-50 start-50 translate-middle">
             <div class="container">
                 <div style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">
@@ -25,15 +37,11 @@
             </div>
         </header>
     </div>
-    <%#  %>
     <div class="p-5 mb-4 bg-light bg-opacity-50">
         <div class="container-fluid py-5">
             <h1 class="col-md-8 display-5 fw-bold">
-            <%= @homepagess.title %>
+                <%= @homepagess.title %>
             </h1>
-            <p class="col-md-8 fs-4" style="text-align:justify;">
-            <%# <%= @homepagess.title %>
-            </p>
             <%= link_to "Shop now?", products_path, class:"btn btn-primary btn-lg" %>
         </div>
     </div>
