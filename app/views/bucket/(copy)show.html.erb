@@ -1,0 +1,134 @@
+<div class="container-fluid px-4">
+    <h2 class="mt-4">
+        Purchase History
+    </h2>
+
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @keeps %>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="text-center">No.</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Order Time</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <%#  %>
+                        <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= keep.customer %>
+                            </td>
+                            <td>
+                                <%=  %>
+                            </td>
+                            <td>
+                                <%= keep.product_name %>
+                            </td>
+                            <td>
+                                <%= number_to_currency(keep.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                            </td>
+                            <td>
+                                <%= keep.quantity %>
+                            </td>
+                            <td>
+                                <%= number_to_currency(keep.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                            </td>
+                            <td>
+                                <%= keep.order_start.strftime("%d/%m/%y") if !keep.order_start.nil? %>
+                            </td>
+                            <td>
+                                <%= keep.order_end.strftime("%d/%m/%y") if !keep.order_end.nil?  %>
+                            </td>
+                        </tr>
+                        <% end %>
+                        
+                    
+                        <tr class="table-warning">
+                            <td colspan="5">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    <%= @quantity_keep %>
+                                </strong>
+                            </td>
+                            <td class="table-danger">
+                                <strong>
+                                    <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
+                                    <%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                                </strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td> </td>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+  <div class="card rounded-3 mb-4">
+    <div class="position-absolute top-0 end-0 m-1">
+      <%# BTN Delete %>
+    </div>
+    <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
+      <%# BTN COLAPE %>
+    </div>
+  <div class="card-body p-4">
+    <div class="row d-flex justify-content-between align-items-center">
+      <div class="col-md-2 col-lg-2 col-xl-2">
+        <%# PICT %>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xl-3">
+        <span data-turbo="false">
+          <p class="lead fw-normal mb-2">
+            <%# <%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %> 
+          </p>
+        </span>
+      <div>
+      <%# </span> %>
+        <%# <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+      </div>
+      <div>
+        <span class="text-muted">Quantity: </span>
+          <%# <%= orderable.quantity %>
+    </div>
+  </div>
+  <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+    <!-- Button trigger modal -->
+    <%# BTN NOTE %>
+    </div>
+      <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
+        <h5 class="mb-0">
+          <%# <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        </h5>
+      </div>
+    </div>
+  </div>
+  </div>

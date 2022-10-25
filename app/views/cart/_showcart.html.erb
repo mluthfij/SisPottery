@@ -1,89 +1,85 @@
-    <span data-turbo="true">
-      <% if @cart.orderables.count > 0 %>
-        <% @cart.orderables.order(id: :desc).each do |orderable| %>
-        <% product = orderable.product %>
-        <div class="card rounded-3 mb-4">
-            <div class="position-absolute top-0 end-0 m-1">
-                <%= form_with(url: cart_removecart_path) do |f| %>
-                    <%= f.hidden_field :id, value: orderable.id %>
-                        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
+<span data-turbo="true">
+  <% if @cart.orderables.count > 0 %>
+  <% @cart.orderables.order(id: :desc).each do |orderable| %>
+  <% product = orderable.product %>
+  <div class="card rounded-3 mb-4">
+    <div class="position-absolute top-0 end-0 m-1">
+    <%= form_with(url: cart_removecart_path) do |f| %>
+      <%= f.hidden_field :id, value: orderable.id %>
+          <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+    <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
+      <a class="btn btn-sm btn-primary" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Edit
+      </a>
+    </div>
+  <div class="card-body p-4">
+    <div class="row d-flex justify-content-between align-items-center">
+      <div class="col-md-2 col-lg-2 col-xl-2">
+        <div data-turbo="false">
+          <%= link_to product_path(product) do %>
+            <% if product.images.attached? %>
+              <% product.images.each_with_index do |image, index| %>
+                <% if index == 0 %>
+                  <%= image_tag(image, class:"img-fluid rounded-3") %>
                 <% end %>
-            </div>
-            <%#  %>
-            <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
-            <a class="btn btn-sm btn-primary" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Edit
-            </a>
-            </div>
-            <%#  %>
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                  <%#  %>
-                  <div data-turbo="false">
-                  <%= link_to product_path(product) do %>
-                    <% if product.images.attached? %>
-                      <% product.images.each_with_index do |image, index| %>
-                        <% if index == 0 %>
-                          <%= image_tag(image, class:"img-fluid rounded-3") %>
-                        <% end %>
-                      <% end %>
-                    <% else %>
-                      <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
-                    <% end %>
-                  <% end %>
-                  </div>
-                  <%#  %>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                  <span data-turbo="false">
-                <p class="lead fw-normal mb-2"><%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %></p>
-                  </span>
-                <div>
-                    </span><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                </div>
-                <div>
-                    <span class="text-muted">Quantity: </span><%= orderable.quantity %>
-                </div>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
-
-                <!-- Button trigger modal -->
-                <button type="button" class="text-decoration-none btn btn-link <%= orderable.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalDesc<%= orderable.id %>">
-                    <i class="bi bi-card-list"></i> Note
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
-                <h5 class="mb-0">
-                    <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                </h5>
-              </div>
-            </div>
-          </div>
-          <%#  %>
-  <div class="collapse" id="col<%= orderable.id %>">
-    <div class="m-4">
-            <%= form_with(url: cart_addcart_path) do |f| %>
-              <%= f.hidden_field :id, value: product.id %>
-              <%= f.label :quantity, class:"form-label" %>
-              <div class="mb-3">
-                <%= f.number_field :quantity, value: orderable.quantity, min: 1, class:"form-control" %>
-              </div>
-              <div class="mb-3">
-                <%= f.label :description, 'Notes', class:"form-label" %>
-                <%= f.text_area :description, value: orderable.description, class:"form-control", placeholder:"Add notes here.." %>
-              </div>
-              <br><br>
-              <%#  %>
-                <%= f.submit "Update cart", class:"btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4" %>
+              <% end %>
+            <% else %>
+              <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
             <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xl-3">
+        <span data-turbo="false">
+          <p class="lead fw-normal mb-2"><%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %></p>
+        </span>
+      <div>
+      <%# </span> %>
+        <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+      </div>
+      <div>
+        <span class="text-muted">Quantity: </span><%= orderable.quantity %>
     </div>
   </div>
-          <%#  %>
-        </div>
-        <% end %>
-        
-        <% else %>
-            Your cart is empty
-        <% end %>
-          </span>
+  <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+    <!-- Button trigger modal -->
+    <button type="button" class="text-decoration-none btn btn-link <%= orderable.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalDesc<%= orderable.id %>">
+      <i class="bi bi-card-list"></i> Note
+    </button>
+    </div>
+      <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
+        <h5 class="mb-0">
+          <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        </h5>
+      </div>
+    </div>
+  </div>
+  <%#  %>
+  <div class="collapse" id="col<%= orderable.id %>">
+    <div class="m-4">
+      <%= form_with(url: cart_addcart_path) do |f| %>
+      <%= f.hidden_field :id, value: product.id %>
+      <%= f.label :quantity, class:"form-label" %>
+      <div class="mb-3">
+        <%= f.number_field :quantity, value: orderable.quantity, min: 1, class:"form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :description, 'Notes', class:"form-label" %>
+        <%= f.text_area :description, value: orderable.description, class:"form-control", placeholder:"Add notes here.." %>
+      </div>
+    <br><br>
+      <%#  %>
+        <%= f.submit "Update cart", class:"btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4" %>
+      <% end %>
+    </div>
+  </div>
+  <%#  %>
+  </div>
+  <% end %>
+
+  <% else %>
+    Your cart is empty
+  <% end %>
+</span>

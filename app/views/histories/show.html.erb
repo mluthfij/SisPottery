@@ -1,73 +1,71 @@
-<div class="container-fluid px-4">
-    <h2 class="mt-4">
-        Production Process
-    </h2>
-    <div class="table-responsive">
-        <table class="table table-hover table-striped table-bordered table-sm">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col" class="text-center">No.</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col" class="text-center">Image</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Order Time</th>
-                    <th scope="col" class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @vessels.each_with_index do |vessel, index| %>
-                    <tr>
-                        <td>
-                            <%= index + 1 %>
-                        </td>
-                        <td>
-                            <%= vessel.customer %>
-                        </td>
-                        <td>
-                            <%=  %>
-                        </td>
-                        <td>
-                            <%= vessel.product_name %>
-                        </td>
-                        <td>
-                            <%= number_to_currency(vessel.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                        </td>
-                        <td>
-                            <%= vessel.quantity %>
-                        </td>
-                        <td>
-                            <%= number_to_currency(vessel.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                        </td>
-                        <td>
-                            <%= vessel.order_at %>
-                        </td>
-                        <td></td>
-                    </tr>
-                <% end %>
-                <tr class="table-warning">
-                    <td colspan="5">
-                        <strong>Total</strong>
-                    </td>
-                    <td class="table-danger">
-                        <strong>
-                            <%= @quantity_vessel %>
-                        </strong>
-                    </td>
-                    <td class="table-danger">
-                        <strong>
-                            <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
-                            <%= number_to_currency(@price_vessel, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                        </strong>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container-fluid py-5">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-10">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-normal mb-0 text-black">Order Processed</h3>
+      <div>
+      <h4>
+        <strong>Total Payment: </strong><%= number_to_currency(@price_vessel, unit: "Rp. ", separator: ",", delimiter: ".") %>
+      </h4>
     </div>
+  </div>
+  <div class="text-center mb-3">
+    <span class="badge text-bg-warning">
+      <span>Total Quantity: <%= @quantity_vessel %></span>
+    </span>
+  </div>
+
+  <% @vessels.each_with_index do |vessel, index| %>
+    <div class="card rounded-3 mb-4">
+      <div class="position-absolute top-0 end-0 m-1">
+        <h5>
+          <span class="badge bg-danger">
+            Due date: <%= vessel.date %>
+          </span>
+        </h5>
+      </div>
+      <%# <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
+        BTN COLAPE
+      </div> %>
+    <div class="card-body p-4">
+      <div class="row d-flex justify-content-between align-items-center">
+        <div class="col-md-2 col-lg-2 col-xl-2">
+          <%# PICT %>
+          <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <span data-turbo="false">
+            <p class="lead fw-normal mb-2">
+              <%= vessel.product_name %>
+              <%# <%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %> 
+            </p>
+          </span>
+        <div>
+        <%# </span> %>
+        <%= number_to_currency(vessel.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          <%# <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        </div>
+        <div>
+          <span class="text-muted">Quantity: </span>
+            <%# <%= orderable.quantity %>
+            <%= vessel.quantity %>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link text-decoration-none">
+        <i class="bi bi-card-list"></i> Note    
+      </button>
+      </div>
+        <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
+          <h5 class="mb-0">
+          <%= number_to_currency(vessel.product_price * vessel.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+            <%# <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
+          </h5>
+        </div>
+      </div>
+    </div>
+    </div>
+  <% end %>
 </div>
-
-

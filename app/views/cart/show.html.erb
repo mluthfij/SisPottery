@@ -1,42 +1,38 @@
-  <div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-10">
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-          <div>
-          <h4>
-<%= turbo_frame_tag "payment_counter" do %>
-    <span data-turbo="true">
-      <%= render 'cart/payment_counter' %>
-    </span>
-<% end %>
-          </h4>
-          </div>
-        </div>
-        <div class="text-center mb-3">
-          <span class="badge text-bg-warning">
-            <%= turbo_frame_tag "q_counter" do %>
-              <span data-turbo="true">
-                <%= render 'cart/q_counter' %>
-              </span>
-            <% end %>
+<div class="container py-5">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-10">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+      <div>
+      <h4>
+        <%= turbo_frame_tag "payment_counter" do %>
+          <span data-turbo="true">
+            <%= render 'cart/payment_counter' %>
           </span>
-        </div>
-<%= turbo_frame_tag "show_cart" do %>
-    <span data-turbo="true">
-        <%= render 'cart/showcart' %>
-    </span>
-<% end %>
-      </div>
+        <% end %>
+      </h4>
     </div>
   </div>
-
-  <%= turbo_frame_tag "show_notes" do %>
+  <div class="text-center mb-3">
+    <span class="badge text-bg-warning">
+      <%= turbo_frame_tag "q_counter" do %>
+        <span data-turbo="true">
+          <%= render 'cart/q_counter' %>
+        </span>
+      <% end %>
+    </span>
+  </div>
+  <%= turbo_frame_tag "show_cart" do %>
     <span data-turbo="true">
-
-      <%= render "cart/notes" %>
-
-
+      <%= render 'cart/showcart' %>
     </span>
   <% end %>
+</div>
+  <%# </div> %>
+  <%# </div> %>
+
+<%= turbo_frame_tag "show_notes" do %>
+  <span data-turbo="true">
+    <%= render "cart/notes" %>
+  </span>
+<% end %>
