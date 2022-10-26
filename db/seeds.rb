@@ -7,11 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
-User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
-
 # Product.create(name: 'New', user_id: 1, price: '1999')
 
-(1..100).each do |i|
-    Product.create(name: "Product #{i}", user_id: 1, price: rand(15..100), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+if User.count < 2
+    User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
+    User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
 end
+
+if Product.count < 100
+    (1..100).each do |i|
+        Product.create(name: "Product #{i}", user_id: 1, price: rand(15..100), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+    end
+end
+
+if Keep.count < 100
+    (1..100).each do |k|
+        # Keep.create(product_name: "Product #{i}", user_id: 1, product_price: rand(15..100), point: i, quantity: rand(1..50), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+        # Keep.create(product_name: "Product #{i}", user_id: 1, product_price: rand(15..100), point: i, quantity: rand(1..50), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+        Keep.create(bucket_id: 1, customer: "luthfi", product_name: "Product #{k}", product_price: rand(1..500), quantity: rand(1..50), total_price: rand(1..500), order_start: "0026-10-22", order_end: "2022-10-05", point: k, user_id: 1, created_at: Time.now - k.days, updated_at: Time.now - k.days)
+    end
+end
+
+# Keep.create(bucket_id: 1, customer: "luthfi", product_name: "Product 100", product_price: 54, quantity: 3, total_price: 486, order_start: "0026-10-22", order_end: "2022-10-05", point: 200, user_id: 2)

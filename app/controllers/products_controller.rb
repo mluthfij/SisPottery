@@ -1,15 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: :upvote
-  
   # GET /products or /products.json
   def index
-    # @products = Product.all
-    # @products = Product.all.order(cached_votes_score: :desc)
-    # 
-    # @products = Product.all.order(cached_votes_score: :desc).page params[:page]
-    # 
-    # @products = Product.order(cached_votes_score: :desc).page(params[:page])
-    # 
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).order(cached_votes_score: :desc).page(params[:page])
   end
