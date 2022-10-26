@@ -1,5 +1,5 @@
 <div class="container-fluid px-4">
-    <h2 class="mt-4">All Chat</h2>
+    <h2 class="mt-4 mb-2">All Chat</h2>
     <div class="list-group">
       <% @chatboxes.order(id: :desc).each do |chatbox| %>
         <a href="<%= admin_chatroom_path(chatbox) %>" class="list-group-item list-group-item-action" aria-current="true">
@@ -14,3 +14,9 @@
     </div>
 </div>
 
+<div class="mt-2 d-flex justify-content-center">
+  <%= paginate @chatboxes %>
+</div>
+<div class="text-center">
+  <%= page_entries_info @chatboxes, entry_name: 'chat' %>
+</div>

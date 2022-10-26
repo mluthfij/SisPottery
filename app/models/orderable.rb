@@ -3,6 +3,7 @@ class Orderable < ApplicationRecord
     belongs_to :cart
     belongs_to :user
     # has_many :vessels, dependent: :destroy
+    # paginates_per 15
 
     def total
         product.price * quantity

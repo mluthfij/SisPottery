@@ -1,5 +1,6 @@
 <%= form_with model: [:admin, @homepagess] do |form| %>
   <% if homepagess.errors.any? %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <div id="error_explanation">
       <h2><%= pluralize(homepagess.errors.count, "error") %> prohibited this homepagess from being saved:</h2>
       <ul>
@@ -8,44 +9,58 @@
         <% end %>
       </ul>
     </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <% end %>
 
-  <%# <%= render 'pages/carousel', obj: @homepagess.covers if @homepagess.covers.attached? %>
-  <%# <%= form.file_field :covers, multiple: true, class:"form-control" %>
-  <div class="p-5 mb-4 bg-light bg-opacity-50">
-      <div class="container-fluid py-5">
-          <%# <div class="form-floating mb-2"> %>
-            <%# <%= form.text_field :title, class:"form-control" %>
-            <%# <%= form.label :title, class:"form-label", placeholder:"title" %>
-          <%# </div> %>
+    <% if @homepagess.covers.attached? %>
+      <% @homepagess.covers.each_with_index do |cover, index| %>
+        <% if index < 1 %>
+          <header class="masthead bg-dark" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('<%= cover.url %>');background-repeat: no-repeat;background-attachment: scroll;background-position: center center;background-size: cover;">
+        <% end %>
+      <% end %>
+    <% else %>
+      <header class="masthead bg-dark" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');background-repeat: no-repeat;background-attachment: scroll;background-position: center center;background-size: cover;">
+    <% end %>
+    <%# <header class="masthead bg-dark" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');background-repeat: no-repeat;background-attachment: scroll;background-position: center center;background-size: cover;"> %>
 
-          <div class="mb-2">
-            <%= form.label :covers, 'Carousel:', class:"form-label" %>
-            <%= form.file_field :covers, multiple: true, class:"form-control" %>
-          </div>
+    <div class="container">
+        <div class="mb-2">
+          <h3>
+            <%= form.label :covers, 'Images Carousel', class:"form-label" %>
+          </h3>
+          <%= form.file_field :covers, multiple: true, class:"form-control" %>
+        </div>
+        <%# <div class="masthead-subheading"> %>
+        <div class="form-floating mb-2 text-dark">
+          <%= form.text_field :brand_name, class:"form-control", placeholder:"Text" %>
+          <%= form.label :brand_name, 'Text', class:"form-label" %>
+        </div>
+        <%# </div> %>
+        <%# <div class="masthead-heading text-uppercase"> %>
+        <div class="form-floating height-form-text mb-2 text-dark">
+          <%= form.text_field :description, class:"form-control", placeholder:"Description"  %>
+          <%= form.label :description, class:"form-label", placeholder:"desc" %>
+        </div>
+        <%# </div> %>
+        <%= link_to 'Tell Me More', pages_about_path, class:"btn btn-primary btn-lg text-uppercase disabled" %>
+    </div>
+</header>
 
-
-          <div class="form-floating mb-2">
-            <%= form.text_field :brand_name, class:"form-control", placeholder:"name" %>
-            <%= form.label :brand_name, class:"form-label" %>
-          </div>
-
-            <div class="form-floating height-form-text mb-2">
-              <%= form.text_area :description, class:"form-control w-100", style:"min-height:100px;" %>
-              <%= form.label :description, class:"form-label", placeholder:"desc" %>
-            </div>
-
-          <%# <h1 class="display-5 fw-bold"> %>
-            <div class="form-floating mb-2">
-              <%= form.text_field :title, class:"form-control" %>
-              <%= form.label :title, class:"form-label", placeholder:"title" %>
-            </div>
-          <%# </h1> %>
-          <p class="col-md-8 fs-4" style="text-align:justify;">
-          <%# <%= @homepagess.description %>
-          </p>
-          <%# <%= link_to "Shop now?", products_path, class:"btn btn-primary btn-lg" %>
-          <%= form.submit class:"btn btn-primary btn-lg" %>
-      </div>
-  </div>
+<div class="p-5 mb-4 bg-light bg-opacity-50">
+    <div class="container-fluid py-5">
+        <%# <h1 class="col-md-8 display-5 fw-bold">
+            Let's find your pottery!
+        </h1> %>
+        <div class="form-floating mb-2">
+          <%= form.text_field :title, class:"form-control", placeholder:"name" %>
+          <%= form.label :title, 'Text', class:"form-label", placeholder:"Text" %>
+        </div>
+        <%= link_to "Shop now?", products_path, class:"btn btn-primary btn-lg disabled" %>
+    </div>
+    <div class="d-grid gap-2">
+      <%= form.submit class:"btn btn-dark btn-lg" %>
+      <%# <button class="btn btn-primary" type="button">Button</button> %>
+    </div>
+</div>
 <% end %>

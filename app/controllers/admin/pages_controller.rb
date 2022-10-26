@@ -36,7 +36,9 @@ module Admin
     end
 
     def chatbox
-      @chatboxes = Chatroom.all
+      # @chatboxes = Chatroom.all
+      @q = Chatroom.all.ransack(params[:q])
+      @chatboxes = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     end
     
     def chatroom

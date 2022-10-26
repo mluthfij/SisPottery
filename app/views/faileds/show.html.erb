@@ -12,6 +12,23 @@
       <span>Total Quantity: <%= @quantity_failed %></span>
     </span>
   </div>
+  <%#  %>
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @faileds, entry_name: 'failed transaction history' %>
+        </div>
+        <div class="col">
+          <% if current_user.faileds.count > 15 %>
+              <div class="d-flex flex-row-reverse">
+                  <div class="btn-group border">
+                      <%= link_to " ", (path_to_prev_page @faileds), class: @faileds.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                      <%= link_to " ", (path_to_next_page @faileds), class: @faileds.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                  </div>
+              </div>
+          <% end %>
+        </div>
+    </div>
+  <%#  %>
 
   <% @faileds.order(id: :desc).each_with_index do |failed, index| %>
     <div class="card rounded-3 mb-4">
@@ -29,14 +46,16 @@
       <div class="row d-flex justify-content-between align-items-center">
         <div class="col-md-2 col-lg-2 col-xl-2">
           <%# PICT %>
-          <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+          <%= link_to product_path(failed.point) do %> 
+            <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+          <% end %>
 
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
           <span data-turbo="false">
             <p class="lead fw-normal mb-2">
-              <%= failed.product_name %>
-              <%# <%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %> 
+              <%# <%= failed.product_name %>
+              <%= link_to failed.product_name, product_path(failed.point), class:"text-decoration-none text-dark" %> 
             </p>
           </span>
         <div>

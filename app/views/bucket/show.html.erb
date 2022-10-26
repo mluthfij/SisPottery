@@ -14,6 +14,23 @@
       <span>Total Quantity: <%= @quantity_keep %></span>
     </span>
   </div>
+  <%#  %>
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @keeps, entry_name: 'purchase history' %>
+        </div>
+        <div class="col">
+          <% if current_user.keeps.count > 15 %>
+            <div class="d-flex flex-row-reverse">
+              <div class="btn-group border">
+                  <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                  <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  <%#  %>
 
   <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
     <div class="card rounded-3 mb-4">
@@ -31,14 +48,16 @@
       <div class="row d-flex justify-content-between align-items-center">
         <div class="col-md-2 col-lg-2 col-xl-2">
           <%# PICT %>
-          <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+          <%= link_to product_path(keep.point) do %> 
+            <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+          <% end %>
 
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
           <span data-turbo="false">
             <p class="lead fw-normal mb-2">
-              <%= keep.product_name %>
-              <%# <%= link_to product.name, product_path(product), class:"text-decoration-none text-dark" %> 
+              <%# <%= keep.product_name %>
+              <%= link_to keep.product_name, product_path(keep.point), class:"text-decoration-none text-dark" %> 
             </p>
           </span>
         <div>

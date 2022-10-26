@@ -2,47 +2,52 @@
 <section class="page-section" id="about">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">About</h2>
-            <h3 class="section-subheading text-muted">Sawargi Itong Saputra Pottery</h3>
+            <div style="text-shadow: 2px 2px #000000;">
+                <h2 class="section-heading text-uppercase">About</h2>
+                <h3 class="section-subheading">Sawargi Itong Saputra Pottery</h3>
+                <%# <h3 class="section-subheading text-muted">Sawargi Itong Saputra Pottery</h3> %>
+            </div>
         </div>
 
-        <% if user_signed_in? && current_user.admin? %>
-        <%= form_with model: [:admin, @about] do |form| %>
-        <ul class="timeline">
-            <%#  %>
-            <li class="timeline-inverted">
-                <div class="timeline-image circular">
-                    <img class="" src="https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" alt="..." />
-                    <%# <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." /> %>
-                </div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                    <%# <h4>2009-2011</h4> %>
-                        <div class="mb-3">
-                            <%= form.file_field :image, class:"form-control" %>
+        <% if user_signed_in? && current_user.admin? && params[:action] == 'index' && params[:controller] == 'admin/abouts' %>
+            <%= form_with model: [:admin, @about] do |form| %>
+            <ul class="timeline">
+                <%#  %>
+                <li class="timeline-inverted">
+                    <div class="timeline-image circular">
+                        <img class="" src="https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" alt="..." />
+                        <%# <img class="" src="https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="..." /> %>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                        <%# <h4>2009-2011</h4> %>
+                            <div class="mb-3">
+                                <%= form.file_field :image, class:"form-control" %>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <%= form.date_field :sub_title, class:"form-control", placeholder:"title" %>
+                                <label for="floatingInput">Date</label>
+                            </div>
+                            <div class="subheading form-floating mb-3">
+                                <%= form.text_field :title, class:"form-control", placeholder:"title" %>
+                                <label for="floatingInput">Title</label>
+                            </div>
                         </div>
-                        <div class="form-floating mb-3">
-                            <%= form.date_field :sub_title, class:"form-control", placeholder:"title" %>
-                            <label for="floatingInput">Date</label>
-                        </div>
-                        <div class="subheading form-floating mb-3">
-                            <%= form.text_field :title, class:"form-control", placeholder:"title" %>
-                            <label for="floatingInput">Title</label>
+                        <div class="timeline-body">
+                        <%# <p class="text-muted"> %>
+                            <div class="form-floating mb-3">
+                                <%= form.text_area :description, class:"form-control", placeholder:"title", style:"height:150px;" %>
+                                <label for="floatingInput">Description</label>
+                            </div>
+                            <div class="">
+                                <%= form.submit class:"btn btn-warning shadow-lg" %>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-body">
-                    <%# <p class="text-muted"> %>
-                        <div class="form-floating mb-3">
-                            <%= form.text_area :description, class:"form-control", placeholder:"title", style:"height:150px;" %>
-                            <label for="floatingInput">Description</label>
-                        </div>
-                        <div class="">
-                            <%= form.submit class:"btn btn-dark" %>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <% end %>
+                </li>
+                <% end %>
+            <% else %>
+                <ul class="timeline">
             <% end %>
 
             <% obj.order(id: :desc).each_with_index do |about, index| %>
@@ -57,20 +62,28 @@
                 </div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4><%= about.sub_title %></h4>
-                        <h4 class="subheading"><%= about.title %></h4>
+                        <div style="text-shadow: 2px 2px #000000;">
+                            <h4><%= about.sub_title %></h4>
+                            <h4 class="subheading"><%= about.title %></h4>
+                        </div>
                     </div>
                     <div class="timeline-body">
-                        <p class="text-muted">
-                            <%= about.description %>
-                        </p>
+                        <%# <p class="text-muted"> %>
+                        <div style="text-shadow: 2px 2px #000000;">
+                            <p class="">
+                                <%= about.description %>
+                            </p>
+                        </div>
                     </div>
-                    <%= link_to 'Edit', edit_admin_about_path(about), class:"btn btn-lg btn-dark" %>
-                    <%= link_to 'Delete', admin_about_path(about), class:"btn btn-lg btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+                    <% if user_signed_in? && current_user.admin? %>
+                        <%= link_to 'Edit', edit_admin_about_path(about), class:"btn btn-lg btn-dark" %>
+                        <%= link_to 'Delete', admin_about_path(about), class:"btn btn-lg btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+                    <% end %>
                 </div>
             </li>
             <% end %>
             <li class="timeline-inverted">
+                <div style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">
                 <div class="timeline-image">
                     <h4>
                     That's all
@@ -79,6 +92,7 @@
                     <br />
                     Story!
                     </h4>
+                </div>
                 </div>
             </li>
         </ul>

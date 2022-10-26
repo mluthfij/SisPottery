@@ -194,8 +194,8 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
     t.string "firstname"
     t.string "lastname"
     t.text "my_address"
-    t.integer "phone"
-    t.integer "wa_phone"
+    t.string "phone"
+    t.string "wa_phone"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,9 +1,11 @@
 <% if Homepagess.count == 0 %>
-    <%# <header class="masthead bg-dark" style="background-image: url('../assets/img/header-bg.jpg');"> %>
-    <header class="masthead bg-dark" style="background-image: url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');">
+    <%# <header class="masthead bg-dark" style="background-image: url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');"> %>
+    <header class="masthead bg-dark" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://deneenpottery.com/wp-content/uploads/2018/09/what-about-pottery-resonates-so-much.jpg');background-repeat: no-repeat;background-attachment: scroll;background-position: center center;background-size: cover;">
         <div class="container">
-            <div class="masthead-subheading">Welcome To Our Gallery!</div>
-            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+            <div style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">
+                <div class="masthead-subheading">Welcome To Our Gallery!</div>
+                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+            </div>
             <%= link_to 'Tell Me More', pages_about_path, class:"btn btn-primary btn-lg text-uppercase" %>
         </div>
     </header>
@@ -33,7 +35,7 @@
                     <div class="masthead-subheading"><%= @homepagess.brand_name %></div>
                     <div class="masthead-heading text-uppercase"><%= @homepagess.description %></div>
                 </div>
-                <%= link_to 'Tell Me More', pages_about_path, class:"btn btn-primary btn-lg text-uppercase" %>
+                <%= link_to 'Tell Me More', pages_about_path, class: user_signed_in? && current_user.admin? ? "btn btn-primary btn-lg text-uppercase disabled" : "btn btn-primary btn-lg text-uppercase" %>
             </div>
         </header>
     </div>
@@ -42,7 +44,7 @@
             <h1 class="col-md-8 display-5 fw-bold">
                 <%= @homepagess.title %>
             </h1>
-            <%= link_to "Shop now?", products_path, class:"btn btn-primary btn-lg" %>
+            <%= link_to "Shop now?", products_path, class: user_signed_in? && current_user.admin? ? "btn btn-primary btn-lg disabled" : "btn btn-primary btn-lg" %>
         </div>
     </div>
 <% end %>

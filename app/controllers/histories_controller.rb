@@ -4,10 +4,9 @@ class HistoriesController < ApplicationController
 
   def show
     # @vessels = Vessel.all
-    # @quantity_vessel = Vessel.sum(:quantity)
-    # @price_vessel = Vessel.sum(:price)
-    
-    @vessels = current_user.vessels.all
+    # @vessels = current_user.vessels.all
+    @q = current_user.vessels.ransack(params[:q])
+    @vessels = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     @quantity_vessel = current_user.vessels.sum(:quantity)
     @price_vessel = current_user.vessels.sum(:price)
   end
