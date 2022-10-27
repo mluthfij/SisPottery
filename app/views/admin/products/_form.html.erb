@@ -16,7 +16,7 @@
 
   <div class="mb-3 form">
     <%= form.label :images, class:"form-label" %>
-    <%= form.file_field :images, class:"form-control form-control-lg", multiple: true %>
+    <%= form.file_field :images, direct_upload: true, class:"form-control form-control-lg", multiple: true %>
   </div>
 
   <div class="form-floating mb-3">

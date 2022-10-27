@@ -21,7 +21,13 @@
                     <% if product.images.attached? %>
                         <% product.images.each_with_index do |image, index| %>
                             <% if index == 0 %>
-                                <%= image_tag(image, class:"card-img-top img-show") %>
+                                <% if image.image? %>
+                                    <%= image_tag(image, class:"card-img-top img-show") %>
+                                <% elsif image.video? %>
+                                    <%= image_tag(image.preview(resize_to_limit: [500, 500]), class:"card-img-top img-show") %>
+                                <% else %>
+                                    Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                                <% end %>
                             <% end %>
                         <%# <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="card-img-top" alt="..."> %>
                         <% end %>

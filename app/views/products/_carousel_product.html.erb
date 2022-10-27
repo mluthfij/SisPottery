@@ -10,7 +10,15 @@
     <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
       <%# <%= image_tag c, class:"d-block w-100 img-carousel" %>
       <a data-bs-toggle="modal" href="#exampleModalToggle">
-        <%= image_tag c, class:"d-block w-100 img-carousel-custom" %>
+        <% if c.image? %>
+          <%= image_tag c, class:"d-block w-100 img-carousel-custom" %>
+        <% elsif c.video? %>
+          <video controls class="d-block w-100 img-carousel-custom" style="width:100%;">
+            <source src="<%= rails_blob_url(c) %>" type="<%= c.content_type %>"/>
+          </video>
+        <% else %>
+            Download: <%= link_to c.filename, rails_blob_path(c, disposition: "file") %>
+        <% end %>
       </a>
     </div>
   <% end %>

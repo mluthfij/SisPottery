@@ -10,7 +10,15 @@
                 <div class="carousel-inner">
                 <% obj.each_with_index do |image, index| %>
                     <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                      <% if image.image? %>
                         <%= image_tag image, class:"d-block justify-content-center img-carousel2 h-100 w-100 bg-dark bg-opacity-25 rounded" %>
+                      <% elsif image.video? %>
+                        <video controls class="d-block w-100 img-carousel-custom" style="width:100%;">
+                          <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                        </video>
+                      <% else %>
+                          Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                      <% end %>
                     </div>
                 <% end %>
                 </div>
@@ -19,7 +27,13 @@
             <div class="x-scroll">
                 <% obj.each_with_index do |image, index| %>
                     <a href="#carousel-modal" data-bs-slide-to="<%= index %>">
+                      <% if image.image? %>
                         <%= image_tag image, class:"x-scroll-image m-2 rounded shadow border border-white" %>
+                      <% elsif image.video? %>
+                        <%= image_tag image.preview(resize_to_limit: [100, 100]), class:"x-scroll-image m-2 rounded shadow border border-white" %>
+                      <% else %>
+                          Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                      <% end %>
                     </a>
                 <% end %>
             </div>
