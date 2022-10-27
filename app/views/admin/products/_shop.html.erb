@@ -24,7 +24,9 @@
                                 <% if image.image? %>
                                     <%= image_tag(image, class:"card-img-top img-show") %>
                                 <% elsif image.video? %>
-                                    <%= image_tag(image.representation(resize_to_limit: [500, 500]), class:"card-img-top img-show") %>
+                                    <video class="card-img-top img-show">
+                                        <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                                    </video>
                                 <% else %>
                                     Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
                                 <% end %>
