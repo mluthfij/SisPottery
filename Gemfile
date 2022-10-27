@@ -37,9 +37,10 @@ gem 'kaminari'
 
 gem 'ransack'
 
-# 
 gem 'chartkick', '~> 4.2', '>= 4.2.1'
 gem 'groupdate', '~> 6.1'
+# 
+gem "mini_magick"
 # 
 
 # Reduces boot times through caching; required in config/boot.rb
