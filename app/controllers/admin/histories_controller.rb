@@ -5,7 +5,11 @@ module Admin
 
     def show
       # @orders = Orderable.all
-      @vessels = Vessel.all
+      # @vessels = Vessel.all
+      
+      @q = Vessel.ransack(params[:q])
+      @vessels = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+
       @quantity_vessel = Vessel.sum(:quantity)
       @price_vessel = Vessel.sum(:price)
     end

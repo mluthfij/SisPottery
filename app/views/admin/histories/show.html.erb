@@ -2,6 +2,23 @@
     <h2 class="mt-4">
         Production Process
     </h2>
+
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @vessels, entry_name: 'processed order' %>
+        </div>
+        <div class="col">
+            <% if Vessel.count > 15 %>
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @vessels), class: @vessels.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @vessels), class: @vessels.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered table-sm">
             <thead class="table-light">
@@ -64,7 +81,7 @@
                                 <%= f.submit "Done", class: "btn btn-dark btn-sm mb-1" %>
                             <% end %>
 
-                            <%= form_with(url: admin_faileds_add_bucket_path) do |f| %>
+                            <%= form_with(url: admin_vessels_add_bucket_path) do |f| %>
                                 <%= f.hidden_field :id, value: vessel.id %>
                                 <%= f.hidden_field :total_price, value: vessel.price * vessel.quantity %>
                                 <%= f.hidden_field :quantity, value: vessel.quantity %>

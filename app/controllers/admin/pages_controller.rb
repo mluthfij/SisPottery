@@ -32,7 +32,9 @@ module Admin
     end
 
     def order
-      @orders = Orderable.all
+      # @orders = Orderable.all
+      @q = Orderable.ransack(params[:q])
+      @orders = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     end
 
     def chatbox

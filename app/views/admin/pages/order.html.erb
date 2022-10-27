@@ -2,6 +2,22 @@
     <h2 class="mt-4">
         Order page
     </h2>
+
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @orders, entry_name: 'processed order' %>
+        </div>
+        <div class="col">
+            <% if Orderable.count > 25 %>
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @orders), class: @orders.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @orders), class: @orders.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
 <%# table %>
 <div class="table-responsive">
     <table class="table table-hover table-striped table-bordered table-sm">

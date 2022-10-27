@@ -5,15 +5,17 @@
 
     <div class="row mb-2">
         <div class="col">
-            <%= page_entries_info @faileds %>
+            <%= page_entries_info @faileds, entry_name: 'failed transaction history' %>
         </div>
         <div class="col">
+            <% if Failed.count > 15 %>
             <div class="d-flex flex-row-reverse">
                 <div class="btn-group border">
                     <%= link_to " ", (path_to_prev_page @faileds), class: @faileds.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
                     <%= link_to " ", (path_to_next_page @faileds), class: @faileds.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
                 </div>
             </div>
+            <% end %>
         </div>
     </div>
 

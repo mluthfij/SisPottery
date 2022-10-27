@@ -17,7 +17,9 @@ module SisPotteryGallery
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.time_zone = 'Jakarta'
+    config.time_zone = 'Jakarta'
+    # config.active_record.default_timezone = :utc
+    # config.active_record.default_timezone = :local
     # config.e
 # 
   end

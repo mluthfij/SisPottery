@@ -5,15 +5,17 @@
 
     <div class="row mb-2">
         <div class="col">
-            <%= page_entries_info @keeps %>
+            <%= page_entries_info @keeps, entry_name: 'purchase history' %>
         </div>
         <div class="col">
+          <% if Keep.count > 15 %>
             <div class="d-flex flex-row-reverse">
                 <div class="btn-group border">
                     <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
                     <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
                 </div>
             </div>
+          <% end %>
         </div>
     </div>
 
