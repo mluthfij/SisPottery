@@ -30,7 +30,7 @@
                       <% if image.image? %>
                         <%= image_tag image, class:"x-scroll-image m-2 rounded shadow border border-white" %>
                       <% elsif image.video? %>
-                        <%= image_tag image.preview(resize_to_limit: [100, 100]), class:"x-scroll-image m-2 rounded shadow border border-white" %>
+                        <%= image_tag image.preview(resize_to_limit: [100, 100]).processed.url, class:"x-scroll-image m-2 rounded shadow border border-white" %>
                       <% else %>
                           Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
                       <% end %>
