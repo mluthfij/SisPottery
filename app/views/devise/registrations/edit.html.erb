@@ -1,139 +1,157 @@
 <div class="container mb-4" data-turbo="false">
     <h3 class="text-center font-weight-light my-4">Edit <%= current_user.admin? ? 'Admin' : 'User' %> Registration</h3>
     <div class="main-body">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <% if current_user.avatar.present? %>
-                                    <%= image_tag(current_user.avatar.variant(resize_to_fill: [200, 200]), class: "rounded-circle") %>
-                                <% else %>
-                                    <img src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." class="rounded-circle" width="200">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                        
+                        <div class="position-relative my-4">
+                            <% if current_user.avatar.present? %>
+                                <%= image_tag(current_user.avatar.variant(resize_to_fill: [200, 200]), class: "rounded-circle") %>
+                            <% else %>
+                                <img src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." class="rounded-circle" width="200">
+                            <% end %>
+                            <span class="position-absolute translate-middle bordered", style="top:5%;left:80%;">
+                                <%= link_to "Delete", purge_avatar_profile_path(current_user.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-dark btn-sm" if current_user.avatar.present? %>
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </div>
+
+                            <div class="mt-3">
+                                <div>
+                                    <strong>Avatar</strong>
+                                </div>
+                                <% if current_user.avatar.present? %>Current:
+                                    <%= current_user.avatar.filename.to_s %>
                                 <% end %>
-                                <div class="mt-3">
-                                    <% if current_user.avatar.present? %>Current:
-                                        <%= current_user.avatar.filename.to_s %>
-                                    <% end %>
-                                    <%= f.file_field :avatar, class: "form-control" %>
-                                </div>
-                                <div class="mt-3">
-                                    <h4><%= current_user.username %></h4>
-                                    <p class="text-secondary mb-1"><%= current_user.email %></p>
-                                    <p class="text-muted font-size-sm">
-                                    <%# Bay Area, San Francisco, CA %>
-                                        <%= current_user.my_address %>
-                                    </p>
-                                    <%# <p> %>
-                                        <%# <%= link_to 'My Profile', profile_path(current_user.id), class:"btn btn-dark w-100" %>
-                                    <%# </p> %>
-                                </div>
+                                <%#  %>
+                                <%= form_with(model: @profile, url: upload_avatar_profile_path(current_user.id), class:"input-group mb-3") do |f| %>
+                                    <%= f.file_field :avatar, direct_upload: true, class:"form-control" %>
+                                    <%= f.submit "Save", class:"btn btn-success" %>
+                                <% end %>
+                                <%#  %>
+                                <%# <%= f.file_field :avatar, class: "form-control" %>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-1">
-                                        <%= f.text_field :firstname, class:"form-control", id:"inputfirstname", type:"firstname", placeholder:"name@example.com" %>
-                                        <%= f.label :firstname, "First name", for:"inputfirstname" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-1">
-                                        <%= f.text_field :lastname, class:"form-control", id:"inputlastname", type:"lastname", placeholder:"name@example.com" %>
-                                        <%= f.label :lastname, "Last name", for:"inputlastname" %>
-                                    </div>
-                                </div>
+                            <div class="mt-3">
+                                <h4><%= current_user.username %></h4>
+                                <p class="text-secondary mb-1"><%= current_user.email %></p>
+                                <p class="text-muted font-size-sm">
+                                <%# Bay Area, San Francisco, CA %>
+                                    <%= current_user.my_address %>
+                                </p>
+                                <p>
+                                    <%= link_to 'My Profile', profile_path(current_user.id), class:"btn btn-dark w-100" %>
+                                </p>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <%= f.text_field :username, class:"form-control", id:"inputUsername", type:"Username", placeholder:"name@example.com" %>
-                                        <%= f.label :username, "Username", for:"inputUsername" %>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputEmail", type:"email", placeholder:"name@example.com" %>
-                                        <%= f.label :email, "Email address", for:"inputEmail" %>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-1">
-                                        <%= f.text_field :phone, class:"form-control", id:"inputphone", type:"phone", placeholder:"name@example.com" %>
-                                        <%= f.label :phone, "Phone", for:"inputphone" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-1">
-                                        <%= f.text_field :wa_phone, class:"form-control", id:"inputwa_phone", type:"wa_phone", placeholder:"name@example.com" %>
-                                        <%= f.label :wa_phone, "WhatsApp", for:"inputwa_phone" %>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                            <%# ERROR STARTED %>
-                                <div class="col">
-                                    <%# Bay Area, San Francisco, CA %>
-                                    <div class="form-floating">
-                                        <%= f.text_area :my_address, class:"form-control", id:"inputmy_address", type:"my_address", placeholder:"name@example.com" %>
-                                        <%= f.label :my_address, "Address", for:"inputmy_address" %>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-8">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <%= f.text_field :firstname, class:"form-control", id:"inputfirstname", type:"firstname", placeholder:"name@example.com" %>
+                                    <%= f.label :firstname, "First name", for:"inputfirstname" %>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <%= f.text_field :lastname, class:"form-control", id:"inputlastname", type:"lastname", placeholder:"name@example.com" %>
+                                    <%= f.label :lastname, "Last name", for:"inputlastname" %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <%= f.text_field :username, class:"form-control", id:"inputUsername", type:"Username", placeholder:"name@example.com" %>
+                                    <%= f.label :username, "Username", for:"inputUsername" %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputEmail", type:"email", placeholder:"name@example.com" %>
+                                    <%= f.label :email, "Email address", for:"inputEmail" %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <%= f.text_field :phone, class:"form-control", id:"inputphone", type:"phone", placeholder:"name@example.com" %>
+                                    <%= f.label :phone, "Phone", for:"inputphone" %>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-1">
+                                    <%= f.text_field :wa_phone, class:"form-control", id:"inputwa_phone", type:"wa_phone", placeholder:"name@example.com" %>
+                                    <%= f.label :wa_phone, "WhatsApp", for:"inputwa_phone" %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                        <%# ERROR STARTED %>
+                            <div class="col">
+                                <%# Bay Area, San Francisco, CA %>
+                                <div class="form-floating">
+                                    <%= f.text_area :my_address, style:"min-height:110px;", class:"form-control", id:"inputmy_address", type:"my_address", placeholder:"name@example.com" %>
+                                    <%= f.label :my_address, "Address", for:"inputmy_address" %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
             <%#  %>
-            <div class="card">
-                <div class="card-body">
-                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-                    <% end %>
+        <div class="card">
+            <div class="card-body">
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
 
-                    <div class="mb-3">
-                        <%= f.label :password, class:"form-label" %> <i>(leave blank if you don't want to change it)</i><br />
-                        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-                    </div>
+                <div class="mb-3">
+                    <%= f.label :password, class:"form-label" %> <i>(leave blank if you don't want to change it)</i><br />
+                    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+                </div>
 
-                    <% if @minimum_password_length %>
-                        <em><%= @minimum_password_length %> characters minimum.</em>
-                    <% end %>
+                <% if @minimum_password_length %>
+                    <em><%= @minimum_password_length %> characters minimum.</em>
+                <% end %>
 
-                    <div class="mb-3">
-                        <%= f.label :password_confirmation, class:"form-label" %><br />
-                        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-                    </div>
+                <div class="mb-3">
+                    <%= f.label :password_confirmation, class:"form-label" %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+                </div>
 
-                    <div class="card mt-3 bg-info bg-opacity-25">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <%= f.label :current_password, class:"form-label" %> <i>(we need your current password to confirm your changes)</i><br />
-                                <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-                            </div>
-
-                            <%= f.submit "Update", class:"btn btn-success" %>
-                            <%= link_to "Back", :back, class:"btn btn-dark" %>
+                <div class="card mt-3 bg-info bg-opacity-25">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <%= f.label :current_password, class:"form-label" %> <i>(we need your current password to confirm your changes *except avatar)</i><br />
+                            <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
                         </div>
+
+                        <%= f.submit "Update", class:"btn btn-success" %>
+                        <%= link_to "Back", :back, class:"btn btn-dark" %>
                     </div>
                 </div>
             </div>
+        </div>
         <% end %>
         <div class="card mt-3 bg-danger bg-opacity-25">
             <div class="card-body">

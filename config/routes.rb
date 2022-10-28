@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
-  resources :profiles, only: :show
+  resources :profiles, only: :show do
+    member do
+      post :upload_avatar
+      delete :purge_avatar
+    end
+  end
   namespace :admin do
     resources :messages, only: %i[ new create ]
     resources :homepagesses, except: :index

@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # 
+  # attr_accessor :authenticity_token
+  # attr_accessor :commit
+  # 
+  
   before_save { self.username = username.downcase }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
