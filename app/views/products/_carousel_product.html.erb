@@ -11,7 +11,7 @@
       <%# <%= image_tag c, class:"d-block w-100 img-carousel" %>
       <a data-bs-toggle="modal" href="#exampleModalToggle">
         <% if c.image? %>
-          <%= image_tag c, class:"d-block w-100 img-carousel-custom" %>
+          <%= image_tag c, class:"d-block w-100 img-carousel-custom", id:"file-ip-1-preview" %>
         <% elsif c.video? %>
           <video controls class="d-block w-100 img-carousel-custom" style="width:100%;">
             <source src="<%= rails_blob_url(c) %>" type="<%= c.content_type %>"/>

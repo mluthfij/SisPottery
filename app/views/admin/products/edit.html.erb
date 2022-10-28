@@ -8,23 +8,8 @@
         <%= link_to 'Back', :back, class:"float-end btn btn-lg btn-dark" %>
       </div>
     </div>
-
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col sticky-container">
-        <%# <div class="sticky-2"> %>
-        <div class="sticky-2 w-100 border shadow-sm rounded">
-        <% if @product.images.attached? %>
-          <%= render 'products/carousel_product', obj: @product.images %>
-        <% else %>
-          <%= image_tag('https://lpm.ulm.ac.id/image/desain/empty.jpg', class:'d-block w-100 img-carousel') %>
-        <% end %>
-        </div>
-      </div>
-      <div class="col">
-        <div class="mb-4">
-          <%= render 'form', product: @product %>
-        </div>
-      </div>
+    <div class="mb-4">
+      <%= render 'form', product: @product %>
     </div>
   </div>
 </div>

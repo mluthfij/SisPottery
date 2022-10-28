@@ -50,3 +50,4 @@ window.addEventListener('turbolinks:load', event => {
 //     elem.scrollTop = elem.scrollHeight;
 // // }, 5000);
 // }, 0);
+

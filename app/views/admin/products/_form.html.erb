@@ -1,45 +1,202 @@
-<%= form_with model: [:admin, @product] do |form| %>
-  <% if product.errors.any? %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <%# <strong>Holy guacamole!</strong> You should check in on some of those fields below. %>
-          <div id="error_explanation">
-            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-            <ul>
-              <% product.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% if params[:action] == "edit" %>
+    <div class="col sticky-container">
+      <%# <div class="sticky-2"> %>
+      <div class="sticky-2 w-100 border shadow-sm rounded">
+      <% if @product.images.attached? %>
+        <div class="display-img-vid-con" id="img-vid-con">
+          <%= render 'products/carousel_product', obj: @product.images %>
+        </div>
+      <% else %>
+        <div class="display-img-vid-con" id="img-vid-con">
+          <%= image_tag('https://lpm.ulm.ac.id/image/desain/empty.jpg', class:'d-block w-100 img-carousel', id:"file-ip-1-preview") %>
+        </div>
+        <%# <%= image_tag('https://lpm.ulm.ac.id/image/desain/empty.jpg', class:'d-block w-100 img-carousel', id:"file-ip-1-preview") %>
+      <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="col sticky-container">
+    <div class="sticky-2 w-100 border shadow-sm rounded">
+      <% if !@product.images.attached? %>
+          <div class="display-img-vid-con" id="img-vid-con">
+            <%= image_tag('https://lpm.ulm.ac.id/image/desain/empty.jpg', class:'d-block w-100 img-carousel', id:"file-ip-1-preview") %>
           </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <% end %>
+      </div>
     </div>
   <% end %>
+  <div class="col">
+    <div class="mb-4">
+      <%#  %>
+      <%= form_with model: [:admin, @product] do |form| %>
+        <% if product.errors.any? %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%# <strong>Holy guacamole!</strong> You should check in on some of those fields below. %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+                  <ul>
+                    <% product.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
 
-  <div class="mb-3 form">
-    <%= form.label :images, class:"form-label" %>
-    <%= form.file_field :images, direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+        <div class="mb-3 form">
+          <%= form.label :images, class:"form-label" %>
+          <%= form.file_field :images, accept:"image/*, video/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+        </div>
+
+        <%# <div class="mb-3 form"> %>
+          <%# <%= form.label :images, class:"form-label" %>
+          <%# <%= form.file_field :images, direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+        <%# </div> %>
+
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, class:"form-control", placeholder:"name" %>
+          <%= form.label :name, class:"form-label" %>
+        </div>
+
+        <div class="form-floating mb-3">
+          <%= form.number_field :price, class:"form-control", placeholder:"123" %>
+          <%= form.label :price, class:"form-label" %>
+        </div>
+
+        <div class="form-floating mb-3">
+          <%= form.text_area :description, class:"form-control", placeholder:"desc", style:"min-height:300px" %>
+          <%= form.label :description, class:"form-label" %>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= form.submit class:"btn btn-success" %>
+        </div>
+      <% end %>
+
+    </div>
   </div>
+</div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :name, class:"form-control", placeholder:"name" %>
-    <%= form.label :name, class:"form-label" %>
-  </div>
 
-  <div class="form-floating mb-3">
-    <%= form.number_field :price, class:"form-control", placeholder:"123" %>
-    <%= form.label :price, class:"form-label" %>
-  </div>
 
-  <%# <div class="form-floating mb-3"> %>
-    <%# <%= form.number_field :quantity, class:"form-control", placeholder:"123" %>
-    <%# <%= form.label :quantity, class:"form-label" %>
-  <%# </div> %>
+<%# TEST %>
+    <!-- button for selecting image/video -->
+    <%# <label for="inp-img-vid">
+      <span> Photos/Videos</span>
+      <input type="file" accept="image/*, video/*" name="img-vid" id="inp-img-vid">
+    </label> %>
 
-  <div class="form-floating mb-3">
-    <%= form.text_area :description, class:"form-control", placeholder:"desc", style:"min-height:300px" %>
-    <%= form.label :description, class:"form-label" %>
-  </div>
+    <%# <div class="display-img-vid-con" id="img-vid-con"  style="top: 30px; left: 250px;  position: absolute; z-index: 1" > %>
+    <%# <div class="display-img-vid-con" id="img-vid-con"  style="top: 30px; left: 250px;  position: absolute; z-index: 1" >
+    
+      <!-- showing selected image here -->
+      <!-- showing selected video here -->
+    
+    </div> %>
+    <%# </div> %>
 
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <%= form.submit class:"btn btn-success" %>
-  </div>
-<% end %>
+<%#  %>
+
+<script>
+  //$("#inp-img-vid").change( function(){ imgPreview(this); } );
+  document.getElementById("inp-img-vid").addEventListener("change", onFileSelected, false);
+
+  var tmpElement; //will be dynamically changed to Image or Video
+
+  var file, file_ext, file_path, file_type, file_name;
+
+
+  function show_Info_popUP()
+  {
+      alert("File is selected... " + "\n name : " + file_name  + "\n type : " + file_type + "\n ext : " + file_ext );
+  }
+
+  function onFileSelected ( input )
+  {
+  
+      //if(input.files && input.files[0])
+      if( input.target.files[0] )
+      {
+          file = input.target.files[0]; // FileList object
+          
+          file_ext; //# will extract file extension
+          file_type = file.type; file_name = file.name;
+          file_path = (window.URL || window.webkitURL).createObjectURL(file);
+          
+          //# get file extension (eg: "jpg" or "jpeg" or "webp" etc)
+          file_ext = file_name.toLowerCase();
+          file_ext = file_ext.substr( (file_ext.lastIndexOf(".")+1), (file_ext.length - file_ext.lastIndexOf(".")) );
+          
+          //# get file type (eg: "image" or "video")
+          file_type = file_type.toLowerCase();
+          file_type = file_type.substr( 0, file_type.indexOf("/") );
+          
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          
+          //reader.onload = function(e)
+          reader.onloadend = function(evt) 
+          { 
+              //# POP-UP ...if you want to show (Alert box with) file details...
+              // show_Info_popUP();
+              
+              if (evt.target.readyState == FileReader.DONE) 
+              {
+                  //# get container...
+                  let container = document.getElementById("img-vid-con");
+                  
+                  //# remove any already existing child element(s)
+                  while (container.firstChild)  
+                  { container.removeChild(container.firstChild); }
+                  
+                  //# if IMAGE...
+                  if ( file_type == "image" )
+                  {
+                      tmpElement = document.createElement( "img");
+                      tmpElement.setAttribute("id", "preview-img");
+                  }
+                  
+                  //# if VIDEO...
+                  if ( file_type == "video" )
+                  {
+                      tmpElement = document.createElement( "video");
+                      tmpElement.setAttribute("id", "preview-vid");
+                      tmpElement.setAttribute("controls", "true" );
+                      
+                      tmpElement.addEventListener("loadeddata", () => 
+                      {
+                          //# what to do when some video data is loaded
+                          
+                          if (tmpElement.readyState >= 3) 
+                          { 
+                              //# what to do when video's first frame is ready
+                              tmpElement.muted = true; //# if you want silent preview
+                              tmpElement.play();
+                          }
+              
+                      }); 
+                  }
+                  
+                  //# finalise display size
+                  // tmpElement.width = 640; tmpElement.height = 400;
+                  
+                  // tmpElement.style.maxWidth = '400px';
+                  // tmpElement.style.objectFit = 'contain;';
+                  // tmpElement.style.maxheight = '600px;';
+                  // tmpElement.style.margin = '0px 50px 0px 50px';
+                  
+                  tmpElement.classList.add("img-carousel");
+                  tmpElement.classList.add("w-100");
+                  tmpElement.classList.add("d-block");
+                  
+                  tmpElement.setAttribute("src", file_path);
+                  container.appendChild(tmpElement);
+              }
+          
+          }
+          
+      }
+  }
+</script>

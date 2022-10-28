@@ -19,15 +19,13 @@ module Admin
       price = params[:price].to_i
       date = params[:date].to_s
       order_at = params[:order_at].to_s
-
       customer = params[:customer].to_s
       product_price = params[:product_price].to_i
       product_name = params[:product_name].to_s
       product_id = params[:product_id].to_i 
       point = params[:point].to_i 
-
-      user_id = params[:user_id].to_i
-
+      user_id = params[:user_id].to_i 
+      
       @new_history = @history.vessels.new(point: point, product_id: product_id, customer: customer, product_price: product_price, 
                                       product_name: product_name, quantity: quantity, price: price,
                                       order_at: order_at, date: date, user_id: user_id)
