@@ -98,10 +98,11 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
     t.integer "total_price"
     t.date "order_start"
     t.date "order_end"
-    t.integer "point"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_faileds_on_product_id"
     t.index ["user_id"], name: "index_faileds_on_user_id"
   end
 
@@ -133,7 +134,9 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "product_id"
     t.index ["bucket_id"], name: "index_keeps_on_bucket_id"
+    t.index ["product_id"], name: "index_keeps_on_product_id"
     t.index ["user_id"], name: "index_keeps_on_user_id"
   end
 
@@ -215,7 +218,9 @@ ActiveRecord::Schema.define(version: 2022_10_23_120117) do
     t.string "product_name"
     t.integer "product_price"
     t.string "point"
+    t.integer "product_id"
     t.index ["history_id"], name: "index_vessels_on_history_id"
+    t.index ["product_id"], name: "index_vessels_on_product_id"
     t.index ["user_id"], name: "index_vessels_on_user_id"
   end
 

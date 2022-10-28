@@ -6,6 +6,12 @@ class Product < ApplicationRecord
     has_many :orderables, dependent: :destroy
     has_many :carts, through: :orderables, dependent: :destroy
 
+    # 
+    has_many :vessels, dependent: :destroy
+    has_many :keeps
+    has_many :faileds
+    # 
+
     validate :validate_images
 
     paginates_per 9

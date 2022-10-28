@@ -20,8 +20,9 @@ module Admin
       total_price = params[:total_price].to_i
       order_start = params[:order_start].to_s
       order_end = params[:order_end].to_s
-      point = params[:point].to_i 
+      product_id = params[:product_id].to_i 
       user_id = params[:user_id].to_i 
+      point = params[:point].to_i 
 
       point_orderable = params[:point_orderable].to_i 
 
@@ -33,7 +34,7 @@ module Admin
 
       # else
       # 
-      @new_bucket = @bucket.keeps.new(point: point, customer: customer, product_price: product_price, 
+      @new_bucket = @bucket.keeps.new(point: point, product_id: product_id, customer: customer, product_price: product_price, 
                                       product_name: product_name, quantity: quantity, total_price: total_price, 
                                       order_start: order_start, order_end: order_end, user_id: user_id)
                                       # order_start: order_start, order_end: order_end, user: current_user)

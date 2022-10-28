@@ -23,23 +23,17 @@ Rails.application.routes.draw do
         end
       end
     end
-
-    # 
     post 'faileds/removecart'
     post 'faileds/removebucket'
-    # 
-    get 'failed', to: 'faileds#show'
-    # post 'faileds/add'
-    post 'faileds/add_cart'
-    post 'faileds/add_bucket'
-    # post 'faileds/remove'
-
-    get 'bucket', to: 'bucket#show'
-    post 'bucket/add'
-    post 'bucket/remove'
-    get 'history', to: 'histories#show'
     post 'histories/add'
     post 'histories/remove'
+    post 'faileds/add_cart'
+    post 'faileds/add_bucket'
+    post 'bucket/add'
+    post 'bucket/remove'
+    get 'failed', to: 'faileds#show'
+    get 'bucket', to: 'bucket#show'
+    get 'history', to: 'histories#show'
     get 'pages/dashboard'
     get 'pages/customer'
     get 'pages/adminlist'
@@ -60,27 +54,17 @@ Rails.application.routes.draw do
         patch "upvote", to: "products#upvote"
       end
   end
-  
-  # post 'faileds/removecart'
-  # 
-  get 'failed', to: 'faileds#show'
   post 'faileds/add'
-
-  get 'bucket', to: 'bucket#show'
-  # post 'bucket/add'
-  # post 'bucket/remove'
-
-  get 'history', to: 'histories#show'
-  # post 'histories/add'
-  # post 'histories/remove'
-  
-  get 'cart', to: 'cart#show'
-  get 'comments/comment'
   post 'cart/addcart'
   post 'cart/add'
   post 'cart/removecart'
   post 'cart/remove'
   post 'cart/delete'
+  get 'failed', to: 'faileds#show'
+  get 'bucket', to: 'bucket#show'
+  get 'history', to: 'histories#show'
+  get 'cart', to: 'cart#show'
+  get 'comments/comment'
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'

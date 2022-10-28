@@ -47,7 +47,17 @@
                                     <% if product.images.attached? %>
                                         <% product.images.each_with_index do |image, idx| %>
                                             <% if idx == 0 %>
-                                                <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                                                <%# <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                                                <% if image.image? %>
+                                                    <%= image_tag image, class:"img-thumbnail", width:50 %>
+                                                <% elsif image.video? %>
+                                                    <video class="img-thumbnail" style="width:50px;">
+                                                        <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                                                    </video>
+                                                <% else %>
+                                                    Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                                                <% end %>
+                                                <%#  %>
                                             <% end %>
                                         <% end %>
                                     <% else %>
@@ -78,6 +88,7 @@
                                     <%= f.hidden_field :product_name, value: product.name %>
                                     <%= f.hidden_field :product_price, value: product.price %>
                                     <%= f.hidden_field :point, value: product.id %>
+                                    <%= f.hidden_field :product_id, value: product.id %>
                                     <%= f.hidden_field :user_id, value: order.user.id %>
                                     <div class="form-floating mb-1">
                                         <%= f.date_field :date, class: "form-control" %>
@@ -87,11 +98,8 @@
                                         <%= f.submit "Process", class:"btn btn-dark" %>
                                     </div>
                                 <% end %>
-                                <%#  %>
                                 </td>
                                 <td class="text-center">
-
-                                <%#  %>
                                     <%= form_with(url: admin_faileds_add_cart_path) do |f| %>
                                         <%= f.hidden_field :id, value: order.id %>
                                         <%= f.hidden_field :total_price, value: product.price * order.quantity %>
@@ -100,12 +108,11 @@
                                         <%= f.hidden_field :customer, value: user.username %>
                                         <%= f.hidden_field :product_name, value: product.name %>
                                         <%= f.hidden_field :product_price, value: product.price %>
-                                        <%= f.hidden_field :point, value: order.id %>
+                                        <%= f.hidden_field :product_id, value: product.id %>
+                                        <%# <%= f.hidden_field :point, value: product.id %> 
                                         <%= f.hidden_field :user_id, value: order.user.id %>
-                                        <%# <%= f.date_field :date %>
                                         <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1" %>
                                     <% end %>
-                                <%#  %>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
                                         Detail

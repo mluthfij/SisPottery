@@ -22,7 +22,17 @@
             <% if product.images.attached? %>
               <% product.images.each_with_index do |image, index| %>
                 <% if index == 0 %>
-                  <%= image_tag(image, class:"img-fluid rounded-3") %>
+                  <%# <%= image_tag(image, class:"img-fluid rounded-3") %>
+                  <% if image.image? %>
+                    <%= image_tag image, class:"img-fluid rounded-3" %>
+                  <% elsif image.video? %>
+                    <video class="img-fluid rounded-3">
+                      <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                    </video>
+                  <% else %>
+                      Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                  <% end %>
+                  <%#  %>
                 <% end %>
               <% end %>
             <% else %>

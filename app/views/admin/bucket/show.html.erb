@@ -37,6 +37,7 @@
             <tbody>
                 <%#  %>
                 <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
+                <% product = keep.product %>
                 <tr>
                     <td>
                     <%= index + 1 %>
@@ -44,8 +45,32 @@
                     <td>
                     <%= keep.customer %>
                     </td>
-                    <td>
-                    <%=  %>
+                    <td class="text-center">
+                    <%#  %>
+                    <% unless product.nil? %>
+                        <% if product.images.attached? %>
+                            <% product.images.each_with_index do |image, idx| %>
+                                <% if idx == 0 %>
+                                    <%# <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                                    <% if image.image? %>
+                                        <%= image_tag image, class:"img-thumbnail", width:50 %>
+                                    <% elsif image.video? %>
+                                        <video class="img-thumbnail" style="width:50px;">
+                                            <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                                        </video>
+                                    <% else %>
+                                        Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                                    <% end %>
+                                    <%#  %>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-thumbnail", width:50) %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-thumbnail", width:50) %>
+                    <% end %>
+                    <%#  %>
                     </td>
                     <td>
                     <%= keep.product_name %>

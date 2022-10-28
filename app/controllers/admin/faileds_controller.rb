@@ -4,7 +4,7 @@ module Admin
     before_action :restrict_user_by_role
 
     def show
-    #   @faileds = Failed.alls
+    #   @faileds = Failed.all
       @q = Failed.ransack(params[:q])
       @faileds = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     end
@@ -17,11 +17,11 @@ module Admin
       customer = params[:customer].to_s
       product_price = params[:product_price].to_i
       product_name = params[:product_name].to_s
-      point = params[:point].to_i 
+      product_id = params[:product_id].to_i 
 
       user_id = params[:user_id].to_i
 
-      @failed = Failed.new(point: point, customer: customer, product_price: product_price, 
+      @failed = Failed.new(product_id: product_id, customer: customer, product_price: product_price, 
                            product_name: product_name, quantity: quantity, total_price: total_price,
                            order_start: order_start, user_id: user_id)
       if @failed.save
@@ -39,11 +39,12 @@ module Admin
       customer = params[:customer].to_s
       product_price = params[:product_price].to_i
       product_name = params[:product_name].to_s
+      product_id = params[:product_id].to_i 
       point = params[:point].to_i 
 
       user_id = params[:user_id].to_i
 
-      @failed = Failed.new(point: point, customer: customer, product_price: product_price, 
+      @failed = Failed.new(product_id: product_id, customer: customer, product_price: product_price, 
                            product_name: product_name, quantity: quantity, total_price: total_price,
                            order_start: order_start, user_id: user_id)
       if @failed.save

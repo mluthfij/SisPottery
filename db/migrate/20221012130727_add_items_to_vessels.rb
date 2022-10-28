@@ -13,6 +13,8 @@ class AddItemsToVessels < ActiveRecord::Migration[6.1]
     # add_column :vessels, :order_start, :string
     # 
     add_column :vessels, :point, :string
+    add_column :vessels, :product_id, :integer
+    add_index :vessels, :product_id
 
     # 
   end

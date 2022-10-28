@@ -46,7 +46,7 @@
       <div class="row d-flex justify-content-between align-items-center">
         <div class="col-md-2 col-lg-2 col-xl-2">
           <%# PICT %>
-          <%= link_to product_path(failed.point) do %> 
+          <%= link_to product_path(failed.product_id) do %> 
             <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
           <% end %>
 
@@ -55,7 +55,7 @@
           <span data-turbo="false">
             <p class="lead fw-normal mb-2">
               <%# <%= failed.product_name %>
-              <%= link_to failed.product_name, product_path(failed.point), class:"text-decoration-none text-dark" %> 
+              <%= link_to failed.product_name, product_path(failed.product_id), class:"text-decoration-none text-dark" %> 
             </p>
           </span>
         <div>

@@ -79,6 +79,7 @@ module Admin
 
     # DELETE /products/1 or /products/1.json
     def destroy
+      # add_cart
       @product.destroy
 
       respond_to do |format|
@@ -88,6 +89,30 @@ module Admin
     end
 
     private
+# 
+    # def add_cart
+    #   quantity = params[:quantity].to_i
+    #   total_price = params[:total_price].to_i
+    #   # order_end = params[:order_end].to_s
+    #   order_start = params[:order_start].to_s
+    #   customer = params[:customer].to_s
+    #   product_price = params[:product_price].to_i
+    #   product_name = params[:product_name].to_s
+    #   product_id = params[:product_id].to_i 
+
+    #   user_id = params[:user_id].to_i
+
+    #   @failed = Failed.new(product_id: product_id, customer: customer, product_price: product_price, 
+    #                        product_name: product_name, quantity: quantity, total_price: total_price,
+    #                        order_start: order_start, user_id: user_id)
+    #   if @failed.save
+    #   #   removecart
+    #   # else
+    #     redirect_to request.referrer, notice: @failed.errors.full_messages.to_sentence
+    #   end
+    # end
+# 
+
       # Use callbacks to share common setup or constraints between actions.
       def set_product
         @product = Product.find(params[:id])
