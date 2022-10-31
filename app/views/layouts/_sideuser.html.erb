@@ -64,7 +64,7 @@
                 <%# end core %>
                 <% if user_signed_in? %>
                 <div class="sb-sidenav-menu-heading">Edit</div>
-                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user) %>">
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user.to_param) %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-person"></i>
                     </div>

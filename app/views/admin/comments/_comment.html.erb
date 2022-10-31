@@ -2,15 +2,15 @@
     <div class="bg-white p-2">
         <div class="d-flex flex-row user-info">
             <% if comment.user.avatar.present? %>
-                <%= link_to image_tag(comment.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2"), profile_path(comment.user.id) %>
+                <%= link_to image_tag(comment.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2"), profile_path(comment.user.to_param) %>
             <% else %>
-                <%= link_to image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "rounded-circle me-2", width: 40), profile_path(comment.user.id) %>
+                <%= link_to image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "rounded-circle me-2", width: 40), profile_path(comment.user.to_param) %>
             <% end %>
             <div class="d-flex flex-column justify-content-start ml-2">
                 <span class="d-block font-weight-bold name">
-                    <%= link_to comment.user.username, profile_path(comment.user.id), class:"text-decoration-none" %>
+                    <%= link_to comment.user.username, profile_path(comment.user.to_param), class:"text-decoration-none" %>
                     <% if comment.reply_to.present? %>
-                        <strong>replying to <%= link_to truncate(comment.reply_to, length:20), profile_path(comment.user.id), class:"text-decoration-none" %></strong>
+                        <strong>replying to <%= link_to truncate(comment.reply_to, length:20), profile_path(comment.user.to_param), class:"text-decoration-none" %></strong>
                     <% end %>
                 </span>
                 <span class="date text-black-50">

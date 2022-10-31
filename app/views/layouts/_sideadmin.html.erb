@@ -181,7 +181,7 @@
                 <%# end %>
 
                 <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user.id) %>">
+                <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user.to_param) %>">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-chart-area"></i>
                     </div>

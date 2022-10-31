@@ -1,14 +1,10 @@
 class User < ApplicationRecord
-  # 
-  # attr_accessor :authenticity_token
-  # attr_accessor :commit
-  # 
-  
   before_save { self.username = username.downcase }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable
+        #  , :confirmable
 
          acts_as_voter
 
@@ -16,7 +12,8 @@ class User < ApplicationRecord
          has_many :chatrooms, dependent: :destroy
          has_many :orderables, dependent: :destroy
          has_many :carts, through: :orderables, dependent: :destroy
-         has_many :products, dependent: :destroy
+        #  has_many :products, dependent: :destroy
+         has_many :products
          has_many :comments, dependent: :destroy
          has_many :vessels, dependent: :destroy
          has_many :histories, through: :vessels, dependent: :destroy
@@ -71,4 +68,19 @@ class User < ApplicationRecord
   #   #email = john@example.com -> ['john']
   #   return self.email.split('@')[0].capitalize
   # end
+  
+  
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders, :history]
+
+  def slug_candidates
+    [
+      :username,
+      [:username, :id]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    username_changed? || new_record? || slug.nil? || slug.blank?
+  end
 end

@@ -2,15 +2,19 @@
         <div class="text-center pr-1 me-3">
             <div>
                 <span class="badge text-bg-danger mb-1">
-                    admin
+                    <%= link_to profile_path(message.user.to_param) do %>
+                        admin
+                    <% end %>
                 </span>
             </div>
             <div>
+            <%= link_to profile_path(message.user.to_param) do %>
                 <% if message.user.avatar.present? %>
                     <%= image_tag(message.user.avatar.variant(resize_to_fill: [40, 40]), class: "img") %>
                 <% else %>
                     <%= image_tag("http://www.familylore.org/images/2/25/UnknownPerson.png", class: "img", width: 40) %>
                 <% end %>
+            <% end %>
             </div>
         </div>
         <div class="pr-2 pl-1 bg-dark p-2 rounded text-white"> 

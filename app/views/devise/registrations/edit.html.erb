@@ -12,11 +12,13 @@
                         <div class="position-relative my-4">
                             <% if current_user.avatar.present? %>
                                 <div class="display-img-vid-con" id="img-vid-con">
-                                    <%= image_tag(current_user.avatar.variant(resize_to_fill: [200, 200]), class: "rounded-circle") %>
+                                    <%= link_to image_tag(current_user.avatar.variant(resize_to_fill: [200, 200]), class: "rounded-circle"), current_user.avatar.url %>
                                 </div>
                             <% else %>
                                 <div class="display-img-vid-con" id="img-vid-con">
-                                    <img src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." class="rounded-circle" width="200">
+                                    <%= link_to "http://www.familylore.org/images/2/25/UnknownPerson.png" do %>
+                                        <img src="http://www.familylore.org/images/2/25/UnknownPerson.png" alt="..." class="rounded-circle" width="200">
+                                    <% end %>
                                 </div>
                             <% end %>
                             <span class="position-absolute translate-middle bordered", style="top:5%;left:80%;">
@@ -44,7 +46,7 @@
                                 <%= current_user.my_address %>
                             </p>
                             <p>
-                                <%= link_to 'My Profile', profile_path(current_user.id), class:"btn btn-dark w-100" %>
+                                <%= link_to 'My Profile', profile_path(current_user.to_param), class:"btn btn-dark w-100" %>
                             </p>
                         </div>
                     </div>
