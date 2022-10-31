@@ -24,6 +24,20 @@ class Product < ApplicationRecord
     #     orderables.to_a.sum { |orderable| orderable.quantity }
     # end
     # 
+  
+    # extend FriendlyId
+    # friendly_id :slug_candidates, use: [:slugged, :finders, :history]
+
+    # def slug_candidates
+    # [
+    #     :name,
+    #     [:name, :id]
+    # ]
+    # end
+
+    # def should_generate_new_friendly_id?
+    #     name_changed? || new_record? || slug.nil? || slug.blank?
+    # end
 
     private
     def validate_images

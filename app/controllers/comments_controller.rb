@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     else
       flash[:notice] = @comment.errors.full_messages.to_sentence
     end
-      redirect_to product_path(@product)
+      redirect_to request.referrer
   end
 
   def like
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @product.comments.find(params[:id])
     @comment.destroy
-    redirect_to product_path(@product)
+    redirect_to request.referrer
   end
 
   def correct_user
