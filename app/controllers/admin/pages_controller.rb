@@ -10,7 +10,9 @@ module Admin
     end
 
     def customer
-      @customers = User.all
+      # @customers = User.all
+      @q = User.ransack(params[:q])
+      @customers = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
     end
 
     def adminlist

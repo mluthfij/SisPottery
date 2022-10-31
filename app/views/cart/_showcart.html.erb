@@ -3,15 +3,34 @@
   <% @cart.orderables.order(id: :desc).each do |orderable| %>
   <% product = orderable.product %>
   <div class="card rounded-3 mb-4">
-    <div class="position-absolute top-0 end-0 m-1">
-    <%= form_with(url: cart_removecart_path) do |f| %>
-      <%= f.hidden_field :id, value: orderable.id %>
-          <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
+  <% if !orderable.images.empty? %>
+    <div class="position-absolute top-0 start-0 m-1" style="margin-right:1000px;">
+      <%= form_with(url: cart_removecart_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
       <% end %>
     </div>
-    <div class="position-absolute top-0 end-0 mt-1" style="margin-right:65px;">
-      <a class="btn btn-sm btn-primary" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <% else %>
+    <div class="position-absolute top-0 start-0 m-1" style="margin-right:1000px;">
+      <h6>
+        <span class="badge bg-danger">
+          Waiting..
+        </span>
+      </h6>
+    </div>
+  <% end %>
+    <div class="position-absolute top-0 end-0 mt-1" style="margin-right:5px;">
+      <a class="btn btn-sm btn-warning" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
         Edit
+      </a>
+    </div>
+    <div class="position-absolute top-0 end-0 mt-1" style="margin-right:50px;">
+      <a class="btn btn-sm <%= !orderable.images.empty? ? 'btn-warning' : 'btn-dark' %>" data-bs-toggle="collapse" href="#col-payment<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <% if !orderable.images.empty? %>
+          Update Payment Slip
+        <% else %>
+          Upload Payment Slip
+        <% end %>
       </a>
     </div>
   <div class="card-body p-4">
@@ -58,6 +77,12 @@
     <button type="button" class="text-decoration-none btn btn-link <%= orderable.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalDesc<%= orderable.id %>">
       <i class="bi bi-card-list"></i> Note
     </button>
+    
+    
+    <button type="button" class="text-decoration-none btn btn-link <%= orderable.images.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#modalSlip<%= orderable.id %>">
+      <i class="bi bi-file-earmark"></i> Slip
+    </button>
+
     </div>
       <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
         <h5 class="mb-0">
@@ -66,6 +91,31 @@
       </div>
     </div>
   </div>
+  <%#  %>
+  <div class="collapse" id="col-payment<%= orderable.id %>">
+    <div class="m-4">
+    
+    <%#  %>
+    <p>
+    <h4>Upload slip</h4>
+    </p>
+
+    <%# TEST %>
+    <%= form_with(url: cart_cart_update_path) do |form| %>
+        <%= form.hidden_field :id, value: product.id %>
+
+        <div class="mb-3 form">
+          <%= form.file_field :images, accept:"image/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= form.submit class:"btn btn-success" %>
+        </div>
+      <% end %>
+    <%# TEST END %>
+    </div>
+  </div>
+  <%#  %>
   <%#  %>
   <div class="collapse" id="col<%= orderable.id %>">
     <div class="m-4">
@@ -93,3 +143,4 @@
     Your cart is empty
   <% end %>
 </span>
+    <%# evidence of transfer %>

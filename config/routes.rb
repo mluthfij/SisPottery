@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
+  # resources :orderables, only: %i[ update ]
   resources :profiles, only: :show do
     member do
       post :upload_avatar
@@ -54,7 +55,14 @@ Rails.application.routes.draw do
         patch "upvote", to: "products#upvote"
       end
   end
+  # 
+  # post 'cart', to: 'orderables#update'
+  # 
   post 'faileds/add'
+  # 
+  post 'cart/cart_update'
+  # post 'cart/cart_update'
+  # 
   post 'cart/addcart'
   post 'cart/add'
   post 'cart/removecart'

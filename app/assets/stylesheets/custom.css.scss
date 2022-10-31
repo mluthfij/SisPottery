@@ -205,3 +205,32 @@
     text-decoration: underline;
 }
 // // 
+.border-like-true {
+    color: red;
+    /*border white with light shadow*/
+    text-shadow:
+        2px 0 0 #000,
+        -2px 0 0 #000,
+        0 2px 0 #000,
+        0 -2px 0 #000,
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 5px #000;
+}
+.border-like-false {
+    color: white;
+    /*border white with light shadow*/
+    text-shadow:
+        2px 0 0 #000,
+        -2px 0 0 #000,
+        0 2px 0 #000,
+        0 -2px 0 #000,
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 5px #000;
+}
+// 

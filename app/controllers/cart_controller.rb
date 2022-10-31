@@ -52,6 +52,9 @@ class CartController < ApplicationController
                               turbo_stream.update('q_counter',
                                           partial: 'cart/q_counter',
                                           locals: { cart: @cart }),
+                              turbo_stream.update('slip',
+                                          partial: 'cart/slip',
+                                          locals: { cart: @cart }),
                               turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
 
@@ -68,6 +71,9 @@ class CartController < ApplicationController
                                           locals: { cart: @cart }),
                               turbo_stream.update('q_counter',
                                           partial: 'cart/q_counter',
+                                          locals: { cart: @cart }),
+                              turbo_stream.update('slip',
+                                          partial: 'cart/slip',
                                           locals: { cart: @cart }),
                               turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
@@ -168,6 +174,9 @@ class CartController < ApplicationController
                               turbo_stream.update('q_counter',
                                           partial: 'cart/q_counter',
                                           locals: { cart: @cart }),
+                              turbo_stream.update('slip',
+                                          partial: 'cart/slip',
+                                          locals: { cart: @cart }),
                               turbo_stream.update("turbo_flash", partial: "layouts/turboalert")
                               ]
       end
@@ -222,6 +231,22 @@ class CartController < ApplicationController
         format.json { render :show, status: :created, location: product_path(@post) }
     end
   end
+
+  # UPDATE
+  def cart_update
+    @product = Product.find_by(id: params[:id])
+    @current_order = @cart.orderables.find_by(product_id: @product.id)
+
+    @current_order.update(params.permit(images: []))
+
+    # # refresh
+    respond_to do |format|
+        format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
+        format.json { render :show, status: :created, location: request.referrer }
+    end
+  end
+
+  # 
 
   private 
   def check

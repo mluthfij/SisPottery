@@ -23,7 +23,9 @@
     <table class="table table-hover table-striped table-bordered table-sm">
         <thead class="table-light">
             <tr>
-                <th scope="col" class="text-center">No.</th>
+                <th scope="col" class="text-center">
+                <%# No. %>
+                </th>
                 <th scope="col">Customer</th>
                 <th scope="col" class="text-center">Image</th>
                 <th scope="col">Product</th>
@@ -37,10 +39,14 @@
         </thead>
         <tbody>
             <% @orders.order(id: :desc).each_with_index do |order, index| %>
+                <% if !order.images.empty? %>
                 <% product = order.product %>
                     <% user = order.user %>
                         <tr>
-                            <td class="text-center"><%= index + 1 %></td>
+                            <td class="text-center">
+                                <%# <%= index + 1 %>
+                                <i class="bi bi-dot"></i>
+                            </td>
                             <td><%= user.username %></td>
                             <td class="text-center">
                                 <a data-bs-toggle="modal" href="#Modal<%= index %>">
@@ -113,12 +119,15 @@
                                         <%= f.hidden_field :user_id, value: order.user.id %>
                                         <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1" %>
                                     <% end %>
+                                    <% if !order.description.empty? %>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%= index %>">
-                                        Detail
+                                        Notes
                                     </button>
+                                    <% end %>
                                 </td>
                             </tr>
+                        <% end %>
                         <% end %>
                         <tr class="table-warning">
                             <td colspan="5">
@@ -157,8 +166,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= index %>
-        <%= truncate(order.description, length: 20) %>
+        <%= simple_format(order.description) %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

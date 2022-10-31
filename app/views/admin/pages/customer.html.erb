@@ -1,5 +1,23 @@
 <div class="container-fluid px-4">
     <h2 class="mt-4">Customer on Process</h2>
+
+    <%#  %>
+    <div class="row mb-2">
+        <div class="col">
+            <%= page_entries_info @customers, entry_name: 'customer' %>
+        </div>
+        <div class="col">
+            <%# <% if User.count > 25 %>
+            <div class="d-flex flex-row-reverse">
+                <div class="btn-group border">
+                    <%= link_to " ", (path_to_prev_page @customers), class: @customers.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                    <%= link_to " ", (path_to_next_page @customers), class: @customers.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
+                </div>
+            </div>
+            <%# <% end %>
+        </div>
+    </div>
+    <%#  %>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-hover">
             <thead>
