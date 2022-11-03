@@ -42,9 +42,10 @@ gem 'chartkick', '~> 4.2', '>= 4.2.1'
 gem 'groupdate', '~> 6.1'
 
 gem "mini_magick"
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 
 # 
-gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+# gem 'htmlbeautifier'
 # 
 
 # Reduces boot times through caching; required in config/boot.rb

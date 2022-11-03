@@ -57,7 +57,6 @@ class CartController < ApplicationController
                                           locals: { cart: @cart }),
                               turbo_stream.prepend("turbo_flash", partial: "layouts/turboalert")
                               ]
-
         elsif @current_order.nil?
           # add
         render turbo_stream: [turbo_stream.replace('cart',
@@ -240,10 +239,11 @@ class CartController < ApplicationController
     @current_order.update(params.permit(images: []))
 
     # # refresh
-    respond_to do |format|
-        format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
-        format.json { render :show, status: :created, location: request.referrer }
-    end
+    # respond_to do |format|
+    #     format.html { redirect_to request.referrer, notice: "Product was successfully added to cart." }
+    #     format.json { render :show, status: :created, location: request.referrer }
+    # end
+    redirect_to request.referrer, notice: "Slip was successfully added to order."
   end
 
   # 

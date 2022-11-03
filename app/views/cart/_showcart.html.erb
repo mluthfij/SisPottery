@@ -5,18 +5,18 @@
   <div class="card rounded-3 mb-4">
   <% if !orderable.images.empty? %>
     <div class="position-absolute top-0 start-0 m-1" style="margin-right:1000px;">
-      <%= form_with(url: cart_removecart_path) do |f| %>
-        <%= f.hidden_field :id, value: orderable.id %>
-        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="position-absolute top-0 start-0 m-1" style="margin-right:1000px;">
       <h6>
         <span class="badge bg-danger">
           Waiting..
         </span>
       </h6>
+    </div>
+  <% else %>
+    <div class="position-absolute top-0 start-0 m-1" style="margin-right:1000px;">
+      <%= form_with(url: cart_removecart_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "Delete", class:"btn btn-danger btn-sm" %>
+      <% end %>
     </div>
   <% end %>
     <div class="position-absolute top-0 end-0 mt-1" style="margin-right:5px;">
@@ -92,29 +92,31 @@
     </div>
   </div>
   <%#  %>
-  <div class="collapse" id="col-payment<%= orderable.id %>">
-    <div class="m-4">
-    
-    <%#  %>
-    <p>
-    <h4>Upload slip</h4>
-    </p>
+  <span data-turbo="false">
+    <div class="collapse" id="col-payment<%= orderable.id %>">
+      <div class="m-4">
+      
+      <%#  %>
+      <p>
+      <h4>Upload slip</h4>
+      </p>
 
-    <%# TEST %>
-    <%= form_with(url: cart_cart_update_path) do |form| %>
-        <%= form.hidden_field :id, value: product.id %>
+      <%# TEST %>
+      <%= form_with(url: cart_cart_update_path) do |form| %>
+          <%= form.hidden_field :id, value: product.id %>
 
-        <div class="mb-3 form">
-          <%= form.file_field :images, accept:"image/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
-        </div>
+          <div class="mb-3 form">
+            <%= form.file_field :images, accept:"image/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+          </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <%= form.submit class:"btn btn-success" %>
-        </div>
-      <% end %>
-    <%# TEST END %>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <%= form.submit orderable.images.empty? ? 'Save' : 'Update', class:"btn btn-success" %>
+          </div>
+        <% end %>
+      <%# TEST END %>
+      </div>
     </div>
-  </div>
+  </span>
   <%#  %>
   <%#  %>
   <div class="collapse" id="col<%= orderable.id %>">
