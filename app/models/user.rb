@@ -3,25 +3,25 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-        #  , :confirmable
+        :recoverable, :rememberable, :validatable, 
+        :timeoutable, :confirmable
 
-         acts_as_voter
+        acts_as_voter
 
-         has_many :messages, dependent: :destroy
-         has_many :chatrooms, dependent: :destroy
-         has_many :orderables, dependent: :destroy
-         has_many :carts, through: :orderables, dependent: :destroy
-        #  has_many :products, dependent: :destroy
-         has_many :products
-         has_many :comments, dependent: :destroy
-         has_many :vessels, dependent: :destroy
-         has_many :histories, through: :vessels, dependent: :destroy
-         has_many :keeps, dependent: :destroy
-         has_many :buckets, through: :keeps, dependent: :destroy
-         has_many :faileds
-        #  has_many :faileds, dependent: :destroy
-         has_one_attached :avatar
+        has_many :messages, dependent: :destroy
+        has_many :chatrooms, dependent: :destroy
+        has_many :orderables, dependent: :destroy
+        has_many :carts, through: :orderables, dependent: :destroy
+      #  has_many :products, dependent: :destroy
+        has_many :products
+        has_many :comments, dependent: :destroy
+        has_many :vessels, dependent: :destroy
+        has_many :histories, through: :vessels, dependent: :destroy
+        has_many :keeps, dependent: :destroy
+        has_many :buckets, through: :keeps, dependent: :destroy
+        has_many :faileds
+      #  has_many :faileds, dependent: :destroy
+        has_one_attached :avatar
 
   
   ##...Avatar Attachment...##
@@ -82,5 +82,16 @@ class User < ApplicationRecord
 
   def should_generate_new_friendly_id?
     username_changed? || new_record? || slug.nil? || slug.blank?
+  end
+
+  def timeout_in
+    # return 1.year if admin?
+    # 5.seconds
+    if admin?
+      1.year
+    else
+      # 5.seconds
+      1.days
+    end
   end
 end

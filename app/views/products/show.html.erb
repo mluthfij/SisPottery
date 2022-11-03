@@ -123,6 +123,16 @@
           <div class="card">
             <div class="card-body">
               <h2>Order</h2>
+              <%#  %>
+              <% if user_signed_in? %>
+                <% unless current_user.firstname? && current_user.my_address? && current_user.phone? || current_user.wa_phone? %>
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Complete your profile data!</strong> You should complete your profile data if you want to order.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                <% end %>
+              <% end %>
+              <%#  %>
           <%= form_with(url: cart_add_path) do |f| %>
             <%= f.hidden_field :id, value: @product.id %>
             <%= f.label :quantity, class:"form-label" %>

@@ -30,7 +30,9 @@
                     <% if user_signed_in? %>
                         <%= render "comments/like_link", comment: comment %>
                     <% else %>
-                        <i class="bi bi-hand-thumbs-up"></i>
+                        <%= link_to like_product_comment_path(comment.product,comment), class:"text-decoration-none", method: :patch do %>
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        <% end %>
                     <% end %>
                     <%= render "comments/likes_score", comment: comment %>
                 </div>
@@ -44,6 +46,15 @@
                         <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapse<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
                             <i class="bi bi-reply"></i>
                             <span class="">Reply</span>
+                        </a>
+                    </div>
+                <% else %>
+                    <div class="like p-2 cursor">
+                        <a class="text-decoration-none">
+                            <%= link_to like_product_comment_path(comment.product,comment), class:"text-decoration-none", method: :patch do %>
+                                <i class="bi bi-reply"></i>
+                                <span class="">Reply</span>
+                            <% end %>
                         </a>
                     </div>
                 <% end %>

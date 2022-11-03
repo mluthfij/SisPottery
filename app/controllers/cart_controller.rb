@@ -250,8 +250,8 @@ class CartController < ApplicationController
 
   private 
   def check
-    unless current_user.firstname? && current_user.my_address? && current_user.phone || current_user.wa_phone
-        redirect_to edit_user_registration_path(current_user.id), notice: "You must complete your profile data before order!"
+    unless current_user.firstname? && current_user.my_address? && current_user.phone? || current_user.wa_phone?
+        redirect_to edit_user_registration_path(current_user.id), notice: "You should complete your profile data before order!"
     end
   end
 end
