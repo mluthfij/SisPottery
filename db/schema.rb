@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_31_123215) do
+ActiveRecord::Schema.define(version: 2022_11_05_082203) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(version: 2022_10_31_123215) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.boolean "pre_order", default: false
+    t.boolean "stock_product", default: false
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

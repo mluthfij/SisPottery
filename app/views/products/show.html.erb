@@ -26,8 +26,13 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col sticky-container bg-light bg-opacity-25">
+      <div class="col sticky-container">
         <div class="sticky-2 w-100 border shadow-sm rounded">
+            <% if @product.pre_order == true %>
+              <div class="position-absolute top-0 start-0 m-1" style="z-index:1;">
+                  <span class="badge rounded-pill text-bg-primary">Pre-Order</span>
+              </div>
+            <% end %>
         <%#  %>
         <% if user_signed_in? %>
             <div class="position-absolute top-0 end-0 m-2" style="z-index:2;">
@@ -79,9 +84,18 @@
           </strong>
         </div>
 
-        <h6 class="card-subtitle mb-2 text-muted">
-            <%= render "products/votes_score", product: @product %>
-        </h6>
+        <div class="row">
+          <div class="col">
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= @keeps.count %> sold
+            </h6>
+          </div>
+          <div class="col text-end">
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= render "products/votes_score", product: @product %>
+            </h6>
+          </div>
+        </div>
 
         <div>
           <p>

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :chatrooms, except: :index
   resources :messages, only: %i[ new create ]
-  # resources :orderables, only: %i[ update ]
   resources :profiles, only: :show do
     member do
       post :upload_avatar
@@ -15,6 +14,10 @@ Rails.application.routes.draw do
     resources :abouts, except: %i[ show new ]
     resources :user_lists, except: :show
     resources :products do
+      member do
+        patch "stock", to: "products#stock"
+        patch "preorder", to: "products#preorder"
+      end
       collection do
         match 'search' => 'products#search', via: [:get, :post], as: :search
       end
@@ -55,14 +58,8 @@ Rails.application.routes.draw do
         patch "upvote", to: "products#upvote"
       end
   end
-  # 
-  # post 'cart', to: 'orderables#update'
-  # 
   post 'faileds/add'
-  # 
   post 'cart/cart_update'
-  # post 'cart/cart_update'
-  # 
   post 'cart/addcart'
   post 'cart/add'
   post 'cart/removecart'
@@ -76,6 +73,5 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/home'
   root 'pages#home'
-  # mount ActionCable.server => '/cable'
   mount ActionCable.server, at: '/cable'
 end

@@ -45,9 +45,11 @@
   <%= render 'shop', obj: @products %>
 
   <div class="d-flex justify-content-center">
-    <%= paginate @products %> 
+    <%# <%= paginate @products %>
+    <%= paginate @products.where(stock_product: false) %> 
   </div>
   <div class="text-center">
-    <%= page_entries_info @products %>
+    <%# <%= page_entries_info @products %>
+    <%= page_entries_info @products.where(stock_product: false) %>
   </div>
 </div>

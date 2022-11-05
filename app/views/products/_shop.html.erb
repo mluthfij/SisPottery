@@ -1,13 +1,17 @@
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-    <% obj.order(id: :desc).each do |product| %>
+    <% obj.order(id: :desc).where(stock_product: false).each do |product| %>
         <div class="col">
             <div class="card h-100">
+            <% if product.pre_order == true %>
+                <div class="position-absolute top-0 start-0 m-1" style="z-index:2;">
+                    <span class="badge rounded-pill text-bg-primary">Pre-Order</span>
+                </div>
+            <% end %>
             <% if user_signed_in? %>
             <div class="position-absolute top-0 end-0 m-1" style="z-index:2;">
                 <%= render "products/upvote_link", product: product %>
             </div>
             <% else %>
-                <%# <%= link_to upvote_product_path(product), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
                 <div class="position-absolute top-0 end-0 m-1" style="z-index:2;">
                     <%= link_to upvote_product_path(product), method: :patch do %>
                         <h3 class="border-like-false">
@@ -15,13 +19,11 @@
                         </h3>
                     <% end %>
                 </div>
-                <%# <% end %>
             <% end %>
                 <%= link_to product_path(product) do %>
                     <% if product.images.attached? %>
                         <% product.images.each_with_index do |image, index| %>
                             <% if index == 0 %>
-                                <%# <%= image_tag(image, class:"card-img-top img-show") %>
                                 <% if image.image? %>
                                     <%= image_tag(image, class:"card-img-top img-show") %>
                                 <% elsif image.video? %>
@@ -40,11 +42,18 @@
 
                 <div class="card-body">
                     <h5 class="card-title"><%= link_to product.name, product, class:"text-decoration-none" %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %></h6>
-                    <div class="text-end">
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            <%= render "products/votes_score", product: product %>
-                        </h6>
+                    <h6 class="card-subtitle mb-3 text-muted"><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %></h6>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <%= product.keeps.count %> sold
+                            </h6>
+                        </div>
+                        <div class="col text-end">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <%= render "products/votes_score", product: product %>
+                            </h6>
+                        </div>
                     </div>
                 </div>
             </div>

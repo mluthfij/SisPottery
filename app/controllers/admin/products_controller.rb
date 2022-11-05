@@ -1,6 +1,6 @@
 module Admin
   class ProductsController < ApplicationController
-    before_action :set_product, only: %i[ show edit update destroy ]
+    before_action :set_product, only: %i[ show edit update destroy stock preorder ]
     before_action :authenticate_user!
     before_action :restrict_user_by_role
 
@@ -20,6 +20,8 @@ module Admin
 
     # GET /products/1 or /products/1.json
     def show
+      # @keeps = Keep.all
+      @keeps = @product.keeps.all
     end
 
     # GET /products/new
@@ -86,6 +88,24 @@ module Admin
         format.html { redirect_to admin_products_url, notice: "Product was successfully destroyed." }
         format.json { head :no_content }
       end
+    end
+
+    def stock
+      if @product.stock_product == true
+        @product.update_attribute(:stock_product, false)
+      elsif @product.stock_product == false
+        @product.update_attribute(:stock_product, true)
+      end
+      redirect_to request.referrer
+    end
+    
+    def preorder
+      if @product.pre_order == true
+        @product.update_attribute(:pre_order, false)
+      elsif @product.pre_order == false
+        @product.update_attribute(:pre_order, true)
+      end
+      redirect_to request.referrer
     end
 
     private

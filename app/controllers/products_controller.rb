@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1 or /products/1.json
   def show
     @product = Product.find(params[:id])
+    @keeps = @product.keeps.all
     # find current order in show page
     if user_signed_in?
       @showorder = @cart.orderables.find_by(product_id: @product.id)

@@ -9,8 +9,18 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col sticky-container bg-light bg-opacity-25">
+      <div class="col sticky-container">
         <div class="sticky-2 w-100 border shadow-sm rounded">
+            <% if @product.pre_order == true %>
+              <div class="position-absolute top-0 start-0 m-1" style="z-index:1;">
+                  <span class="badge rounded-pill text-bg-danger">Pre-Order</span>
+              </div>
+            <% end %>
+            <% if @product.stock_product == true %>
+              <div class="position-absolute top-0 end-0 m-1" style="z-index:1;">
+                  <span class="badge rounded-pill text-bg-danger">Out of stock</span>
+              </div>
+            <% end %>
           <% @product.images.each_with_index do |c, index| %>
             <% if index > 0 %>
               <div class="carousel-dark">
@@ -42,14 +52,28 @@
           </strong>
         </div>
 
-        <h6 class="card-subtitle mb-2 text-muted">
-            <%= render "products/votes_score", product: @product %>
-        </h6>
+        <div class="row">
+          <div class="col">
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= @keeps.count %> sold
+            </h6>
+          </div>
+          <div class="col text-end">
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= render "products/votes_score", product: @product %>
+            </h6>
+          </div>
+        </div>
 
         <div>
           <p class="justify-text">
             <%= simple_format(@product.description, style:"text-align:justify;") %>
           </p>
+        </div>
+
+        <div class="d-grid gap-2">
+            <%= link_to @product.stock_product == true ? "Ready" : "Out of stock", stock_admin_product_path(@product), method: :patch, class:@product.stock_product == true ? "btn btn-warning" : "btn btn-danger" %>
+            <%= link_to @product.pre_order == true ? "Direct order" : "Pre-Order", preorder_admin_product_path(@product), method: :patch, class:@product.pre_order == true ? "btn btn-warning" : "btn btn-danger" %>
         </div>
       </div>
     </div>
