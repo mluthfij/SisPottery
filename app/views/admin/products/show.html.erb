@@ -72,8 +72,8 @@
         </div>
 
         <div class="d-grid gap-2">
-            <%= link_to @product.stock_product == true ? "Ready" : "Out of stock", stock_admin_product_path(@product), method: :patch, class:@product.stock_product == true ? "btn btn-warning" : "btn btn-danger" %>
-            <%= link_to @product.pre_order == true ? "Direct order" : "Pre-Order", preorder_admin_product_path(@product), method: :patch, class:@product.pre_order == true ? "btn btn-warning" : "btn btn-danger" %>
+            <%= link_to @product.stock_product == true ? "Ready" : "Out of stock", admin_stock_path(@product), method: :patch, class:@product.stock_product == true ? "btn btn-warning" : "btn btn-danger" %>
+            <%= link_to @product.pre_order == true ? "Direct order" : "Pre-Order", admin_preorder_path(@product), method: :patch, class:@product.pre_order == true ? "btn btn-warning" : "btn btn-danger" %>
         </div>
       </div>
     </div>

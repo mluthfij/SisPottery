@@ -14,10 +14,6 @@ Rails.application.routes.draw do
     resources :abouts, except: %i[ show new ]
     resources :user_lists, except: :show
     resources :products do
-      member do
-        patch "stock", to: "products#stock"
-        patch "preorder", to: "products#preorder"
-      end
       collection do
         match 'search' => 'products#search', via: [:get, :post], as: :search
       end
@@ -47,6 +43,8 @@ Rails.application.routes.draw do
     get 'pages/chatroom/:chatroom_id', to: 'pages#chatroom', as: :chatroom
     get 'pages/chatbox', to: 'pages#chatbox', as: :chatbox
     patch "pages/adminlist/:id", to: "pages#add_admin"
+    patch "products/stock/:id", to: "products#stock", as: :stock
+    patch "products/preorder/:id", to: "products#preorder", as: :preorder
   end
   resources :products, only: %i[ show index ] do
       resources :comments do
