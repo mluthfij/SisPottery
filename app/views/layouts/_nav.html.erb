@@ -2,10 +2,12 @@
     <!-- Navbar Brand-->
     <%# <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a> %>
     <%#  %>
-    <div class="ps-4">
-        <%= image_tag "logo.png", width:45 %>
-        <%= link_to "SIS Pottery", root_path, class:"navbar-brand" %>
-    </div>
+    <%= link_to root_path, class:"navbar-brand" do %>
+        <div class="ps-4 pe-4">
+            <%= image_tag "logo.png", width:45 %>
+            <%= "SIS Pottery" %>
+        </div>
+    <% end %>
     <%# <%= link_to "SisPottery", root_path, class:"navbar-brand ps-3" %>
     <!-- Sidebar Toggle-->
     <button
