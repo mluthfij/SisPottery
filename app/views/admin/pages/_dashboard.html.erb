@@ -73,6 +73,7 @@
             </div>
         </div>
     </div>
+    <%#  %>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -88,6 +89,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Likes</th>
+                            <th scope="col">Sold</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,6 +100,7 @@
                                     <td><%= link_to product.name, product, class: "text-decoration-none text-dark" %></td>
                                     <td><%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %></td>
                                     <td><%= product.cached_votes_score %></td>
+                                    <td><%= product.keeps.count %></td>
                                 </tr>
                             <% end %>
                         <% end %>
@@ -107,6 +110,7 @@
             <%# end table %>
         </div>
     </div>
+    <%#  %>
 </div>
 <!-- content -->
 

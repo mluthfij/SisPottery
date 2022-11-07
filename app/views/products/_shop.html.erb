@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
     <% obj.order(id: :desc).where(stock_product: false).each do |product| %>
         <div class="col">
-            <div class="card h-100">
+            <div class="card h-100 card-hover">
             <% if product.pre_order == true %>
                 <div class="position-absolute top-0 start-0 m-1" style="z-index:2;">
                     <span class="badge rounded-pill text-bg-primary">Pre-Order</span>

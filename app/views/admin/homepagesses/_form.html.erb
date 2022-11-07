@@ -29,7 +29,7 @@
           <h3>
             <%= form.label :covers, 'Images Carousel', class:"form-label" %>
           </h3>
-          <%= form.file_field :covers, multiple: true, class:"form-control" %>
+          <%= form.file_field :covers, accept:"image/*", multiple: true, class:"form-control", direct_upload: true %>
         </div>
         <%# <div class="masthead-subheading"> %>
         <div class="form-floating mb-2 text-dark">
