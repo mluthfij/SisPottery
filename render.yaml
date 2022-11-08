@@ -1,20 +1,20 @@
 databases:
-  - name: sis-pottery
+  - name: SisPottery
     plan: free
-    databaseName: sis-pottery
-    user: sis-pottery
+    databaseName: SisPottery
+    user: SisPottery
 
 services:
   - type: web
     plan: free
-    name: sis-pottery
+    name: SisPottery
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: sis-pottery
+          name: SisPottery
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
