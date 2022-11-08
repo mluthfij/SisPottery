@@ -9,6 +9,9 @@
 
 # Product.create(name: 'New', user_id: 1, price: '1999')
 
+User.destroy_all
+
+
 if User.count < 2
     User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
     User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
