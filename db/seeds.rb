@@ -9,10 +9,10 @@
 
 # Product.create(name: 'New', user_id: 1, price: '1999')
 
-# if User.count < 2
-    User.create(username: 'admin', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
+if User.count < 2
+    User.create(username: 'admin123', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
     User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
-# end
+end
 
 if Product.count < 100
     (1..100).each do |i|
