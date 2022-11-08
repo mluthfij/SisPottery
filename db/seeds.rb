@@ -9,9 +9,9 @@
 
 # Product.create(name: 'New', user_id: 1, price: '1999')
 
-User.destroy_all
-Keep.destroy_all
-Product.destroy_all
+# User.destroy_all
+# Keep.destroy_all
+# Product.destroy_all
 
 
 # if User.count < 2
