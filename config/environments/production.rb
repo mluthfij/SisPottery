@@ -5,7 +5,8 @@ Rails.application.configure do
   
   # 
   # config.action_mailer.default_url_options = {host: "sis-pottery.herokuapp.com", protocol: "https"}
-  config.action_mailer.default_url_options = {host: "sis-pottery.herokuapp.com"}
+  # config.action_mailer.default_url_options = {host: "sis-pottery.herokuapp.com"}
+  config.action_mailer.default_url_options = {host: "sis-pottery.onrender.com"}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.default :charset => "utf-8"
