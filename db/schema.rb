@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_11_05_082203) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "abouts", force: :cascade do |t|
     t.text "description"
     t.string "company_name"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   create_table "comments", force: :cascade do |t|
     t.string "reply_to"
     t.text "content"
-    t.integer "product_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
@@ -133,7 +136,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   end
 
   create_table "keeps", force: :cascade do |t|
-    t.integer "bucket_id", null: false
+    t.bigint "bucket_id", null: false
     t.string "customer"
     t.string "product_name"
     t.integer "product_price"
@@ -162,8 +165,8 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   end
 
   create_table "orderables", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "cart_id", null: false
     t.integer "quantity"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -221,7 +224,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
   end
 
   create_table "vessels", force: :cascade do |t|
-    t.integer "history_id", null: false
+    t.bigint "history_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
@@ -241,9 +244,9 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
 
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
-    t.integer "votable_id"
+    t.bigint "votable_id"
     t.string "voter_type"
-    t.integer "voter_id"
+    t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
