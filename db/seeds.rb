@@ -12,6 +12,7 @@
 # User.destroy_all
 # Keep.destroy_all
 # Product.destroy_all
+# friendly_id_slugs.destroy_all
 
 
 # if User.count < 2
