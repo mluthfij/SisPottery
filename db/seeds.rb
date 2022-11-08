@@ -14,7 +14,7 @@
 # Product.destroy_all
 # friendly_id_slugs.destroy_all
 
-User.update(username: 'admin1', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true, user_id:2)
+# User.update(username: 'admin1', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true, user_id:2)
 
 
 # if User.count < 2
