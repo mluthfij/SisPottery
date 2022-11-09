@@ -7,6 +7,7 @@
 import "@hotwired/turbo-rails"
 
 require("packs/scripts")
+require("direct_uploads")
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -19,4 +20,4 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "direct_uploads"
+// import "direct_uploads"
