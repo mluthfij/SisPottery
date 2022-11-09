@@ -22,24 +22,44 @@ local:
 #   bucket: your_own_bucket
 
 # config/storage.yml
+# 
+# sis-pottery-render
+# 
+google:
+  service: GCS
+  project: sis-pottery
+  credentials: {
+    "type": "service_account",
+    "project_id": "sis-pottery",
+    "private_key_id": "463a0f4d878d2ac11ccb723f82f3f9cada6102ed",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCla0hO9sJ4BG6i\nqT3XWvZBoidXRBLq5omNeZ5CBEK2zKidktxxa10R1o9lnTr6Gi32WXAO/RtpjqEI\n1xuOe9irQD1opWiRSpBtXK6OAkuZ5MIrl7w+pXMN6EeNfFMozs30hpF7KF2Z5RGB\nu+umY/Q58tu65xV1V6nWmslviXLaQc4c3rs1bk6O8TfCGjWqUpey8Y6Xbj0RkrWj\nJICk2ZwW2Mx4OfPFkTqcIlh5vFhJbJmcOdgF7kPrbubeXkD6N93C2R2z5/Lrey7t\ndxO9fmZQ3CwpqZFvcY1azsKg9Wk832IAy/Zjruc/AfkfTvUlv70A6rUQDVykd+uA\nAbFZCBRBAgMBAAECggEAGAi4XtC3fJyYPoX8eDe9I9gdgy5e2UZZofaTqd/YmZqu\nvQZDhS8mPJtCBm+LzB7Vor9n6qWXwAR7HT+zv0X7OxaAVZ4CzWlaBqm6quNmfJui\nIpdPQILlbpXbH5F6u6kgf3C13oEE6IFBw+m72VcYevrwNf2xPnVYNdgTgGMmDtPY\n+wmc6Ce671evVTMvxiuS6FX24yWqD72y33m0d9jKaUGqdAZvsDOa/ti8wNMHr1cB\nwIg5tdYV9UHUxlqVRlFFKobKsx9++hDCOI6YE8YD2wQ0sini/qXQkwzAWNqBlkQ+\n0JuSBvN2a/9vJbvkayWlm6JK8rQst0bMKVJibQ3jYQKBgQDVAR8T5DK4pc60qg48\njXNyQsFGb40ET/2w/D4xePG9mla1qCTciteDAT2KfcK0osQdVQ2vglH2xXYx8oj1\nOHzLs+1k46IAqnyFW5+jGrK3VzNw7bhcs13YH2i0ALYvGA5mkuv4JDGHPh8h0n3b\nWIoy/1e0yW3xqE4gxEnNI12qbQKBgQDGzze5VimY1tYWIbYhMFqgoNPDotZhozVY\nLeav6oqEXb/g/0TK6Y0pzQPJeremRpse/8Qo/xKML0eIcsKKRG52PNd4qwFVM++L\nlZVkoqHAsRFSetZzeFvH67q1KbboZG5Wp4Gb/uzpSxfGHa+m0BxoeQ3ndgSTRg59\n5HYjIsispQKBgDhj0Zxsf1kO3EhL9PTm5bdMIOrKwWRw4NKoFLb4M9dkMqxo1Ull\noGRYQbiWTqOPq6ewSq06LQTNhdr3QHba+37aJXDeKpdOiySq+votKT8MYNv2syYn\nfiKnPgrZXWHeVoGlR78rpckOEyPbG+Kj8AJMQyXjZa3iRry5+mfKgxOJAoGAcO+T\n2x/cH2ujUA00diQOx4K06USeffaFviLNEg+tQkYzUvAPtyj3PNCunwysOLOROQnX\n9+X2NlZBT3zJkFwRV+92A6E475rCMEv4AqP0OQ8dJPqMyimMEcSSWolo0xkCKQ2c\nre4hzOEQj0Wb26oLCToDMQI01SiN4OwgRBNlZdUCgYEArPlYGjw4U1QFEZw5BjPM\nlqB9OUPSH8rOorhRqJCZcIzelbZ7XUgkY/xPLbwSb1FwqRm4k0q0V2tNPE9CZAQU\nlkpwvWsa4yA5fhlwRla3+5XsLb8BnMaDz9txjFFWhR5R123KfWB5jAboz79JdsEi\n3FYIk2h/UmaRdUd56Uf4gWo=\n-----END PRIVATE KEY-----\n",
+    "client_email": "sis-pottery-app@sis-pottery.iam.gserviceaccount.com",
+    "client_id": "113957574341004980856",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sis-pottery-app%40sis-pottery.iam.gserviceaccount.com"
+  }
+  bucket: sis-pottery-app
+
+google_dev:
+  service: GCS
+  project: sis-pottery
+  credentials: <%= Rails.root.join("config/secrets/sis-pottery-render.json") %>
+  bucket: sis-pottery-app
+
+
 # google:
 #   service: GCS
 #   project: sis-pottery
 #   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
 #   bucket: sis-pottery-app
 
-
-google:
-  service: GCS
-  project: sis-pottery
-  credentials: <%= Rails.root.join("config/secrets/sis.json") %>
-  bucket: sis-pottery-app
-
-google_dev:
-  service: GCS
-  project: sis-pottery
-  credentials: <%= Rails.root.join("config/secrets/sis.json") %>
-  bucket: sis-pottery-app
+# google_dev:
+#   service: GCS
+#   project: sis-pottery
+#   credentials: <%= Rails.root.join("config/secrets/sis.json") %>
+#   bucket: sis-pottery-app
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
