@@ -22,9 +22,6 @@ local:
 #   bucket: your_own_bucket
 
 # config/storage.yml
-# 
-# sis-pottery-render
-# 
 google:
   service: GCS
   project: sis-pottery
@@ -35,21 +32,8 @@ google_dev:
   service: GCS
   project: sis-pottery
   credentials: <%= Rails.application.credentials.gcs_render.to_json %>
-  # credentials: <%= Rails.root.join("config/secrets/sis.json") %>
   bucket: sis-pottery-app
 
-
-# google:
-#   service: GCS
-#   project: sis-pottery
-#   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-#   bucket: sis-pottery-app
-
-# google_dev:
-#   service: GCS
-#   project: sis-pottery
-#   credentials: <%= Rails.root.join("config/secrets/sis.json") %>
-#   bucket: sis-pottery-app
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
