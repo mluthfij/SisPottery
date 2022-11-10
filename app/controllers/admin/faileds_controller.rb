@@ -22,8 +22,8 @@ module Admin
       user_id = params[:user_id].to_i
 
       @failed = Failed.new(product_id: product_id, customer: customer, product_price: product_price, 
-                           product_name: product_name, quantity: quantity, total_price: total_price,
-                           order_start: order_start, user_id: user_id)
+                          product_name: product_name, quantity: quantity, total_price: total_price,
+                          order_start: order_start, user_id: user_id)
       if @failed.save
         removecart
       else

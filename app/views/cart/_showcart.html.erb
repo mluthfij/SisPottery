@@ -98,19 +98,24 @@
       
       <%#  %>
       <p>
-      <h4>Upload slip</h4>
+      <h4>Upload slip :</h4>
       </p>
+      <small>
+      <i>
+      (Only pdf and image)
+      </i>
+      </small>
 
       <%# TEST %>
       <%= form_with(url: cart_cart_update_path) do |form| %>
           <%= form.hidden_field :id, value: product.id %>
 
           <div class="mb-3 form">
-            <%= form.file_field :images, accept:"image/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
+            <%= form.file_field :images, accept:"image/*,application/pdf", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg", multiple: true %>
           </div>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <%= form.submit orderable.images.empty? ? 'Save' : 'Update', class:"btn btn-success" %>
+            <%= form.submit orderable.images.empty? ? 'Upload' : 'Update', class: orderable.images.empty? ? "btn btn-success" : "btn btn-warning" %>
           </div>
         <% end %>
       <%# TEST END %>

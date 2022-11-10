@@ -96,10 +96,9 @@
                                 <%= f.hidden_field :product_name, value: vessel.product_name %>
                                 <%= f.hidden_field :quantity, value: vessel.quantity %>
                                 <%= f.hidden_field :product_price, value: vessel.product_price %>
-                                <%= f.hidden_field :total_price, value: vessel.price * vessel.quantity %>
+                                <%= f.hidden_field :total_price, value: vessel.price %>
                                 <%= f.hidden_field :order_start, value: vessel.order_at %>
                                 <%= f.hidden_field :order_end, value: vessel.date %>
-                                <%# <%= f.hidden_field :product_id, value: vessel.product_id %>
                                 <%= f.hidden_field :product_id, value: product.nil? ? vessel.point : product.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user_id %>
                                 <%= f.submit "Done", class: "btn btn-dark btn-sm mb-1" %>
@@ -115,7 +114,6 @@
                                 <%= f.hidden_field :product_price, value: vessel.price %>
                                 <%= f.hidden_field :product_id, value: product.nil? ? vessel.point : product.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user.id %>
-                                <%# <%= f.date_field :date %>
                                 <%= f.submit "Cancel", class: "btn btn-dark btn-sm" %>
                             <% end %>
                         </td>

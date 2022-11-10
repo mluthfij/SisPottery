@@ -5,7 +5,8 @@
         <h3 class="fw-normal mb-0 text-black">Purchase History</h3>
       <div>
       <h4>
-        <strong>Total Payment: </strong><%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        <strong>Total Payment: </strong>
+        <%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
       </h4>
     </div>
   </div>
@@ -62,7 +63,7 @@
           </span>
         <div>
         <%# </span> %>
-        <%= number_to_currency(keep.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+        <%= number_to_currency(keep.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %> 
           <%# <%= number_to_currency(product.price, unit: "Rp. ", separator: ",", delimiter: ".") %>
         </div>
         <div>
@@ -79,7 +80,7 @@
       </div>
         <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
           <h5 class="mb-0">
-          <%= number_to_currency(keep.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+            <%= number_to_currency(keep.product_price*keep.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
             <%# <%= number_to_currency(product.price * orderable.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
           </h5>
         </div>

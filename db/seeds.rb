@@ -30,4 +30,4 @@
 
 # # Keep.create(bucket_id: 1, customer: "luthfi", product_name: "Product 100", product_price: 54, quantity: 3, total_price: 486, order_start: "0026-10-22", order_end: "2022-10-05", point: 200, user_id: 2)
 
-Keep.last.destroy
+# Keep.last.destroy
