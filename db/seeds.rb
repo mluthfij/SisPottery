@@ -16,7 +16,7 @@ end
 
 if Product.count < 100
     (1..100).each do |i|
-        Product.create(name: "Product #{i}", user_id: 1, price: rand(15..100), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+        Product.create(name: "Product #{i}", user_id: 1, price: rand(500000..2500000), created_at: Time.now - i.days, updated_at: Time.now - i.days)
     end
 end
 
