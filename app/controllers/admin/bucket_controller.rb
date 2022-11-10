@@ -8,7 +8,7 @@ module Admin
       @q = Keep.ransack(params[:q])
       @keeps = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
       @quantity_keep = Keep.sum(:quantity)
-      @price_keep = Keep.sum(:total_price)
+      # @price_keep = Keep.sum(:product_price)
     end
 
     def add

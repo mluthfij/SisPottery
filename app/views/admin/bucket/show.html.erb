@@ -8,14 +8,14 @@
             <%= page_entries_info @keeps, entry_name: 'purchase history' %>
         </div>
         <div class="col">
-          <% if Keep.count > 15 %>
-            <div class="d-flex flex-row-reverse">
-                <div class="btn-group border">
-                    <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
-                    <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
-                </div>
+        <% if Keep.count > 15 %>
+        <div class="d-flex flex-row-reverse">
+            <div class="btn-group border">
+                <%= link_to " ", (path_to_prev_page @keeps), class: @keeps.first_page? ? "btn btn-dark bi bi-chevron-left disabled" : "btn btn-dark bi bi-chevron-left" %>
+                <%= link_to " ", (path_to_next_page @keeps), class: @keeps.last_page? ? "btn btn-dark bi bi-chevron-right disabled" : "btn btn-dark bi bi-chevron-right" %>
             </div>
-          <% end %>
+        </div>
+        <% end %>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
                     <%= keep.quantity %>
                     </td>
                     <td>
-                    <%= number_to_currency(keep.total_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                    <%= number_to_currency(keep.product_price*keep.quantity, unit: "Rp. ", separator: ",", delimiter: ".") %>
                     </td>
                     <td>
                     <%= keep.order_start.strftime("%d/%m/%y") if !keep.order_start.nil? %>
@@ -99,15 +99,14 @@
                     <strong>Total</strong>
                     </td>
                     <td class="table-danger">
-                    <strong>
-                    <%= @quantity_keep %>
-                    </strong>
+                        <strong>
+                            <%= @quantity_keep %>
+                        </strong>
                     </td>
                     <td class="table-danger">
-                    <strong>
-                    <%# <%= number_to_currency(@orders.to_a.sum { |orderable| orderable.total }, unit: "Rp. ", separator: ",", delimiter: ".") %> 
-                    <%= number_to_currency(@price_keep, unit: "Rp. ", separator: ",", delimiter: ".") %>
-                    </strong>
+                        <strong>
+                            <%= number_to_currency(@bucket.sum_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
+                        </strong>
                     </td>
                     <td>
                     </td>

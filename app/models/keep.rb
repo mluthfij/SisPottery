@@ -6,7 +6,7 @@ class Keep < ApplicationRecord
     belongs_to :product
     # 
     
-    # def sum_product
-    #     product_price * quantity
-    # end
+    def sum_product
+        product_price * quantity
+    end
 end
