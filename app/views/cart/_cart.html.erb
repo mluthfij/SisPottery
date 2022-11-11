@@ -7,14 +7,14 @@
             <% if @cart.orderables.count > 3 %>
                 <h5 class="mb-4 me-4 text-end"><%= @cart.orderables.count - 3 %> other product</h5>
             <% end %>
-      <div class="col-10">
-        <% @cart.orderables.order(id: :desc).each_with_index do |orderable, index| %>
-        <% product = orderable.product %>
-            <% if index < 3 %>
-                <%= render "cart/orderables", { orderable: orderable, index: index } %>
-            <% end %>
+    <div class="col-10">
+    <% @cart.orderables.order(id: :desc).each_with_index do |orderable, index| %>
+    <% product = orderable.product %>
+        <% if index < 3 %>
+            <%= render "cart/orderables", { orderable: orderable, index: index } %>
         <% end %>
-      </div>
+    <% end %>
+    </div>
     </div>
             <%# <p> %>
             <%# Total: <%= @cart.total %>

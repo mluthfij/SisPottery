@@ -56,7 +56,7 @@
                 <ul class="timeline">
             <% end %>
 
-            <% obj.order(id: :desc).each_with_index do |about, index| %>
+            <% obj.order(id: :asc).each_with_index do |about, index| %>
             <li class="<%= index.odd? ? 'timeline-inverted' : '' %>">
                 <div class="timeline-image circular">
                     <% if about.image.attached? %>
