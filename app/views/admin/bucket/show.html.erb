@@ -39,8 +39,8 @@
                 <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
                 <% product = keep.product %>
                 <tr>
-                    <td>
-                    <%= index + 1 %>
+                    <td class="text-center">
+                    <i class="bi bi-dot"></i>
                     </td>
                     <td>
                     <%= keep.customer %>
