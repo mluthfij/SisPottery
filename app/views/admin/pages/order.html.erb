@@ -99,6 +99,8 @@
                                     <%= f.hidden_field :point, value: product.id %>
                                     <%= f.hidden_field :product_id, value: product.id %>
                                     <%= f.hidden_field :user_id, value: order.user.id %>
+                                    <%= f.hidden_field :description, value: order.description %>
+                                    
                                     <div class="form-floating mb-1">
                                         <%= f.date_field :date, class: "form-control" %>
                                         <label for="floatingInput">Due date</label>
@@ -118,6 +120,7 @@
                                         <%= f.hidden_field :product_name, value: product.name %>
                                         <%= f.hidden_field :product_price, value: product.price %>
                                         <%= f.hidden_field :product_id, value: product.id %>
+                                        <%= f.hidden_field :description, value: order.description %>
                                         <%# <%= f.hidden_field :point, value: product.id %> 
                                         <%= f.hidden_field :user_id, value: order.user.id %>
                                         <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1", data: { confirm: "Are you sure?" } %>

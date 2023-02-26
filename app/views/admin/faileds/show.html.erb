@@ -28,6 +28,7 @@
                     <th scope="col" class="text-center">Image</th>
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total</th>
                     <th scope="col">Order Time</th>
@@ -78,6 +79,13 @@
                     <%= number_to_currency(failed.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
                     </td>
                     <td>
+                    
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary <%= failed.description? == false ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#exampleModal<%= failed.id %>">
+                        Launch demo modal
+                        </button>
+                    </td>
+                    <td>
                     <%= failed.quantity %>
                     </td>
                     <td>
@@ -97,4 +105,23 @@
 </div>
 
 
-
+<% @faileds.each do |failed| %>
+<!-- Modal -->
+<div class="modal fade" id="#exampleModal<%= failed.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p>
+        <%= failed.description %>
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

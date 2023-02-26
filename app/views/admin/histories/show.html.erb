@@ -28,6 +28,7 @@
                     <th scope="col" class="text-center">Image</th>
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total</th>
                     <th scope="col">Order Time</th>
@@ -78,6 +79,12 @@
                             <%= number_to_currency(vessel.product_price, unit: "Rp. ", separator: ",", delimiter: ".") %>
                         </td>
                         <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary <%= vessel.description.empty? ? 'disabled' : '' %>" data-bs-toggle="modal" data-bs-target="#exampleModal<%= vessel.id %>">
+                            Launch demo modal
+                            </button>
+                        </td>
+                        <td>
                             <%= vessel.quantity %>
                         </td>
                         <td>
@@ -101,6 +108,8 @@
                                 <%= f.hidden_field :order_end, value: vessel.date %>
                                 <%= f.hidden_field :product_id, value: product.nil? ? vessel.point : product.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user_id %>
+                                <%= f.hidden_field :description, value: vessel.description %>
+
                                 <%= f.submit "Done", class: "btn btn-dark btn-sm mb-1" %>
                             <% end %>
 
@@ -114,13 +123,14 @@
                                 <%= f.hidden_field :product_price, value: vessel.price %>
                                 <%= f.hidden_field :product_id, value: product.nil? ? vessel.point : product.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user.id %>
+                                <%= f.hidden_field :description, value: vessel.description %>
                                 <%= f.submit "Cancel", class: "btn btn-dark btn-sm", data: { confirm: "Are you sure?" } %>
                             <% end %>
                         </td>
                     </tr>
                 <% end %>
                 <tr class="table-warning">
-                    <td colspan="5">
+                    <td colspan="6">
                         <strong>Total</strong>
                     </td>
                     <td class="table-danger">
@@ -143,4 +153,23 @@
     </div>
 </div>
 
-
+<% @vessels.each do |vessel| %>
+<!-- Modal -->
+<div class="modal fade" id="#exampleModal<%= vessel.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p>
+        <%= vessel.description %>
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

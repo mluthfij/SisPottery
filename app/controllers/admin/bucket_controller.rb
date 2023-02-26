@@ -14,6 +14,7 @@ module Admin
     def add
       # @keep = Keep.find_by(point: params[:point])
       customer = params[:customer].to_s
+      description = params[:description].to_s
       product_price = params[:product_price].to_i
       product_name = params[:product_name].to_s
       quantity = params[:quantity].to_i
@@ -36,7 +37,7 @@ module Admin
       # 
       @new_bucket = @bucket.keeps.new(point: point, product_id: product_id, customer: customer, product_price: product_price, 
                                       product_name: product_name, quantity: quantity, total_price: total_price, 
-                                      order_start: order_start, order_end: order_end, user_id: user_id)
+                                      order_start: order_start, order_end: order_end, user_id: user_id, description: description)
                                       # order_start: order_start, order_end: order_end, user: current_user)
       if @new_bucket.save
         remove

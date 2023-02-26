@@ -15,6 +15,7 @@ module Admin
     end
 
     def add
+      description = params[:description].to_s
       quantity = params[:quantity].to_i
       price = params[:price].to_i
       date = params[:date].to_s
@@ -28,7 +29,7 @@ module Admin
       
       @new_history = @history.vessels.new(point: point, product_id: product_id, customer: customer, product_price: product_price, 
                                       product_name: product_name, quantity: quantity, price: price,
-                                      order_at: order_at, date: date, user_id: user_id)
+                                      order_at: order_at, date: date, user_id: user_id, description: description)
                                       # order_at: order_at, date: date, user: current_user)
       if @new_history.save
         delete_to_save

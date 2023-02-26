@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_05_082203) do
+ActiveRecord::Schema.define(version: 2023_02_26_085524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "product_id"
+    t.string "description"
     t.index ["product_id"], name: "index_faileds_on_product_id"
     t.index ["user_id"], name: "index_faileds_on_user_id"
   end
@@ -149,6 +150,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "product_id"
+    t.string "description"
     t.index ["bucket_id"], name: "index_keeps_on_bucket_id"
     t.index ["product_id"], name: "index_keeps_on_product_id"
     t.index ["user_id"], name: "index_keeps_on_user_id"
@@ -237,6 +239,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_082203) do
     t.integer "product_price"
     t.string "point"
     t.integer "product_id"
+    t.string "description"
     t.index ["history_id"], name: "index_vessels_on_history_id"
     t.index ["product_id"], name: "index_vessels_on_product_id"
     t.index ["user_id"], name: "index_vessels_on_user_id"

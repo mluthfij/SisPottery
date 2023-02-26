@@ -33,6 +33,7 @@ module Admin
     
 
     def add_bucket
+      description = params[:description].to_s
       quantity = params[:quantity].to_i
       total_price = params[:total_price].to_i
       order_start = params[:order_start].to_s
@@ -46,7 +47,7 @@ module Admin
 
       @failed = Failed.new(product_id: product_id, customer: customer, product_price: product_price, 
                            product_name: product_name, quantity: quantity, total_price: total_price,
-                           order_start: order_start, user_id: user_id)
+                           order_start: order_start, user_id: user_id, description: description)
       if @failed.save
           removebucket
       else
