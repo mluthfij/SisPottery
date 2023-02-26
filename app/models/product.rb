@@ -39,6 +39,11 @@ class Product < ApplicationRecord
     #     name_changed? || new_record? || slug.nil? || slug.blank?
     # end
 
+    def new_method
+        @order = orderables.first
+        @order.images_status
+    end
+
     private
     def validate_images
         return if images.count <= 10

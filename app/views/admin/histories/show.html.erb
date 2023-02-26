@@ -114,7 +114,7 @@
                                 <%= f.hidden_field :product_price, value: vessel.price %>
                                 <%= f.hidden_field :product_id, value: product.nil? ? vessel.point : product.id %>
                                 <%= f.hidden_field :user_id, value: vessel.user.id %>
-                                <%= f.submit "Cancel", class: "btn btn-dark btn-sm" %>
+                                <%= f.submit "Cancel", class: "btn btn-dark btn-sm", data: { confirm: "Are you sure?" } %>
                             <% end %>
                         </td>
                     </tr>

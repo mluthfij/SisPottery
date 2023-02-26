@@ -9,14 +9,14 @@
 
 # # Product.create(name: 'New', user_id: 1, price: '1999')
 
-if User.count < 2
-    User.create(username: 'admin123', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
-    User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
-end
+# if User.count < 2
+#     User.create(username: 'admin123', email: 'belajarrubyonrails12@gmail.com', password: '111111', admin: true)
+#     User.create(username: 'luthfi', email: 'luthfujuliansyah48@gmail.com', password: '111111')
+# end
 
 # if Product.count < 100
 #     (1..100).each do |i|
-#         Product.create(name: "Product #{i}", user_id: 1, price: rand(500000..2500000), created_at: Time.now - i.days, updated_at: Time.now - i.days)
+#         Product.create(name: "Product #{i}", user_id: 1, price: rand(500000..1000000), created_at: Time.now - i.days, updated_at: Time.now - i.days)
 #     end
 # end
 
@@ -31,3 +31,11 @@ end
 # # Keep.create(bucket_id: 1, customer: "luthfi", product_name: "Product 100", product_price: 54, quantity: 3, total_price: 486, order_start: "0026-10-22", order_end: "2022-10-05", point: 200, user_id: 2)
 
 # Keep.last.destroy
+
+# Update Keep
+# keeps = Keep.all
+# keeps.each do |keep|
+#     # (1..5).each do |k|
+#         keep.update(created_at: Time.now - rand(1..5).days, updated_at: Time.now - rand(1..5).days)
+#     # end
+# end

@@ -20,7 +20,7 @@
     </div>
   <% end %>
     <div class="position-absolute top-0 end-0 mt-1" style="margin-right:5px;">
-      <a class="btn btn-sm btn-warning" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="btn btn-sm btn-warning <%= "disabled" if !orderable.images.empty? %>" data-bs-toggle="collapse" href="#col<%= orderable.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
         Edit
       </a>
     </div>

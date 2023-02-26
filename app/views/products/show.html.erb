@@ -109,6 +109,14 @@
               <div class="card">
               <div class="card-body">
               <h2>Order</h2>
+              <% if user_signed_in? %>
+                <% if !@product.orderables.empty? && @product.new_method == false %>
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Waiting for confirmation...
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                <% end %>
+              <% end %>
             <%= form_with(url: cart_add_path) do |f| %>
               <%= f.hidden_field :id, value: @product.id %>
               <%= f.label :quantity, class:"form-label" %>
@@ -121,13 +129,13 @@
               </div>
               <br><br>
               <%#  %>
-                <%= f.submit "Update cart", class:"btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4" %>
+              <%= f.submit "Update cart", class: !@product.orderables.empty? && @product.new_method == false ? "btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4 disabled" : "btn btn-warning position-absolute bottom-0 start-0 mb-4 ms-4" %>
             <% end %>
             <%# <div class=", class:"""> %>
             <%= form_with(url: cart_remove_path) do |f| %>
               <%= f.hidden_field :id, value: @showorder.id %>
                 <div class="mb-3">
-                  <%= f.submit "Cancel order", class:"btn btn-danger position-absolute bottom-0 end-0 mb-4 me-4" %>
+                  <%= f.submit "Cancel order", class: !@product.orderables.empty? && @product.new_method == false ? "btn btn-danger position-absolute bottom-0 end-0 mb-4 me-4 disabled" : "btn btn-danger position-absolute bottom-0 end-0 mb-4 me-4" %>
                 </div>
             <% end %>
               </div>
@@ -141,7 +149,7 @@
               <% if user_signed_in? %>
                 <% unless current_user.firstname? && current_user.my_address? && current_user.phone? || current_user.wa_phone? %>
                   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Complete your profile data!</strong> You should complete your profile data if you want to order.
+                    <strong>Complete your profile data!</strong> You should complete your profile data <%= link_to 'here', edit_user_registration_path %> if you want to order.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 <% end %>

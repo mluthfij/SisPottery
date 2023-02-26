@@ -120,7 +120,7 @@
                                         <%= f.hidden_field :product_id, value: product.id %>
                                         <%# <%= f.hidden_field :point, value: product.id %> 
                                         <%= f.hidden_field :user_id, value: order.user.id %>
-                                        <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1" %>
+                                        <%= f.submit "Cancel", class: "btn btn-dark btn-sm mb-1", data: { confirm: "Are you sure?" } %>
                                     <% end %>
                                     <% if !order.description.empty? %>
                                     <!-- Button trigger modal -->
@@ -182,7 +182,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -204,7 +203,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

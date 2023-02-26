@@ -34,6 +34,7 @@
   <%#  %>
 
   <% @keeps.order(id: :desc).each_with_index do |keep, index| %>
+    <% product = keep.product %>
     <div class="card rounded-3 mb-4">
       <div class="position-absolute top-0 end-0 m-1">
         <h5>
@@ -49,10 +50,36 @@
       <div class="row d-flex justify-content-between align-items-center">
         <div class="col-md-2 col-lg-2 col-xl-2">
           <%# PICT %>
-          <%= link_to product_path(keep.product_id) do %> 
-            <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="...">
+          <%# <%= link_to product_path(keep.product_id) do %>
+            <%# <img src="https://lpm.ulm.ac.id/image/desain/empty.jpg" class="img-fluid rounded-3" alt="..."> %>
+          <%# <% end %>
+          <%= link_to product_path(keep.product_id) do %>
+            <% unless product.nil? %>
+                <% if product.images.attached? %>
+                    <% product.images.each_with_index do |image, idx| %>
+                        <% if idx == 0 %>
+                            <%# <%= image_tag(image, class:"img-thumbnail", width:50) %>
+                            <% if image.image? %>
+                                <%= image_tag image, class:"img-fluid rounded-3" %>
+                            <% elsif image.video? %>
+                                <video class="img-fluid rounded-3">
+                                    <source src="<%= rails_blob_url(image) %>" type="<%= image.content_type %>"/>
+                                </video>
+                            <% else %>
+                                Download: <%= link_to image.filename, rails_blob_path(image, disposition: "file") %>
+                            <% end %>
+                            <%#  %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-fluid rounded-3") %>
+                <% end %>
+            <% else %>
+                <%= image_tag("https://lpm.ulm.ac.id/image/desain/empty.jpg", class:"img-fluid rounded-3") %>
+            <% end %>
           <% end %>
-
+          <%#  %>
+          
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
           <span data-turbo="false">

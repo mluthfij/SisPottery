@@ -15,4 +15,10 @@ class Orderable < ApplicationRecord
     #     product.quantity - quantity
     # end
     # 
+
+    # 
+    def images_status
+        images.empty?
+    end
+    # 
 end
