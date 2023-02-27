@@ -36,6 +36,7 @@
 keeps = Keep.all
 keeps.each do |keep|
     # (1..5).each do |k|
-        keep.update(created_at: Time.now - rand(1..15).days, updated_at: Time.now - rand(1..15).days)
+        # keep.update(created_at: Time.now - rand(1..15).days, updated_at: Time.now - rand(1..15).days)
+        keep.update(quantity: 6)
     # end
 end
