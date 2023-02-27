@@ -10,7 +10,7 @@
                 <span class="d-block font-weight-bold name">
                     <%= link_to comment.user.username, profile_path(comment.user.to_param), class:"text-decoration-none" %>
                     <% if comment.reply_to.present? %>
-                        <strong>replying to <%= link_to truncate(comment.reply_to, length:20), profile_path(comment.user.to_param), class:"text-decoration-none" %></strong>
+                        <strong>replying to <%= truncate(comment.reply_to, length:20) %></strong>
                     <% end %>
                 </span>
                 <span class="date text-black-50">

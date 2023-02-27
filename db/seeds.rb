@@ -33,9 +33,9 @@
 # Keep.last.destroy
 
 # Update Keep
-# keeps = Keep.all
-# keeps.each do |keep|
-#     # (1..5).each do |k|
-#         keep.update(created_at: Time.now - rand(1..5).days, updated_at: Time.now - rand(1..5).days, quantity: rand(1..10))
-#     # end
-# end
+keeps = Keep.all
+keeps.each do |keep|
+    # (1..5).each do |k|
+        keep.update(created_at: Time.now - rand(1..15).days, updated_at: Time.now - rand(1..15).days)
+    # end
+end
