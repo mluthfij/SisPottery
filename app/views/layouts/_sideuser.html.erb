@@ -36,6 +36,7 @@
                     </div>
                     Shop
                 </a>
+                <% if user_signed_in? %>
                 <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'cart' ? 'active' : '' %>" href="<%= cart_path %>">
                     <div class="sb-nav-link-icon">
                         <i class="bi bi-journal-text"></i>
@@ -62,7 +63,6 @@
                     Failed History
                 </a>
                 <%# end core %>
-                <% if user_signed_in? %>
                 <div class="sb-sidenav-menu-heading">Edit</div>
                 <a class="nav-link <%= params[:action] == 'show' && params[:controller] == 'profiles' ? 'active' : '' %>" href="<%= profile_path(current_user.to_param) %>">
                     <div class="sb-nav-link-icon">
