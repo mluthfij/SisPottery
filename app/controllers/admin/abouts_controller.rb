@@ -72,7 +72,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def about_params
-        params.require(:about).permit(:description, :company_name, :sub_title, :title, :image)
+        params.require(:about).permit(:description, :company_name, :title, :image)
       end
     
     protected

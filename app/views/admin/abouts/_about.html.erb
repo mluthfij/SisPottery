@@ -30,10 +30,6 @@
                             <div class="mb-3">
                                 <%= form.file_field :image, accept:"image/*", id:"inp-img-vid", direct_upload: true, class:"form-control form-control-lg" %>
                             </div>
-                            <div class="form-floating mb-3">
-                                <%= form.date_field :sub_title, class:"form-control", placeholder:"title" %>
-                                <label for="floatingInput">Date</label>
-                            </div>
                             <div class="subheading form-floating mb-3">
                                 <%= form.text_field :title, class:"form-control", placeholder:"title" %>
                                 <label for="floatingInput">Title</label>
@@ -69,7 +65,6 @@
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <div style="text-shadow: 2px 2px #000000;">
-                            <h4><%= about.sub_title %></h4>
                             <h4 class="subheading"><%= about.title %></h4>
                         </div>
                     </div>
